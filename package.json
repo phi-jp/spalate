@@ -1,0 +1,35 @@
+{
+  "name": "spalate",
+  "version": "0.0.1",
+  "description": "single page application template",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phi-jp/spalate.git"
+  },
+  "author": "phi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/phi-jp/spalate/issues"
+  },
+  "homepage": "https://github.com/phi-jp/spalate#readme",
+  "dependencies": {
+    "config": "^1.28.1",
+    "express": "^4.16.2",
+    "js-yaml": "^3.10.0",
+    "pug": "^2.0.0-rc.4",
+    "underscore": "^1.8.3",
+
+    "querysearch": "0.0.3",
+    "uuaa": "0.0.6",
+    "routeful": "0.0.7",
+    "helmeta": "0.0.5",
+    "firerest": "0.1.0",
+    "spat": "0.0.9",
+    "socialink": "0.0.2",
+    "meltline": "0.1.3"
+  }
+}

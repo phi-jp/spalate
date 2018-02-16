@@ -1,0 +1,22 @@
+spalate:
+  includes: 'app/includes.js'
+  app: 'app/app.js'
+  router: 'app/router.js'
+  tags: 'app/tags.js'
+  static:
+    - 'app/assets'
+    - 'public'
+config:
+  env: default
+  meta:
+    title: spalate test
+    keywords: web,tool
+    description: Hello, client template!
+    type: website
+    image: ""
+    favicon: /images/icon.png
+    url: http://getit.co.jp
+  server:
+    endpoint: https://noteput-api.herokuapp.com/v1
+    cacheKey: noteput.auth.token
+    tokenKey: X-Noteput-Token

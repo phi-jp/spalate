@@ -5,16 +5,6 @@ module.exports = [
   { type: 'script', path: 'https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js', },
   // object-fit for ie
   { type: 'script', path: 'https://cdnjs.cloudflare.com/ajax/libs/object-fit-images/3.2.3/ofi.js' },
-  
-  // my plugins
-  { type: 'script', path: 'https://cdn.rawgit.com/phi-jp/querysearch/v0.0.3/querysearch.js', },
-  { type: 'script', path: 'https://cdn.rawgit.com/phi-jp/uuaa/v0.0.6/uuaa.js', },
-  { type: 'script', path: 'https://cdn.rawgit.com/phi-jp/routeful/v0.0.7/routeful.js', },
-  { type: 'script', path: 'https://cdn.rawgit.com/phi-jp/helmeta/v0.0.5/helmeta.js', },
-  { type: 'script', path: 'https://cdn.rawgit.com/phi-jp/firerest/v0.1.0/firerest.js', },
-  { type: 'script', path: 'https://cdn.rawgit.com/phi-jp/spat/v0.0.7/spat.js', },
-  { type: 'script', path: 'https://cdn.rawgit.com/phi-jp/socialink/v0.0.1/socialink.js', },
-  { type: 'style', path: 'https://cdn.rawgit.com/phi-jp/meltline/v0.1.0/meltline.css', },
 
   // underscore.js
   { type: 'script', path: 'https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js', },
@@ -34,4 +24,14 @@ module.exports = [
 
   // google icon
   { type: 'style', path: 'https://fonts.googleapis.com/icon?family=Material+Icons', },
+  
+  // my plugins
+  { type: 'script', path: 'https://cdn.rawgit.com/phi-jp/querysearch/v0.0.3/querysearch.js', },
+  { type: 'script', path: 'https://cdn.rawgit.com/phi-jp/uuaa/v0.0.6/uuaa.js', },
+  { type: 'script', path: 'https://cdn.rawgit.com/phi-jp/routeful/v0.0.7/routeful.js', },
+  { type: 'script', path: 'https://cdn.rawgit.com/phi-jp/helmeta/v0.0.5/helmeta.js', },
+  { type: 'script', path: 'https://cdn.rawgit.com/phi-jp/firerest/v0.1.0/firerest.js', },
+  { type: 'script', path: 'https://cdn.rawgit.com/phi-jp/spat/v0.0.7/spat.js', },
+  { type: 'script', path: 'https://cdn.rawgit.com/phi-jp/socialink/v0.0.1/socialink.js', },
+  { type: 'style', path: 'https://cdn.rawgit.com/phi-jp/meltline/v0.1.0/meltline.css', },
 ];

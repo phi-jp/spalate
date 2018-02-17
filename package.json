@@ -4,7 +4,8 @@
   "description": "single page application template",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build_plugins": "gulp build_plugins"
   },
   "repository": {
     "type": "git",
@@ -19,17 +20,20 @@
   "dependencies": {
     "config": "^1.28.1",
     "express": "^4.16.2",
-    "js-yaml": "^3.10.0",
-    "pug": "^2.0.0-rc.4",
-    "underscore": "^1.8.3",
-
-    "querysearch": "0.0.3",
-    "uuaa": "0.0.6",
-    "routeful": "0.0.7",
-    "helmeta": "0.0.5",
     "firerest": "0.1.0",
-    "spat": "0.0.9",
+    "helmeta": "0.0.5",
+    "js-yaml": "^3.10.0",
+    "meltline": "0.1.3",
+    "pug": "^2.0.0-rc.4",
+    "querysearch": "0.0.3",
+    "routeful": "0.0.7",
     "socialink": "0.0.2",
-    "meltline": "0.1.3"
+    "spat": "0.0.9",
+    "underscore": "^1.8.3",
+    "uuaa": "0.0.6"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1"
   }
 }

@@ -7,13 +7,13 @@ var spalate = function(settings) {
   var app = express();
   var config = require('config');
   var includes = (function() {
-    var defaultIncludes = require(path.join(__dirname, 'includes.js'));
+    var defaultIncludes = require(path.join(__dirname, 'assets/includes.js'));
     var userIncludes = require(path.join(process.cwd(), config.spalate.includes));
 
     return defaultIncludes.concat(userIncludes);
   })();
   
-  app.set('views', __dirname);
+  app.set('views', path.join(__dirname, 'views'));
   app.set('view engine', 'pug');
   config.spalate.static.forEach(function(p) {
     console.log(path.join(process.cwd(), p));

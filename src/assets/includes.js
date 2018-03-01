@@ -13,11 +13,11 @@ module.exports = [
   { type: 'script', path: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js', },
 
   // moment.js
-  { type: 'script', path: 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js', },
-  { type: 'script', path: 'https://cdnjs.cloudflare.com/ajax/libs/moment-duration-format/1.3.0/moment-duration-format.js', },
+  { type: 'script', path: 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.js', },
+  { type: 'script', path: 'https://cdnjs.cloudflare.com/ajax/libs/moment-duration-format/2.2.2/moment-duration-format.js', },
 
   // marked js
-  { type: 'script', path: 'https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.js', },
+  { type: 'script', path: 'https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.17/marked.js', },
 
   // riot.js
   { type: 'script', path: 'https://cdnjs.cloudflare.com/ajax/libs/riot/3.6.0/riot+compiler.min.js', },
@@ -34,4 +34,8 @@ module.exports = [
   { type: 'script', path: '/spalate/plugins/spat.js', },
   { type: 'script', path: '/spalate/plugins/socialink.js', },
   { type: 'style', path: '/spalate/plugins/meltline.css', },
+
+  // base
+  { type: 'script', path: '/spalate/scripts/app.js' },
+  { type: 'script', path: '/spalate/scripts/main.js' },
 ];

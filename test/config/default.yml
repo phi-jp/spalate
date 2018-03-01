@@ -1,12 +1,14 @@
 spalate:
   includes: 'app/includes.js'
-  static:
-    - 'public'
   views:
     head: 'hoge'
     body: 'hoge'
+  static:
+    - 'public'
   router: '/scripts/router.js'
   tags: '/scripts/tags.js'
+  includes2:
+    - { type: 'script', path: '/scripts/main.js' }
 config:
   env: default
   meta:

@@ -1,7 +1,6 @@
-var gulp = require("gulp");  
-var concat = require("gulp-concat");
+var gulp = require('gulp');  
 
-gulp.task("build_plugins", function() {  
+gulp.task('build', function() {  
   var files = [
     'node_modules/querysearch/querysearch.js',
     'node_modules/uuaa/uuaa.js',
@@ -10,9 +9,9 @@ gulp.task("build_plugins", function() {
     'node_modules/firerest/firerest.js',
     'node_modules/spat/spat.js',
     'node_modules/socialink/socialink.js',
+    'node_modules/meltline/meltline.css',
   ];
   gulp.src(files)
-    .pipe(concat('plugins.js'))
-    .pipe(gulp.dest('./src'))
+    .pipe(gulp.dest('./src/assets/plugins'))
     ;
 });

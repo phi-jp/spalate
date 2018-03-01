@@ -13,12 +13,11 @@ var spalate = function(settings) {
     return defaultIncludes.concat(userIncludes);
   })();
   
-  app.set('views', path.join(__dirname, 'views'));
-  app.set('view engine', 'pug');
+  // setup static path
   config.spalate.static.forEach(function(p) {
-    console.log(path.join(process.cwd(), p));
     app.use( express.static(path.join(process.cwd(), p)) );
   });
+  app.use('/spalate', express.static( path.join(__dirname, 'assets') ) );
 
   router.get('/', function(req, res) {
     res.render('index', {
@@ -30,6 +29,11 @@ var spalate = function(settings) {
     });
   });
 
+  // setup views
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'pug');
+
+  // setup route
   app.use('/', router);
 
   return app;

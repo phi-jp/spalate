@@ -26,12 +26,12 @@ module.exports = [
   { type: 'style', path: 'https://fonts.googleapis.com/icon?family=Material+Icons', },
   
   // my plugins
-  { type: 'script', path: 'https://cdn.rawgit.com/phi-jp/querysearch/v0.0.3/querysearch.js', },
-  { type: 'script', path: 'https://cdn.rawgit.com/phi-jp/uuaa/v0.0.6/uuaa.js', },
-  { type: 'script', path: 'https://cdn.rawgit.com/phi-jp/routeful/v0.0.7/routeful.js', },
-  { type: 'script', path: 'https://cdn.rawgit.com/phi-jp/helmeta/v0.0.5/helmeta.js', },
-  { type: 'script', path: 'https://cdn.rawgit.com/phi-jp/firerest/v0.1.0/firerest.js', },
-  { type: 'script', path: 'https://cdn.rawgit.com/phi-jp/spat/v0.0.7/spat.js', },
-  { type: 'script', path: 'https://cdn.rawgit.com/phi-jp/socialink/v0.0.1/socialink.js', },
-  { type: 'style', path: 'https://cdn.rawgit.com/phi-jp/meltline/v0.1.0/meltline.css', },
+  { type: 'script', path: '/spalate/plugins/querysearch.js', },
+  { type: 'script', path: '/spalate/plugins/uuaa.js', },
+  { type: 'script', path: '/spalate/plugins/routeful.js', },
+  { type: 'script', path: '/spalate/plugins/helmeta.js', },
+  { type: 'script', path: '/spalate/plugins/firerest.js', },
+  { type: 'script', path: '/spalate/plugins/spat.js', },
+  { type: 'script', path: '/spalate/plugins/socialink.js', },
+  { type: 'style', path: '/spalate/plugins/meltline.css', },
 ];

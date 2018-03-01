@@ -4,7 +4,6 @@ spalate:
   router: 'app/router.js'
   tags: 'app/tags.js'
   static:
-    - 'app/assets'
     - 'public'
 config:
   env: default

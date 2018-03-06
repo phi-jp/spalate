@@ -17,6 +17,9 @@
     "url": "https://github.com/phi-jp/spalate/issues"
   },
   "homepage": "https://github.com/phi-jp/spalate#readme",
+  "bin": {
+    "spalate": "./bin/spalate"
+  },
   "dependencies": {
     "config": "^1.28.1",
     "express": "^4.16.2",

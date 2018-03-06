@@ -4,15 +4,16 @@ var express = require('express');
 var router = express.Router();
 
 var spalate = function(settings) {
+  
   var app = express();
   var config = require('config');
   var includes = (function() {
     var defaultIncludes = require(path.join(__dirname, 'assets/includes.js'));
-    var userIncludes = require(path.join(process.cwd(), config.spalate.includes));
+    var userIncludes = config.spalate.includes;
 
     return defaultIncludes.concat(userIncludes);
   })();
-  
+
   // setup static path
   config.spalate.static.forEach(function(p) {
     app.use( express.static(path.join(process.cwd(), p)) );

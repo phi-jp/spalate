@@ -1,5 +1,4 @@
 spalate:
-  includes: 'app/includes.js'
   views:
     head: 'hoge'
     body: 'hoge'
@@ -7,8 +6,10 @@ spalate:
     - 'public'
   router: '/scripts/router.js'
   tags: '/scripts/tags.js'
-  includes2:
+  includes:
     - { type: 'script', path: '/scripts/main.js' }
+    # - { type: 'style', path: '/styles/main.css', }
+    # - { type: 'style', path: '/fonts/icons/icons.css', }
 config:
   env: default
   meta:
@@ -18,8 +19,9 @@ config:
     type: website
     image: ""
     favicon: /images/icon.png
-    url: http://getit.co.jp
-  server:
+    url: https://getit.co.jp
+  api:
     endpoint: https://noteput-api.herokuapp.com/v1
     cacheKey: noteput.auth.token
     tokenKey: X-Noteput-Token
+    debug: true

@@ -11,10 +11,10 @@
   }
 
   exports.ref = Firerest.create({
-    api: config.server.endpoint,
-    cacheKey: config.server.cacheKey,
-    tokenKey: config.server.tokenKey,
-    debug: true,
+    api: config.api.endpoint,
+    cacheKey: config.api.cacheKey,
+    tokenKey: config.api.tokenKey,
+    debug: config.api.debug,
   });
 
   exports.meta = {

@@ -15,11 +15,11 @@ var files = {};
 watcher.on('all', (event, path) => {
   console.log(event, path);
 
-  if (event === 'add') {
+  if (/^change$|^add$/.test(event)) {
     var file = fs.readFileSync(path).toString();
-    var js = riot.compile(file, { parser: {
+    var js = riot.compile(file, { 
       template: 'pug',
-    }, expr: true });
+    });
     console.log(js);
   }
 });

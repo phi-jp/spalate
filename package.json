@@ -18,9 +18,10 @@
   },
   "homepage": "https://github.com/phi-jp/spalate#readme",
   "bin": {
-    "spalate": "./bin/spalate"
+    "spalate": "./bin/spalate.js"
   },
   "dependencies": {
+    "commander": "^2.14.1",
     "config": "^1.28.1",
     "express": "^4.16.2",
     "firerest": "0.1.0",
@@ -36,7 +37,7 @@
     "uuaa": "0.0.6"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-concat": "^2.6.1"
+    "chokidar": "^2.0.2",
+    "riot": "^3.9.0"
   }
 }

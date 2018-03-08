@@ -5,7 +5,9 @@ spalate:
   static:
     - 'public'
   router: '/scripts/router.js'
-  tags: '/scripts/tags.js'
+  tags:
+    target: 'app/tags'
+    output: 'public/scripts'
   includes:
     - { type: 'script', path: '/scripts/main.js' }
     # - { type: 'style', path: '/styles/main.css', }

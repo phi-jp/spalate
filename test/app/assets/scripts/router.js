@@ -9,6 +9,9 @@
   // }
 
   exports.map = {
+    '/items/:id': {
+      tag: 'page-items-detail',
+    },
     '/:page': {
       tag: function(req, res) {
         req.tag = 'page-' + req.params.page;

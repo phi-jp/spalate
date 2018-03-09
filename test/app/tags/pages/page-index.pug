@@ -3,11 +3,15 @@ page-index
     module-header
     div.h-full.overflow-scroll
       div.container.p10
-        div.posts
-          div.box-shadow.p16.rounded-4.bg-white.mb20(each='{items}')
-            h3.text-primary
-              a(href='/post/{id}') {title}
-            p {body}
+        div.items
+          div.rounded-4.mb32.f(each='{items}')
+            div.flex-fixed.mr16
+              div.w200.s-w100.rect
+                img.block.s-full.object-fit-cover(src='{image_url}')
+            div.w-full
+              h3.text-primary
+                a(href='/items/{id}') {title}
+              p.line-clamp-3.word-break-all.s-hide {body}
     module-tabbar
 
   script.

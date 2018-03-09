@@ -1,0 +1,24 @@
+page-items-detail(spat-animation='slide')
+  div.flex.flex-column.h-full
+    module-header
+    div.h-full.overflow-scroll
+      div.container.p10
+        h1 {item.title}
+        div(ref='body')
+    module-tabbar
+
+  script.
+    var self = this;
+
+    this.on('show', function(e) {
+      app.ref.child('items').child(e.opts.id).get().then((res) => {
+        this.item = res.data.item;
+        this.update();
+      });
+    });
+
+    this.on('update', function() {
+      if (this.item) {
+        this.refs.body.innerHTML = marked(this.item.body);
+      }
+    });

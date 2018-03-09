@@ -7,7 +7,7 @@
     "dev": "spalate",
     "build": "spalate build",
     "start": "spalate start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ../bin/spalate.js dev"
   },
   "author": "",
   "license": "MIT",

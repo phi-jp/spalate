@@ -7,3 +7,13 @@ single page application template
 - ルーマニアがどんな国かはしらない
 
 by @Haltie
+
+
+## run test
+
+サーバーが立ち上がって watch & build する
+
+```
+$ cd test
+$ npm test
+```

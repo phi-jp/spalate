@@ -1,0 +1,26 @@
+page-index
+  div.flex.flex-column.h-full
+    module-header
+    div.h-full.overflow-scroll
+      div.container.p10
+        div.posts
+          div.box-shadow.p16.rounded-4.bg-white.mb20(each='{items}')
+            h3.text-primary
+              a(href='/post/{id}') {title}
+            p {body}
+    module-tabbar
+
+  script.
+    var self = this;
+
+    this.on('show', function() {
+      app.ref.child('items').get().then((res) => {
+        this.items = res.data.items;
+        this.update();
+      });
+    });
+
+    this.on('fetch', function(e) {
+      this.posts = e.response;
+      this.update();
+    });

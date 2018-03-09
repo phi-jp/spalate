@@ -4,11 +4,14 @@ spalate:
     body: 'hoge'
   static:
     - 'public'
-  router: '/app/router.js'
+    - 'app/assets'
+  router: '/app/assets/scripts/router.js'
   tags:
     target: 'app/tags'
     output: 'public/scripts'
   includes:
+    - { type: 'script', path: '/scripts/router.js' }
+    - { type: 'script', path: '/scripts/tags.js' }
     - { type: 'script', path: '/scripts/main.js' }
     # - { type: 'style', path: '/styles/main.css', }
     # - { type: 'style', path: '/fonts/icons/icons.css', }

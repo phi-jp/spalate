@@ -1,1 +1,3 @@
-console.log('hoge');
+window.onload = function() {
+  spalate.start();
+};

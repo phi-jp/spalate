@@ -18,6 +18,7 @@ watcher.on('all', (event, file) => {
     var code = fs.readFileSync(file).toString();
     var js = riot.compile(code, { 
       template: 'pug',
+      css: 'less',
     });
     files[file] = js;
   }

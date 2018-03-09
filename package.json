@@ -38,6 +38,11 @@
   },
   "devDependencies": {
     "chokidar": "^2.0.2",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-riot": "^1.1.4",
+    "gulp-sort": "^2.0.0",
+    "less": "^3.0.1",
     "riot": "^3.9.0"
   }
 }

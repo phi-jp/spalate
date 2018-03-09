@@ -1,0 +1,39 @@
+
+.define-color(@key, @value) {
+  .text-@{key} {
+    color: @value;
+  }
+  .bg-@{key} {
+    background-color: @value;
+  }
+  .border-@{key} {
+    border-color: @value;
+  }
+}
+
+.define-color-grad(@key, @angle, @a, @b) {
+  .text-@{key} {
+    background-image: -webkit-linear-gradient(@a, @b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .bg-@{key} {
+    background-image: linear-gradient(@angle, @a 0%, @b 100%);
+  }
+  .border-@{key} {
+    border-color: @a;
+  }
+}
+
+// サービスのメインカラー
+.define-color(main, hsl(210, 100%, 21%));
+// 通常色
+.define-color(normal, hsl(0, 0%, 24%));
+// 弱色
+.define-color(weak, hsl(0, 0%, 66%));
+// リンク色
+.define-color(link, hsl(210, 90%, 54%));
+// 強調色
+.define-color-grad(primary, 135deg, #3023AE, #C86DD7);
+// 危険色
+.define-color(danger, hsl(12, 74%, 49%));

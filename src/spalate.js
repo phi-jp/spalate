@@ -1,7 +1,7 @@
 var path = require('path');
 var _ = require('underscore');
 var express = require('express');
-var router = express.Router();
+var routes = require('./server/routes.js');
 
 var spalate = function(settings) {
   
@@ -20,22 +20,22 @@ var spalate = function(settings) {
   });
   app.use('/spalate', express.static( path.join(__dirname, 'assets') ) );
 
-  router.get('/', function(req, res) {
-    res.render('index', {
-      config: config.config,
-      meta: config.config.meta,
-      includes: includes,
-      fetch: {},
-      pretty: true,
-    });
-  });
+  // router.get('/', function(req, res) {
+  //   res.render('index', {
+  //     config: config.config,
+  //     meta: config.config.meta,
+  //     includes: includes,
+  //     fetch: {},
+  //     pretty: true,
+  //   });
+  // });
 
   // setup views
   app.set('views', path.join(__dirname, 'views'));
   app.set('view engine', 'pug');
 
   // setup route
-  app.use('/', router);
+  app.use('/', routes);
 
   return app;
 };

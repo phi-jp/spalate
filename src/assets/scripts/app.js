@@ -6,7 +6,7 @@
   var isNode = (typeof process !== "undefined" && typeof require !== "undefined");
 
   if (isNode) {
-    config = require('config');
+    config = require('config').config;
     Firerest = require('firerest');
   }
 

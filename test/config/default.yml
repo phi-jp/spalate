@@ -4,7 +4,7 @@ spalate:
     body: 'hoge'
   static:
     - 'public'
-  router: '/scripts/router.js'
+  router: '/app/router.js'
   tags:
     target: 'app/tags'
     output: 'public/scripts'

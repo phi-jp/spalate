@@ -7,7 +7,7 @@
     "dev": "spalate",
     "build": "spalate build",
     "start": "spalate start",
-    "test": "node ../bin/spalate.js dev"
+    "test": "node ../bin/spalate.js"
   },
   "author": "",
   "license": "MIT",

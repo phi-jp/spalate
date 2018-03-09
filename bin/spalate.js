@@ -6,7 +6,7 @@ var program   = require('commander');
 var defaultCommand = 'dev';
 var cmd = process.argv[2];
 
-if ([defaultCommand, 'build', 'start'].indexOf(cmd) === -1) {
+if ([defaultCommand, 'build', 'start', 'webfont'].indexOf(cmd) === -1) {
   cmd = defaultCommand;
 }
 

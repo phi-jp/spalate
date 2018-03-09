@@ -27,6 +27,7 @@
     "config": "^1.28.1",
     "express": "^4.16.2",
     "firerest": "0.1.0",
+    "fs-extra": "^5.0.0",
     "helmeta": "0.0.5",
     "js-yaml": "^3.10.0",
     "less": "^3.0.1",
@@ -45,6 +46,7 @@
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
     "gulp-riot": "^1.1.4",
-    "gulp-sort": "^2.0.0"
+    "gulp-sort": "^2.0.0",
+    "webfont": "^7.1.4"
   }
 }

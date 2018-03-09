@@ -14,6 +14,9 @@ spalate:
   less:
     target: 'app/assets'
     output: 'public'
+  webfont:
+    target: 'public/images/icons'
+    output: 'public/fonts/webfont'
   includes:
     - { type: 'script', path: '/scripts/router.js' }
     - { type: 'script', path: '/scripts/tags.js' }

@@ -4,7 +4,6 @@ var express = require('express');
 var routes = require('./server/routes.js');
 
 var spalate = function(settings) {
-  
   var app = express();
   var config = require('config');
   var includes = (function() {
@@ -13,22 +12,18 @@ var spalate = function(settings) {
 
     return defaultIncludes.concat(userIncludes);
   })();
+  
+  // setup less
+  if (config.spalate.less) {
+    var lessMiddleware = require('less-middleware');
+    app.use( lessMiddleware( path.join(process.cwd(), config.spalate.less.target), { dest: config.spalate.less.output } ) );
+  }
 
   // setup static path
   config.spalate.static.forEach(function(p) {
-    app.use( express.static(path.join(process.cwd(), p)) );
+    app.use( express.static( path.join(process.cwd(), p) ) );
   });
   app.use('/spalate', express.static( path.join(__dirname, 'assets') ) );
-
-  // router.get('/', function(req, res) {
-  //   res.render('index', {
-  //     config: config.config,
-  //     meta: config.config.meta,
-  //     includes: includes,
-  //     fetch: {},
-  //     pretty: true,
-  //   });
-  // });
 
   // setup views
   app.set('views', path.join(__dirname, 'views'));

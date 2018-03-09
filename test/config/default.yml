@@ -9,11 +9,14 @@ spalate:
   tags:
     target: 'app/tags'
     output: 'public/scripts'
+  less:
+    target: 'app/assets'
+    output: 'public'
   includes:
     - { type: 'script', path: '/scripts/router.js' }
     - { type: 'script', path: '/scripts/tags.js' }
     - { type: 'script', path: '/scripts/main.js' }
-    # - { type: 'style', path: '/styles/main.css', }
+    - { type: 'style', path: '/styles/main.css', }
     # - { type: 'style', path: '/fonts/icons/icons.css', }
 config:
   env: default

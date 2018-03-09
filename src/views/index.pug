@@ -42,31 +42,10 @@ html
     //- script(src='/scripts/all.js')
     //- link(rel="stylesheet", href='/styles/all.css')
     //- fetch
-    if fetch.response && fetch.cache !== false
+    if responseCache
       script.
-        ;(function() {
-          var response = !{JSON.stringify(fetch.response)};
-          var api = "!{fetch.reference.api}";
-          var path = api.replace(app.ref.api, '');
-          app.ref.child(path).migrate(response);
-
-          var onEnableLocal = function(req, res) {
-            if (req.api === api) {
-              req.local = true;
-              app.ref.off('prefetch', onEnableLocal);
-            }
-          };
-
-          var onDisableLocal = function(req, res) {
-            if (req.api === api) {
-              req.local = false;
-              app.ref.off('postfetch', onDisableLocal);
-            }
-          };
-
-          app.ref.on('prefetch', onEnableLocal);
-          app.ref.on('postfetch', onDisableLocal);
-        })();
+        var responseCache = "!{ encodeURIComponent(JSON.stringify(responseCache)) }";
+        responseCache = JSON.parse( decodeURIComponent(responseCache) );
 
     //- for cordova
     script.

@@ -17,14 +17,11 @@ page-index
   script.
     var self = this;
 
-    this.on('show', function() {
-      app.ref.child('items').get().then((res) => {
-        this.items = res.data.items;
-        this.update();
-      });
-    });
-
     this.on('fetch', function(e) {
-      this.posts = e.response;
+      this.items = e.response.data.items;
       this.update();
     });
+    
+    this.on('show', function() {
+    });
+

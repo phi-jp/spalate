@@ -1,7 +1,6 @@
 var path = require('path');
 var _ = require('underscore');
 var express = require('express');
-var routes = require('./server/routes.js');
 
 var spalate = function(settings) {
   var app = express();
@@ -30,9 +29,12 @@ var spalate = function(settings) {
   app.set('view engine', 'pug');
 
   // setup route
+  var routes = require('./server/routes.js');
   app.use('/', routes);
 
   return app;
 };
+
+spalate.app = require('./assets/scripts/app.js');
 
 exports = module.exports = spalate;

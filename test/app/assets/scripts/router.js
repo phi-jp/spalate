@@ -2,15 +2,25 @@
 
 ;(function(exports) {
 
-  // var isNode = (typeof process !== "undefined" && typeof require !== "undefined");
+  var isNode = (typeof process !== "undefined" && typeof require !== "undefined");
 
-  // if (isNode) {
-  //   app = require('./app');
-  // }
+  if (isNode) {
+    app = require('spalate').app;
+  }
 
   exports.map = {
     '/items/:id': {
       tag: 'page-items-detail',
+      fetch: function(req, res) {
+        req.fetch = app.ref.child('items').child(req.params.id).get();
+      },
+      fetched: function(req, res) {
+        var item = req.responseCache.data.item;
+        req.meta = {
+          title: item.title,
+          description: item.body,
+        };
+      },
     },
     '/:page': {
       tag: function(req, res) {
@@ -19,6 +29,9 @@
     },
     '/': {
       tag: 'page-index',
+      fetch: function(req, res) {
+        req.fetch = app.ref.child('items').get();
+      },
     }
   };
 

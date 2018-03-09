@@ -12,6 +12,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "spalate": "^0.0.3"
+    "spalate": "../"
   }
 }

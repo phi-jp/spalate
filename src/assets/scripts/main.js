@@ -44,24 +44,58 @@
     
           spat.nav.swap(tag, req.params);
         };
+        route.fetch = route.fetch || function() {};
+
+        var fetch = function(req, res, next) {
+          // キャッシュがある場合
+          if (window.responseCache) {
+            req.responseCache = window.responseCache;
+            window.responseCache = null;
+            next();
+          }
+          else if (route.fetch) {
+            route.fetch(req, res);
+
+            // fetch がセットされていた場合
+            if (req.fetch) {
+              req.fetch.then(function(res) {
+                req.responseCache = res;
+                next();
+              }).catch(function() {
+                next();
+              });
+            }
+            else {
+              next();
+            }
+          }
+          else {
+            next();
+          }
+        };
+
         var fetched = function(req, res) {
+          if (route.fetched) {
+            route.fetched(req, res);
+          }
           // set meta
           if (req.meta) {
             var meta = app.meta.create(req.meta);
             helmeta.set( meta );
           }
-    
-          if (req.fetch) {
-            spat.nav.currentPage._tag.trigger('fetch', req.fetch);
+
+          if (req.responseCache) {
+            spat.nav.currentPage._tag.trigger('fetch', {
+              response: req.responseCache,
+            });
           }
         };
     
-        route.fetch = route.fetch || function() {};
         if (typeof route.tag === 'function') {
-          app.routeful.on(key, route.tag, swap, route.fetch, fetched);
+          app.routeful.on(key, route.tag, swap, fetch, fetched);
         }
         else {
-          app.routeful.on(key, swap, route.fetch, fetched);
+          app.routeful.on(key, swap, fetch, fetched);
         }
       });
 

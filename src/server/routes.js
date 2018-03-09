@@ -15,16 +15,41 @@ var includes = (function() {
 Object.keys(clientRouter.map).forEach(function(key) {
   var route = clientRouter.map[key];
 
-  route.fetch = route.fetch || function(req, res, next) { next(); };
+  var fetch = function(req, res, next) {
+    if (route.fetch) {
+      route.fetch(req, res);
+      if (req.fetch) {
+        req.fetch.then(function(res) {
+          req.responseCache = res;
+          next();
+        }).catch(function() {
+          next();
+        });
+      }
+      else {
+        next();
+      }
+    }
+    else {
+      next();
+    }
+  }
 
-  router.get(key, route.fetch, function(req, res) {
+  var fetched = function(req, res, next) {
+    if (route.fetched) {
+      route.fetched(req,res);
+    }
+    next();
+  }
+
+  router.get(key, fetch, fetched, function(req, res) {
     var meta = clientApp.meta.create(req.meta);
 
     res.render('index', {
       includes: includes,
       meta: meta,
       config: config,
-      fetch: req.fetch || {},
+      responseCache: req.responseCache,
       pretty: true,
     });
   });

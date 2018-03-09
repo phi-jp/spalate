@@ -14,22 +14,18 @@ var watcher = chokidar.watch(config.spalate.tags.target, {
 var files = {};
 
 watcher.on('all', (event, file) => {
-  console.log(event, file);
-
   if (/^change$|^add$/.test(event)) {
     var code = fs.readFileSync(file).toString();
     var js = riot.compile(code, { 
       template: 'pug',
     });
     files[file] = js;
-    console.log(js);
   }
   if (/^unlink$/.test(event)) {
     delete files[file];
   }
   fs.writeFileSync(path.join(config.spalate.tags.output, 'tags.js'), Object.keys(files).map(file => files[file]).join('\n\n'));
   console.log('update');
-  
 });
 
 watcher

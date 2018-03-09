@@ -18,7 +18,7 @@ var server = app.listen(app.get('port'), function() {
 
 
 // watch and build
-var watcher = chokidar.watch(config.spalate.tags.target, {
+var watcher = chokidar.watch(config.spalate.riot.target, {
   persistent: true
 });
 
@@ -27,16 +27,14 @@ var files = {};
 watcher.on('all', (event, file) => {
   if (/^change$|^add$/.test(event)) {
     var code = fs.readFileSync(file).toString();
-    var js = riot.compile(code, { 
-      template: 'pug',
-      css: 'less',
-    });
+    var js = riot.compile(code, config.spalate.riot.options);
+
     files[file] = js;
   }
   if (/^unlink$/.test(event)) {
     delete files[file];
   }
-  fs.writeFileSync(path.join(config.spalate.tags.output, 'tags.js'), Object.keys(files).map(file => files[file]).join('\n\n'));
+  fs.writeFileSync(path.join(config.spalate.riot.output, 'tags.js'), Object.keys(files).map(file => files[file]).join('\n\n'));
   console.log('output file');
 });
 

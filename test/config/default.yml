@@ -6,9 +6,11 @@ spalate:
     - 'public'
     - 'app/assets'
   router: '/app/assets/scripts/router.js'
-  tags:
+  riot:
     target: 'app/tags'
     output: 'public/scripts'
+    options:
+      template: 'pug'
   less:
     target: 'app/assets'
     output: 'public'

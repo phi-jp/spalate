@@ -21,6 +21,7 @@
     "spalate": "./bin/spalate.js"
   },
   "dependencies": {
+    "buble": "^0.19.3",
     "chokidar": "^2.0.2",
     "commander": "^2.14.1",
     "config": "^1.28.1",

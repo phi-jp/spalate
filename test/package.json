@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node app/index.js",
+    "dev": "spalate",
+    "build": "spalate build",
+    "start": "spalate start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

@@ -1,34 +1,14 @@
 #!/usr/bin/env node
 
-var fs = require('fs');
-var path = require('path');
+var path      = require('path');
 var program   = require('commander');
-var chokidar  = require('chokidar');
-var config    = require('config');
-var riot      = require('riot');
 
-var watcher = chokidar.watch(config.spalate.tags.target, {
-  persistent: true
-});
+var defaultCommand = 'dev';
+var cmd = process.argv[2];
 
-var files = {};
+if ([defaultCommand, 'build', 'start'].indexOf(cmd) === -1) {
+  cmd = defaultCommand;
+}
 
-watcher.on('all', (event, file) => {
-  if (/^change$|^add$/.test(event)) {
-    var code = fs.readFileSync(file).toString();
-    var js = riot.compile(code, { 
-      template: 'pug',
-      css: 'less',
-    });
-    files[file] = js;
-  }
-  if (/^unlink$/.test(event)) {
-    delete files[file];
-  }
-  fs.writeFileSync(path.join(config.spalate.tags.output, 'tags.js'), Object.keys(files).map(file => files[file]).join('\n\n'));
-  console.log('update');
-});
+require( path.join(__dirname, 'spalate-' + cmd) );
 
-watcher
-  .on('ready', function() { console.log("監視開始"); })
-  .on('change', function(path) { console.log("修正されました-> " + path); })

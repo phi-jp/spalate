@@ -18,9 +18,12 @@ async function run() {
     fontName: 'webfont',
     prependUnicode: true,
     startUnicode: 0xF001,
+    template: path.resolve(__dirname, './font.css'),
+    // cssTemplateClassName:'aa',
+    // cssTemplateFontName:'bb',
   }).then((result) => {
     fs.writeFileSync(output + '/webfont.ttf', result.ttf )
-    console.log(result.ttf);
+    console.log(result);
   });  
 };
 

@@ -1,6 +1,6 @@
 {
   "name": "spalate",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "single page application template",
   "main": "index.js",
   "scripts": {

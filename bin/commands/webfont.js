@@ -21,8 +21,8 @@ async function run() {
     template: "css",
     cssTemplateClassName: 'icon',
     cssTemplateFontName: 'iconfont',
-    // normalize: true,
-    // fontHeight: 512,
+    normalize: true,
+    fontHeight: 512,
   }).then((result) => {
     fs.writeFileSync(output + '/iconfont.ttf', result.ttf )
     fs.writeFileSync(output + '/iconfont.woff', result.woff )

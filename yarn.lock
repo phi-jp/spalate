@@ -637,13 +637,13 @@ commander@2.8.x:
   dependencies:
     graceful-readlink ">= 1.0.0"
 
+commander@^2.12.2:
+  version "2.15.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.15.0.tgz#ad2a23a1c3b036e392469b8012cec6b33b4c1322"
+
 commander@^2.14.1:
   version "2.14.1"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.14.1.tgz#2235123e37af8ca3c65df45b026dbd357b01b9aa"
-
-commander@^2.9.0:
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-2.15.0.tgz#ad2a23a1c3b036e392469b8012cec6b33b4c1322"
 
 component-emitter@^1.2.1:
   version "1.2.1"
@@ -741,12 +741,6 @@ dashdash@^1.12.0:
 dateformat@^2.0.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/dateformat/-/dateformat-2.2.0.tgz#4065e2013cf9fb916ddfd82efb506ad4c6769062"
-
-debug@2.6.1:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.1.tgz#79855090ba2c4e3115cc7d8769491d58f0491351"
-  dependencies:
-    ms "0.7.2"
 
 debug@2.6.9, debug@^2.2.0, debug@^2.3.3:
   version "2.6.9"
@@ -2329,10 +2323,6 @@ mixin-object@^2.0.1:
   dependencies:
     minimist "0.0.8"
 
-ms@0.7.2:
-  version "0.7.2"
-  resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.2.tgz#ae25cf2512b3885a1d95d7f037868d8431124765"
-
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
@@ -2928,7 +2918,7 @@ readable-stream@^1.0.33, readable-stream@~1.1.9:
     isarray "0.0.1"
     string_decoder "~0.10.x"
 
-readable-stream@^2.0.2, readable-stream@^2.0.4, readable-stream@^2.0.6, readable-stream@^2.1.4, readable-stream@^2.1.5, readable-stream@^2.3.5:
+readable-stream@^2.0.2, readable-stream@^2.0.6, readable-stream@^2.1.4, readable-stream@^2.1.5, readable-stream@^2.3.3, readable-stream@^2.3.5:
   version "2.3.5"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.3.5.tgz#b4f85003a938cbb6ecbce2a124fb1012bd1a838d"
   dependencies:
@@ -3145,7 +3135,7 @@ safe-buffer@5.1.1, safe-buffer@^5.0.1, safe-buffer@^5.1.1, safe-buffer@~5.1.0, s
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.1.tgz#893312af69b2123def71f57889001671eeb2c853"
 
-sax@>=0.6.0, sax@^1.1.5:
+sax@>=0.6.0, sax@^1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
 
@@ -3504,17 +3494,16 @@ svg2ttf@^4.0.0:
     svgpath "^2.1.5"
     xmldom "~0.1.22"
 
-svgicons2svgfont@^7.0.2:
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/svgicons2svgfont/-/svgicons2svgfont-7.0.2.tgz#df4b03e53f0d2e607bb71772faf3237088efe805"
+svgicons2svgfont@^9.0.2:
+  version "9.0.2"
+  resolved "https://registry.yarnpkg.com/svgicons2svgfont/-/svgicons2svgfont-9.0.2.tgz#5179427527856dff8f484fcc87181b9cf48919bc"
   dependencies:
-    commander "^2.9.0"
-    debug "2.6.1"
+    commander "^2.12.2"
     geometry-interfaces "^1.1.4"
     glob "^7.1.2"
     neatequal "^1.0.0"
-    readable-stream "^2.0.4"
-    sax "^1.1.5"
+    readable-stream "^2.3.3"
+    sax "^1.2.4"
     string.fromcodepoint "^0.2.1"
     string.prototype.codepointat "^0.2.0"
     svg-pathdata "^4.0.1"
@@ -3830,9 +3819,9 @@ void-elements@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-2.0.1.tgz#c066afb582bb1cb4128d60ea92392e94d5e9dbec"
 
-webfont-ex@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/webfont-ex/-/webfont-ex-0.0.1.tgz#d659d6743e1c9bf2f23bcc1c6b5a3d9fe3da54a4"
+webfont-ex@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/webfont-ex/-/webfont-ex-0.0.3.tgz#7fccb562e8e40dd303712d56e5d564ae0474af13"
   dependencies:
     async-throttle "^1.1.0"
     cosmiconfig "^3.0.0"
@@ -3843,7 +3832,7 @@ webfont-ex@^0.0.1:
     nunjucks "^3.0.0"
     resolve-from "^4.0.0"
     svg2ttf "^4.0.0"
-    svgicons2svgfont "^7.0.2"
+    svgicons2svgfont "^9.0.2"
     ttf2eot "^2.0.0"
     ttf2woff "^2.0.0"
     ttf2woff2 "^2.0.0"

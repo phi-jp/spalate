@@ -19,6 +19,7 @@ if (opt === 'circleci') {
   } catch (e) {
     if (e.name === "ApplicationVersionsLimitError") {
       app.clearAppVersions();
+      console.log('Please Rebuild')
     }
     console.log(
       `code: ${e.status}`,
@@ -29,6 +30,7 @@ if (opt === 'circleci') {
         `stdout: ${e.stdout.toString()}\nstderr: ${e.stderr.toString()}`
       );
     }
+    process.exit(e.status);
     
   }
 }  

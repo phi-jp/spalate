@@ -47,6 +47,6 @@
     "gulp-concat": "^2.6.1",
     "gulp-riot": "^1.1.4",
     "gulp-sort": "^2.0.0",
-    "webfont": "^7.1.4"
+    "webfont-ex": "^0.0.2"
   }
 }

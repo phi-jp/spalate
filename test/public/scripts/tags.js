@@ -1,5 +1,5 @@
 
-riot.tag2('page-index', '<div class="flex flex-column h-full"> <module-header></module-header> <div class="h-full overflow-scroll"> <div class="container p10"> <div>hoge</div><i class="icon icon-star"></i> <div class="items"> <div class="rounded-4 mb32 f" each="{items}"> <div class="flex-fixed mr16"> <div class="w200 s-w100 rect"><img class="block s-full object-fit-cover" riot-src="{image_url}"></div> </div> <div class="w-full"> <h3 class="text-primary"><a href="/items/{id}">{title}</a></h3> <p class="line-clamp-3 word-break-all s-hide">{body}</p> </div> </div> </div> </div> </div> <module-tabbar></module-tabbar> </div>', '', '', function(opts) {
+riot.tag2('page-index', '<div class="flex flex-column h-full"> <module-header></module-header> <div class="h-full overflow-scroll"> <div class="container p10"> <div class="items"> <div class="rounded-4 mb32 f" each="{items}"> <div class="flex-fixed mr16"> <div class="w200 s-w100 rect"><img class="block s-full object-fit-cover" riot-src="{image_url}"></div> </div> <div class="w-full"> <h3 class="text-primary"><a href="/items/{id}">{title}</a></h3> <p class="line-clamp-3 word-break-all s-hide">{body}</p> </div> </div> </div> </div> </div> <module-tabbar></module-tabbar> </div>', '', '', function(opts) {
     var self = this;
 
     this.on('fetch', function(e) {

@@ -1,6 +1,6 @@
 var fs      = require('fs-extra');
 var path    = require('path');
-var webfont = require('webfont').default
+var webfont = require('webfont-ex').default
 var config  = require('config');
 
 // node-glob

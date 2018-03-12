@@ -15,15 +15,15 @@ async function run() {
   
   webfont({
     files: output + '/_temp/*.svg',
-    fontName: 'webfont',
+    fontName: 'iconfont',
     prependUnicode: true,
     startUnicode: 0xF001,
     template: "css",
-    // cssTemplateClassName:'aa',
-    // cssTemplateFontName:'bb',
+    cssTemplateClassName: 'icon',
+    cssTemplateFontName: 'iconfont',
   }).then((result) => {
-    fs.writeFileSync(output + '/webfont.ttf', result.ttf )
-    fs.writeFileSync(output + '/webfont.css', result.styles)
+    fs.writeFileSync(output + '/iconfont.ttf', result.ttf )
+    fs.writeFileSync(output + '/iconfont.css', result.styles)
     console.log(result);
   });  
 };

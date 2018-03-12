@@ -16,13 +16,13 @@ spalate:
     output: 'public'
   webfont:
     target: 'public/images/icons'
-    output: 'public/fonts/webfont'
+    output: 'public/fonts/iconfont'
   includes:
     - { type: 'script', path: '/scripts/router.js' }
     - { type: 'script', path: '/scripts/tags.js' }
     - { type: 'script', path: '/scripts/main.js' }
     - { type: 'style', path: '/styles/main.css', }
-    # - { type: 'style', path: '/fonts/icons/icons.css', }
+    - { type: 'style', path: '/fonts/iconfont/iconfont.css', }
   deploy:
     circleci:
       branches:

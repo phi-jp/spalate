@@ -12,17 +12,18 @@ async function run() {
   await fs.remove(output)
   await fs.mkdirs(output + '/_temp');
   await fs.copy(target, output + '/_temp');
-
+  
   webfont({
     files: output + '/_temp/*.svg',
     fontName: 'webfont',
     prependUnicode: true,
     startUnicode: 0xF001,
-    // template: path.resolve(__dirname, './font.css'),
+    template: "css",
     // cssTemplateClassName:'aa',
     // cssTemplateFontName:'bb',
   }).then((result) => {
     fs.writeFileSync(output + '/webfont.ttf', result.ttf )
+    fs.writeFileSync(output + '/font.css', result.styles)
     console.log(result);
   });  
 };

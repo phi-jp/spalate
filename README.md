@@ -33,3 +33,11 @@ $ node ../bin/spalate.js webfont
 $ cd test
 $ node ../bin/spalate.js deploy circleci
 ```
+
+
+## memo
+
+- font generator 候補
+  - https://www.npmjs.com/package/svgicons2svgfont
+  - https://www.npmjs.com/package/webfont
+  - https://www.npmjs.com/package/fontcustom

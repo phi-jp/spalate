@@ -7,6 +7,7 @@
     "dev": "spalate",
     "build": "spalate build",
     "start": "spalate start",
+    "deploy": "spalate deploy",
     "test": "node ../bin/spalate.js"
   },
   "author": "",

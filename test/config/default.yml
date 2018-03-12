@@ -23,6 +23,11 @@ spalate:
     - { type: 'script', path: '/scripts/main.js' }
     - { type: 'style', path: '/styles/main.css', }
     # - { type: 'style', path: '/fonts/icons/icons.css', }
+  deploy:
+    circleci:
+      branches:
+        master: 'client-template-prod'
+        develop: 'client-template-stg'
 config:
   env: default
   meta:

@@ -25,3 +25,11 @@ $ npm test
 $ cd test
 $ node ../bin/spalate.js webfont
 ```
+
+
+## run deploy to circleci
+
+```
+$ cd test
+$ node ../bin/spalate.js deploy circleci
+```

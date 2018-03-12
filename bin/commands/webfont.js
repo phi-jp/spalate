@@ -18,7 +18,7 @@ async function run() {
     fontName: 'webfont',
     prependUnicode: true,
     startUnicode: 0xF001,
-    template: path.resolve(__dirname, '../font.css'),
+    template: path.resolve(__dirname, './font.css'),
     // cssTemplateClassName:'aa',
     // cssTemplateFontName:'bb',
   }).then((result) => {

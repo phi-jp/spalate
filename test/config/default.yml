@@ -25,9 +25,10 @@ spalate:
     # - { type: 'style', path: '/fonts/icons/icons.css', }
   deploy:
     circleci:
+      app: 'client-template'
       branches:
-        master: 'client-template-prod'
-        develop: 'client-template-stg'
+        master: 'prod'
+        develop: 'stg'
 config:
   env: default
   meta:

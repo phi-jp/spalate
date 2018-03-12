@@ -4,7 +4,7 @@ var chokidar  = require('chokidar');
 var config    = require('config');
 var riot      = require('riot');
 
-var Spalate = require('..');
+var Spalate = require('../..');
 var app = Spalate();
 
 app.set('port', process.env.PORT || 3000);

@@ -17,3 +17,11 @@ by @Haltie
 $ cd test
 $ npm test
 ```
+
+
+## run icon output
+
+```
+$ cd test
+$ node ../bin/spalate.js webfont
+```

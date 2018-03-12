@@ -22,6 +22,7 @@
     transform: translate(0, 0);
 }
 
+.icon-home::before,
 .icon-polygon::before,
 .icon-star::before,
 .icon-dummy::before
@@ -39,6 +40,7 @@
     transform: translate(0, 0);
 }
 
-.icon-polygon::before { content: "\f001"; }
-.icon-star::before { content: "\f002"; }
+.icon-home::before { content: "\f003"; }
+.icon-polygon::before { content: "\f002"; }
+.icon-star::before { content: "\f001"; }
 

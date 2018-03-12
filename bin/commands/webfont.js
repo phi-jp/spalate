@@ -21,8 +21,12 @@ async function run() {
     template: "css",
     cssTemplateClassName: 'icon',
     cssTemplateFontName: 'iconfont',
+    // normalize: true,
+    // fontHeight: 512,
   }).then((result) => {
     fs.writeFileSync(output + '/iconfont.ttf', result.ttf )
+    fs.writeFileSync(output + '/iconfont.woff', result.woff )
+    fs.writeFileSync(output + '/iconfont.woff2', result.woff2 )
     fs.writeFileSync(output + '/iconfont.css', result.styles)
     console.log(result);
   });  

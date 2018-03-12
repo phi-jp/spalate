@@ -23,7 +23,7 @@ async function run() {
     // cssTemplateFontName:'bb',
   }).then((result) => {
     fs.writeFileSync(output + '/webfont.ttf', result.ttf )
-    fs.writeFileSync(output + '/font.css', result.styles)
+    fs.writeFileSync(output + '/webfont.css', result.styles)
     console.log(result);
   });  
 };

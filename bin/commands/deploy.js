@@ -11,13 +11,10 @@ if (opt === 'circleci') {
   var circleci = config.spalate.deploy.circleci;
   var app = eb(circleci.app || CIRCLE_PROJECT_REPONAME);
   try {
-    if (CIRCLE_BRANCH === 'master') {
-      console.log('deploy master');
-      app.branch(circleci.branches.master).deploy();
-    }
-    else if (CIRCLE_BRANCH === 'develop') {
-      console.log('deploy develop');
-      app.branch(circleci.branches.develop).deploy();
+    var env = circleci.branches[CIRCLE_BRANCH];
+    if (env) {
+      console.log('deploy ' + CIRCLE_BRANCH);
+      app.branch(env).deploy();
     }
   } catch (e) {
     if (e.name === "ApplicationVersionsLimitError") {

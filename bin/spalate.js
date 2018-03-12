@@ -10,5 +10,4 @@ if ([defaultCommand, 'build', 'start', 'webfont'].indexOf(cmd) === -1) {
   cmd = defaultCommand;
 }
 
-require( path.join(__dirname, 'spalate-' + cmd) );
-
+require( path.join(__dirname, 'commands', cmd) );

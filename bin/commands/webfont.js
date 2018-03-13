@@ -12,9 +12,7 @@ config.options['output'] = config.output;
 
 var args = [];
 for (var key in config.options) {
-  if (key !== 'target') {
-    args.push('--' + key, config.options[key]);
-  }
+  args.push('--' + key, config.options[key]);
 }
 
 var opts = args.join(' ');

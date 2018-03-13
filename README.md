@@ -24,6 +24,8 @@ $ npm test
 setup
 
 ```
+$ brew tap bramstein/webfonttools
+$ brew install woff2
 $ brew install fontforge --with-python
 $ brew install eot-utils
 $ gem install fontcustom

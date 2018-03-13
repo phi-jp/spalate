@@ -20,8 +20,6 @@ var opts = args.join(' ');
 exec([cmd, target, opts].join(' ')).then(function(result) {
   console.log(result.stdout);
   console.log(result.stderr);
-  // var stderr = result.stderr;
-  // console.log('stderr: ', stderr);
 }).catch(function(result) {
   // インストールされてなかったりするとエラーがでる
   console.log(result);

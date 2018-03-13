@@ -1,0 +1,1 @@
+require('./lib/riot-builder').build();

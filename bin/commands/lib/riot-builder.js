@@ -69,7 +69,7 @@ class RiotBuilder {
   }
 
   close() {
-    this.watcher && this.watcher.close(config.spalate.riot.target);
+    this.watcher && this.watcher.close();
     this.watcher = null;
     return this;
   }

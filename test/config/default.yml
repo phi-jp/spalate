@@ -27,8 +27,8 @@ spalate:
     circleci:
       app: 'client-template'
       branches:
-        master: 'prod'
-        develop: 'stg'
+        master: 'prod-env'
+        develop: 'stg-env'
 config:
   env: default
   meta:

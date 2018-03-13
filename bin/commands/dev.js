@@ -19,14 +19,16 @@ var server = app.listen(app.get('port'), function() {
 
 // watch and build
 var watcher = chokidar.watch(config.spalate.riot.target, {
-  persistent: true
+  ignored: /[\/\\]\./,
+  persistent: true,
 });
 
 var files = {};
 
 watcher.on('all', (event, file) => {
   if (/^change$|^add$/.test(event)) {
-    var code = fs.readFileSync(file).toString();
+    var code = fs.readFileSync(file, 'utf8').toString();
+
     var js = riot.compile(code, config.spalate.riot.options);
 
     files[file] = js;

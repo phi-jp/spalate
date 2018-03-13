@@ -44,3 +44,9 @@ config:
     cacheKey: noteput.auth.token
     tokenKey: X-Noteput-Token
     debug: true
+service:
+  google:
+    analyticsId: 1234abcd
+  twitter:
+  facebook:
+  line:

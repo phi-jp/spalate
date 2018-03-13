@@ -1,6 +1,6 @@
 var path    = require('path');
 var config  = require('config').spalate.webfont;
-var exec    = require('child_process').exec
+var exec    = require('child-process-promise').exec
 
 var target = path.join(process.cwd(), config.target);
 var output = path.join(process.cwd(), config.output);
@@ -17,8 +17,14 @@ for (var key in config.options) {
 
 var opts = args.join(' ');
 
-exec([cmd, target, opts].join(' '), (error, stdout, stderr) => {
-  console.log(stdout);
+exec([cmd, target, opts].join(' ')).then(function(result) {
+  // コマンドが実行できた時
+  console.log(result.stdout);
+  console.log(result.stderr);
+}).catch(function(result) {
+  // コマンドが実行できなかった時
+  // fontcustomがインストールされてなかった場合等
+  console.log(result);
 });
 
 

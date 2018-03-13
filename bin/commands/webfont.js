@@ -18,10 +18,12 @@ for (var key in config.options) {
 var opts = args.join(' ');
 
 exec([cmd, target, opts].join(' ')).then(function(result) {
+  // コマンドが実行できた時
   console.log(result.stdout);
   console.log(result.stderr);
 }).catch(function(result) {
-  // インストールされてなかったりするとエラーがでる
+  // コマンドが実行できなかった時
+  // fontcustomがインストールされてなかった場合等
   console.log(result);
 });
 

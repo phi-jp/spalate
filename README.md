@@ -46,6 +46,12 @@ $ cd test
 $ node ../bin/spalate.js deploy circleci
 ```
 
+## generate tag
+
+```
+$ spalate generate tag app/tags/items/item-hoge.pug
+```
+
 
 ## memo
 

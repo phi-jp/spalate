@@ -26,6 +26,7 @@
     "chokidar": "^2.0.2",
     "commander": "^2.14.1",
     "config": "^1.28.1",
+    "ejs": "^2.5.7",
     "express": "^4.16.2",
     "firerest": "0.1.0",
     "fs-extra": "^5.0.0",

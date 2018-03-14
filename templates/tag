@@ -1,0 +1,14 @@
+<%= tagName %>
+  div <%= tagName %>
+
+  style(scoped, type='less').
+    :scope {
+      display: block;
+    }
+  
+  script.
+    var self = this;
+
+    this.on('mount', () => {
+
+    });

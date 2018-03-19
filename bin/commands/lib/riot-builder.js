@@ -16,8 +16,15 @@ class RiotBuilder {
 
   compile(file) {
     const code = fs.readFileSync(file, 'utf8').toString();
-    const js = riot.compile(code, config.spalate.riot.options);
-    this.files[file] = js;
+    try {
+      const js = riot.compile(code, config.spalate.riot.options);
+      this.files[file] = js; 
+    }
+    catch (e) {
+      const RED = '\u001b[31m';
+      const RESET = '\u001b[0m';
+      console.error(`${RED}compile failed: [${file}]\n${e}${RESET}`);
+    }
   }
 
   remove(file) {

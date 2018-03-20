@@ -13,11 +13,11 @@
  * cdv.pushNotification.on('notification');
  */
 
-  var _listener = [];
   var cdv = {
+    _listener: [],
     on: function(type, func) {
-      if (!_listener[type]) _listener[type] = [];
-      _listener[type].push(func);
+      if (!this._listener[type]) this._listener[type] = [];
+      this._listener[type].push(func);
 
       return this;
     },
@@ -32,16 +32,16 @@
       return this;
     },
     off: function(type, func) {
-      if (!_listener[type]) return;
-      var i = _listener[type].indexOf(func);
+      if (!this._listener[type]) return;
+      var i = this._listener[type].indexOf(func);
       if (i !== -1) {
-        _listener.splice(i, 1);
+        this._listener.splice(i, 1);
       }
       return this;
     },
     fire: function(type, args) {
-      if (!_listener[type]) return;
-      _listener[type].forEach(function(func) {
+      if (!this._listener[type]) return;
+      this._listener[type].forEach(function(func) {
         func.call(this, args);
       });
       return this;
@@ -55,7 +55,7 @@
               "alert": true,
               "badge": true,
               "sound": true,
-              "clearBadge": true,
+              "clearBadge": true, 
             },
             'android': {} // 一旦プラグインバージョン2.X系で想定
           });
@@ -70,9 +70,6 @@
             cdv.fire('notification', e);
           });
         }
-      },
-      get: function() {
-        return push;
       },
       on: function(type, func) {
         cdv.on(type, func);
@@ -153,7 +150,7 @@
       spat.nav.back();
     }
 
-    cdv.fire('backbutton');
+    cdv.fire('backbutton', e);
   });
 
 

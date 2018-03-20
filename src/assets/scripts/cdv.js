@@ -69,7 +69,7 @@
             cdv.fire('pushNotification', e);
           });
         }
-      }
+      },
     }
   };
 

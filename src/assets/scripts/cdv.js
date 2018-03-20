@@ -1,6 +1,4 @@
-;(function(exports) {
-  var isNode = (typeof process !== "undefined" && typeof require !== "undefined");
-
+;(function(global) {
 /*
  * - Available Events -
  * cdv.on('deviceready')
@@ -161,4 +159,4 @@
 
   global.cdv = cdv;
 
-})(typeof exports === 'undefined' ? this.app = {} : exports);
+})(this);

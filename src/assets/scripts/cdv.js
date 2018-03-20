@@ -12,7 +12,6 @@
  * cdv.pushNotification.on('registration');
  * cdv.pushNotification.on('notification');
  */
-
   var cdv = {
     _listener: [],
     on: function(type, func) {
@@ -23,8 +22,8 @@
     },
     one: function(type, func) {
       var temp = function() {
-        func.call(this, arguments);
-        this.off(type, func);
+        func.apply(this, arguments);
+        this.off(type, temp);
       }.bind(this);
 
       this.on(type, temp);
@@ -32,10 +31,10 @@
       return this;
     },
     off: function(type, func) {
-      if (!this._listener[type]) return;
+      if (!this._listener[type]) this._listener[type] = [];
       var i = this._listener[type].indexOf(func);
       if (i !== -1) {
-        this._listener.splice(i, 1);
+        this._listener[type].splice(i, 1);
       }
       return this;
     },

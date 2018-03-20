@@ -1,164 +1,164 @@
-;(function(global) {
+;(function(exports) {
+  var isNode = (typeof process !== "undefined" && typeof require !== "undefined");
 
-  var Cdv = function() {
-    this.init();
-  };
+/*
+ * - Available Events -
+ * cdv.on('deviceready')
+ * cdv.on('resume')
+ * cdv.on('pause')
+ * cdv.on('backbutton') // android
+ * cdv.on('statusTap')
+ *  
+ * - Push Notification Event - 
+ * cdv.pushNotification.setup();
+ * cdv.pushNotification.on('registration');
+ * cdv.pushNotification.on('notification');
+ */
 
+  var _listener = [];
+  var cdv = {
+    on: function(type, func) {
+      if (!_listener[type]) _listener[type] = [];
+      _listener[type].push(func);
 
+      return this;
+    },
+    one: function(type, func) {
+      var temp = function() {
+        func.call(this, arguments);
+        this.off(type, func);
+      }.bind(this);
 
-  
-  Cdv.prototype = {
-    init: function() {
-
-      if (!window.cordova) return;
+      this.on(type, temp);
       
-      this._listener = [];
+      return this;
+    },
+    off: function(type, func) {
+      if (!_listener[type]) return;
+      var i = _listener[type].indexOf(func);
+      if (i !== -1) {
+        _listener.splice(i, 1);
+      }
+      return this;
+    },
+    fire: function(type, args) {
+      if (!_listener[type]) return;
+      _listener[type].forEach(function(func) {
+        func.call(this, args);
+      });
+      return this;
+    },
 
-      // deviceread
-      document.addEventListener('deviceready', function() {
-        // header登録
-        if (cordova.appInfoSync) {
-          app.ref.headers({
-            'X-Nearby-App-Id': cordova.appInfoSync.identifier,
-            'X-Nearby-App-Version-Code': cordova.appInfoSync.build,
-            'X-Nearby-App-Version': cordova.appInfoSync.version,
-          })
-        }
-        if (window.device) {
-          app.ref.headers({
-            'X-Nearby-Model': window.device.model || 'null',
-            'X-Nearby-Os': window.device.platform.toLowerCase(),
-            'X-Nearby-Os-Version': window.device.version,
-            'X-Nearby-Uuid': window.device.uuid,
+    pushNotification: {
+      setup: function() {
+        if (window.PushNotification) {
+          var push = PushNotification.init({
+            'ios': {
+              "alert": true,
+              "badge": true,
+              "sound": true,
+              "clearBadge": true,
+            },
+            'android': {} // 一旦プラグインバージョン2.X系で想定
+          });
+          
+          push.on('registration', function(data) {
+            // 自分のデバイスを登録するイベント
+            cdv.fire('registration', data);
+          });
+        
+          // push通知がきた時
+          push.on('notification', function(e) {
+            cdv.fire('notification', e);
           });
         }
-
-        // push通知セットアップ
-        if (app.ref.auth.isLogin()) {
-          app.notification.setup();
-        }
-        
-        // keyboard
-        if (window.Keyboard) {
-          Keyboard.shrinkView(true);
-          Keyboard.hideFormAccessoryBar(true);
-        }
-
-        // splash screen
-        if (navigator.splashscreen) {
-          setTimeout(function() {
-            navigator.splashscreen.hide();
-          }, 512);
-        }
-        this.fire('deviceready');
-      });
-      
-      // 復帰時のイベント
-      document.addEventListener('resume', function() {
-        this.fire('resume');
-      });
-
-      // 中断時のイベント
-      document.addEventListener('pause', function() {
-        this.fire('pause');
-      }, false);
-
-      // Android端末の戻るボタンの挙動制御
-      document.addEventListener('backbutton', function(e) {
-        var pages = ['/'];
-        // 該当するページがあるか、ページが遷移中だったら、アンドロイドの戻るボタンを押せないようにする。
-        if (pages.indexOf(window.location.pathname) > -1 || spat.nav._locked) {
-          e.preventDefault();
-        }
-        else {
-          spat.nav.back();
-        }
-
-        this.fire('backbutton');
-      });
-
-      // tapped on statusbar
-      window.addEventListener('statusTap', function() {
-        this.fire('statusTap');
-      });
-    },
-    // notification: {
-    //   setup: function(senderId) {
-    //     if (!window.PushNotification) {
-    //       return ;
-    //     }
-  
-    //     var push = PushNotification.init({
-    //       'ios': {
-    //         "alert": true,
-    //         "badge": true,
-    //         "sound": true,
-    //         "clearBadge": true,
-    //       },
-    //       'android': {
-    //         'senderID': senderId //FCM ID like that '24173528353'
-    //       }
-    //     });
-  
-    //     push.on('registration', function(data) {
-    //       // push 通知に自分のデバイスを登録
-    //       app.ref.child('my_devices/current').put({
-    //         push_token: data.registrationId,
-    //       }).then(function(){
-    //         app.deviceID = data.registrationId;
-    //         riot.update();
-    //       });
-    //     });
-  
-    //     // push通知がきた時
-    //     push.on('notification', function(e) {
-    //       this.fire('notification', e);
-    //     }).bind(this);
-    //   }
-    // }
-  };
-  
-  // on, one, off, fire method
-  Cdv.prototype.on = function(type, func) {
-    if (!this._listener[type]) this._listener[type] = [];
-    this._listener[type].push(func);
-
-    return this;
+      },
+      get: function() {
+        return push;
+      },
+      on: function(type, func) {
+        cdv.on(type, func);
+      },
+      one: function(type, func) {
+        cdv.one(type, func);
+      },
+      off: function(type, func) {
+        cdv.off(type, func);
+      },
+    }
   };
 
-  Cdv.prototype.one = function(type, func) {
-    var temp = function() {
-      func.apply(this, arguments);
-      this.off(type, temp);
-    }.bind(this);
+  document.addEventListener('deviceready', function() {
+    /*
+     * header登録
+     */
+    if (cordova.appInfoSync) {
+      app.ref.headers({
+        'X-Nearby-App-Id': cordova.appInfoSync.identifier,
+        'X-Nearby-App-Version-Code': cordova.appInfoSync.build,
+        'X-Nearby-App-Version': cordova.appInfoSync.version,
+      })
+    }
+    if (window.device) {
+      app.ref.headers({
+        'X-Nearby-Model': window.device.model || 'null',
+        'X-Nearby-Os': window.device.platform.toLowerCase(),
+        'X-Nearby-Os-Version': window.device.version,
+        'X-Nearby-Uuid': window.device.uuid,
+      });
+    }
+    
 
-    this.on(type, temp);
-
-    return this;
-  };
-
-  Cdv.prototype.off = function(type, func) {
-    if (!this._listener[type]) this._listener[type] = [];
-
-    var i = this._listener[type].indexOf(func);
-    if (i !== -1) {
-      this._listener.splice(i, 1);
+    // push notification setup
+    cdv.notification.setup();
+    
+    // keyboard
+    if (window.Keyboard) {
+      Keyboard.shrinkView(true);
+      Keyboard.hideFormAccessoryBar(true);
+    }
+    
+    // splash screen
+    if (navigator.splashscreen) {
+      setTimeout(function() {
+        navigator.splashscreen.hide();
+      }, 512);
     }
 
-    return this;
-  };
-
-  Cdv.prototype.fire = function(type, args) {
-    if (!this._listener[type]) return;
-    
-    this._listener[type].forEach(function(func) {
-      func.call(this, args);
+    // tapped on statusbar
+    window.addEventListener('statusTap', function() {
+      cdv.fire('statusTap');
     });
 
-    return this;
-  };
+    
+    cdv.fire('deviceready');
+  });
+  
+  // 復帰時のイベント
+  document.addEventListener('resume', function() {
+    cdv.fire('resume');
+  });
+
+  // 中断時のイベント
+  document.addEventListener('pause', function() {
+    cdv.fire('pause');
+  }, false);
+
+  // Android端末の戻るボタンの挙動制御
+  document.addEventListener('backbutton', function(e) {
+    var pages = ['/'];
+    // 該当するページがあるか、ページが遷移中だったら、アンドロイドの戻るボタンを押せないようにする。
+    if (pages.indexOf(window.location.pathname) > -1 || spat.nav._locked) {
+      e.preventDefault();
+    }
+    else {
+      spat.nav.back();
+    }
+
+    cdv.fire('backbutton');
+  });
 
 
-  global.Cdv = new Cdv();
+  global.cdv = cdv;
 
-})(this);
+})(typeof exports === 'undefined' ? this.app = {} : exports);

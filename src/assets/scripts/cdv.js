@@ -108,7 +108,7 @@
     
 
     // push notification setup
-    cdv.notification.setup();
+    cdv.pushNotification.setup();
     
     // keyboard
     if (window.Keyboard) {

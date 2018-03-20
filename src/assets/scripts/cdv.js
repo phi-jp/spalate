@@ -9,8 +9,8 @@
  *  
  * - Push Notification Event - 
  * cdv.pushNotification.setup();
- * cdv.pushNotification.on('registration');
- * cdv.pushNotification.on('notification');
+ * cdv.on('pushRegistration');
+ * cdv.on('pushNotification');
  */
   var cdv = {
     _listener: [],
@@ -61,24 +61,15 @@
           
           push.on('registration', function(data) {
             // 自分のデバイスを登録するイベント
-            cdv.fire('registration', data);
+            cdv.fire('pushRegistration', data);
           });
         
           // push通知がきた時
           push.on('notification', function(e) {
-            cdv.fire('notification', e);
+            cdv.fire('pushNotification', e);
           });
         }
-      },
-      on: function(type, func) {
-        cdv.on(type, func);
-      },
-      one: function(type, func) {
-        cdv.one(type, func);
-      },
-      off: function(type, func) {
-        cdv.off(type, func);
-      },
+      }
     }
   };
 

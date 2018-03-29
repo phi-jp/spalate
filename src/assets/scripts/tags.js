@@ -1,3 +1,0 @@
-
-riot.tag2('app', '<div class="app-body"> <spat-nav></spat-nav> </div> <spat-modal></spat-modal> <spat-toast></spat-toast>', 'app,[data-is="app"]{display:block;position:absolute;width:100%;height:100%;overflow:hidden} app textarea,[data-is="app"] textarea{line-height:1.4} app p,[data-is="app"] p{line-height:1.4;-webkit-tap-highlight-color:initial;-webkit-user-select:initial;-webkit-touch-callout:initial} app .app-body,[data-is="app"] .app-body{height:100%} app .container,[data-is="app"] .container{max-width:760px;margin:auto}', '', function(opts) {
-});

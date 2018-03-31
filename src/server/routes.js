@@ -16,6 +16,7 @@ Object.keys(clientRouter.map).forEach(function(key) {
   var route = clientRouter.map[key];
 
   var fetch = function(req, res, next) {
+    req.clientApp = clientApp;
     if (route.fetch) {
       route.fetch(req, res);
       if (req.fetch) {

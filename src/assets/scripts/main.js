@@ -47,6 +47,7 @@
         route.fetch = route.fetch || function() {};
 
         var fetch = function(req, res, next) {
+          req.clientApp = app;
           // キャッシュがある場合
           if (window.responseCache) {
             req.responseCache = window.responseCache;

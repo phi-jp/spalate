@@ -1,0 +1,33 @@
+app
+  div.app-body
+    spat-nav
+
+  spat-modal
+  spat-toast
+
+  style(scoped, type='less').
+    :scope {
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+
+      textarea {
+        line-height: 1.4;
+      }
+      p {
+        line-height: 1.4;
+        -webkit-tap-highlight-color: initial;
+        -webkit-user-select: initial;
+        -webkit-touch-callout: initial;
+      }
+
+      .app-body {
+        height: 100%;
+      }
+      .container {
+        max-width: 760px;
+        margin: auto;
+      }
+    }

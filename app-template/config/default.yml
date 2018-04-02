@@ -1,0 +1,46 @@
+spalate:
+  views:
+    head: 'hoge'
+    body: 'hoge'
+  static:
+    - 'public'
+    - 'app/assets'
+  router: '/app/assets/scripts/router.js'
+  riot:
+    target: 'app/tags'
+    output: 'public/scripts'
+    options:
+      template: 'pug'
+  less:
+    target: 'app/assets'
+    output: 'public'
+  webfont:
+    target: 'public/images/icons'
+    output: 'public/fonts/icons'
+  includes:
+    - { type: 'script', path: '/scripts/router.js' }
+    - { type: 'script', path: '/scripts/tags.js' }
+    - { type: 'script', path: '/scripts/main.js' }
+    - { type: 'style', path: '/styles/main.css', }
+    - { type: 'style', path: '/fonts/icons/icons.css', }
+  deploy:
+    circleci:
+      app: 'client-template'
+      branches:
+        master: 'prod-env'
+        develop: 'stg-env'
+config:
+  env: default
+  meta:
+    title: spalate test
+    keywords: web,tool
+    description: Hello, client template!
+    type: website
+    image: ""
+    favicon: /images/icon.png
+    url: https://getit.co.jp
+  api:
+    endpoint: https://noteput-api.herokuapp.com/v1
+    cacheKey: noteput.auth.token
+    tokenKey: X-Noteput-Token
+    debug: true

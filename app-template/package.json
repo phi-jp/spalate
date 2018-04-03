@@ -1,0 +1,17 @@
+{
+  "name": "template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "spalate",
+    "build": "spalate build",
+    "start": "spalate build; spalate start",
+    "deploy": "spalate deploy"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "spalate": "^0.1.2"
+  }
+}

@@ -1,14 +1,15 @@
 var fs = require('fs-extra');
 var path = require('path');
-var prompt = require('prompt');
 var YAML = require('yamljs')  
-
+var prompt = require('prompt');
 prompt.message = null;
 prompt.colors = false;
 
-var templatePath = path.join(__dirname, '../../app-template');
+var templatePath = path.join(__dirname, '..', '..', 'app-template');
 var config = YAML.load(path.join(templatePath, 'config', 'default.yml'));
 var package = require(path.join(templatePath, 'package.json'));
+
+var spalatePackage = require(path.join(__dirname, '..', '..', 'package.json'));
 
 // spalate create [distDir]
 var distDir = path.resolve(process.argv[3] || '.');
@@ -108,7 +109,8 @@ new Promise(resolve => {
   dirs.forEach(dir => {
     fs.copySync(path.join(templatePath, dir), path.join(distDir, dir));
   });
-
+  // package.json の spalate の npm install で install されるバージョンを指定
+  package.dependencies.spalate = '^' + spalatePackage.version;
   fs.writeFileSync(path.join(distDir, 'package.json'), JSON.stringify(package, null, 2));
   
   fs.writeFileSync(path.join(distDir, 'config', 'default.yml'), YAML.stringify(config, Infinity, 2));

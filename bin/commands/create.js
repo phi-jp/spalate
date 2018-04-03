@@ -1,13 +1,11 @@
 var fs = require('fs-extra');
 var path = require('path');
-var YAML = require('yamljs')  
 var prompt = require('prompt');
+var ejs = require('ejs');
 prompt.message = null;
 prompt.colors = false;
 
 var templatePath = path.join(__dirname, '..', '..', 'app-template');
-var config = YAML.load(path.join(templatePath, 'config', 'default.yml'));
-var package = require(path.join(templatePath, 'package.json'));
 
 var spalatePackage = require(path.join(__dirname, '..', '..', 'package.json'));
 
@@ -42,6 +40,18 @@ var mkdirp = (dir) => new Promise((resolve, reject) => {
       resolve();
     }
   })
+});
+
+var renderFile = (file, data) => new Promise((resolve, reject) => {
+  ejs.renderFile(path.join(templatePath, file), data, function(err, html) {
+    if (err) {
+      reject(err);
+    }
+    else {
+      fs.outputFileSync(path.join(distDir, file), html);
+      resolve(html);
+    }
+  });
 });
 
 
@@ -91,9 +101,6 @@ new Promise(resolve => {
     });
   });
 }).then(function(res) {
-  package.name = res.name;
-  config.spalate.deploy.circleci.app = res.name;
-  config.config.meta.title = res.name;
   var files = [
     '.gitignore',
   ];
@@ -102,6 +109,7 @@ new Promise(resolve => {
     'public',
     'config',
   ];
+
   files.forEach(file => {
     fs.copyFileSync(path.join(templatePath, file), path.join(distDir, file));
   });
@@ -110,12 +118,14 @@ new Promise(resolve => {
     fs.copySync(path.join(templatePath, dir), path.join(distDir, dir));
   });
   // package.json の spalate の npm install で install されるバージョンを指定
-  package.dependencies.spalate = '^' + spalatePackage.version;
-  fs.writeFileSync(path.join(distDir, 'package.json'), JSON.stringify(package, null, 2));
+  res.spalateVersion = '^' + spalatePackage.version;
+  return Promise.all([
+    renderFile('package.json', res),
+    renderFile(path.join('config', 'default.yml'), res),
+  ]).then(() => {
+    console.log(`${res.name} を ${distDir} に作成しました。`);
+  });
   
-  fs.writeFileSync(path.join(distDir, 'config', 'default.yml'), YAML.stringify(config, Infinity, 2));
-
-  console.log(`${res.name} を ${distDir} に作成しました。`);
 });
 
 

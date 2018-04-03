@@ -1,5 +1,5 @@
 {
-  "name": "template",
+  "name": "<%= name %>",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,6 +12,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "spalate": "^0.1.2"
+    "spalate": "<%= spalateVersion %>"
   }
 }

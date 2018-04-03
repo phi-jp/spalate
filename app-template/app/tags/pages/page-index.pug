@@ -1,0 +1,29 @@
+page-index
+  div.flex.flex-column.h-full
+    module-header
+    div.h-full.overflow-scroll
+      div.container.p10
+        i.icon-home.fs64
+        i.icon-star.fs64
+        div.items
+          div.rounded-4.mb32.f(each='{items}')
+            div.flex-fixed.mr16
+              div.w200.s-w100.rect
+                img.block.s-full.object-fit-cover(src='{image_url}')
+            div.w-full
+              h3.text-primary
+                a(href='/items/{id}') {title}
+              p.line-clamp-3.word-break-all.s-hide {body}
+    module-tabbar
+
+  script.
+    var self = this;
+
+    this.on('fetch', function(e) {
+      this.items = e.response.data.items;
+      this.update();
+    });
+    
+    this.on('show', function() {
+    });
+

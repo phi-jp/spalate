@@ -1,0 +1,46 @@
+@font-face {
+    font-family: iconfont;
+    src: url("./iconfont.eot");
+    src: url("./iconfont.eot?#iefix") format("embedded-opentype"), url("./iconfont.woff2") format("woff2"), url("./iconfont.woff") format("woff"), url("./iconfont.ttf") format("truetype"), url("./iconfont.svg#iconfont") format("svg");
+    font-style: normal;
+    font-weight: 400;
+}
+
+[data-icon]:before { content: attr(data-icon); }
+
+.icon {
+    display: inline-block;
+    font-family: iconfont;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    line-height: 1;
+    text-rendering: auto;
+    font-size: inherit;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    transform: translate(0, 0);
+}
+
+.icon-home::before,
+.icon-polygon::before,
+.icon-star::before,
+.icon-dummy::before
+{
+    display: inline-block;
+    font-family: iconfont;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    line-height: 1;
+    text-rendering: auto;
+    font-size: inherit;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    transform: translate(0, 0);
+}
+
+.icon-home::before { content: "\f003"; }
+.icon-polygon::before { content: "\f002"; }
+.icon-star::before { content: "\f001"; }
+

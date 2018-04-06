@@ -3,10 +3,22 @@ const path = require('path');
 const config = require('config');
 const riot = require('riot');
 const chokidar = require('chokidar');
+const colors = require('colors');
+const moment = require('moment');
 
 class RiotBuilder {
   constructor() {
     this.files = {};
+  }
+
+  log(message) {
+    console.log(`[${moment().format('hh:mm:ss').gray}] ${message}`);
+    return this;
+  }
+
+  error(message) {
+    console.error(`[${moment().format('hh:mm:ss').gray}] ${message.red}`);
+    return this;
   }
 
   removeAll() {
@@ -18,12 +30,10 @@ class RiotBuilder {
     const code = fs.readFileSync(file, 'utf8').toString();
     try {
       const js = riot.compile(code, config.spalate.riot.options);
-      this.files[file] = js; 
+      this.files[file] = js;
     }
     catch (e) {
-      const RED = '\u001b[31m';
-      const RESET = '\u001b[0m';
-      console.error(`${RED}compile failed: [${file}]\n${e}${RESET}`);
+      this.error(`${'compile failed:'.red} ${file.cyan}\n${e.toString().red}`);
     }
   }
 
@@ -32,6 +42,7 @@ class RiotBuilder {
   }
 
   build() {
+    this.log(`Starting ${'Build'.cyan}`);
     this.removeAll();
     const watcher = this.createWatcher()
       .on('add', this.compile.bind(this))
@@ -44,7 +55,7 @@ class RiotBuilder {
 
   output() {
     fs.writeFileSync(path.join(config.spalate.riot.output, 'tags.js'), Object.keys(this.files).map(file => this.files[file]).join('\n'));
-    console.log('output file');
+    this.log(`output ${'tags.js'.green}`);
   }
 
   createWatcher() {
@@ -68,6 +79,7 @@ class RiotBuilder {
       .on('change', this.compile.bind(this))
       .on('unlink', this.remove.bind(this))
       .once('ready', () => {
+        this.log('監視開始'.cyan);
         this.output();
         watcher.on('all', this.output.bind(this));
       });

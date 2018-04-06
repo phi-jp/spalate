@@ -7,7 +7,8 @@
     "dev": "spalate",
     "build": "spalate build",
     "start": "spalate build; spalate start",
-    "deploy": "spalate deploy"
+    "deploy": "spalate deploy",
+    "webfont": "spalate webfont"
   },
   "author": "",
   "license": "MIT",

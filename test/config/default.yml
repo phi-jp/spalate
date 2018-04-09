@@ -33,13 +33,12 @@ spalate:
     platforms:
       - ios
       - android
-    target: 'test-app'
+    target: 'spalate-test'
     output: 'public/plugins/cordova'
-      
 config:
   env: default
   meta:
-    title: spalate test
+    title: spalate-test
     keywords: web,tool
     description: Hello, client template!
     type: website

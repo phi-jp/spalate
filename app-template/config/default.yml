@@ -29,6 +29,12 @@ spalate:
       branches:
         master: 'prod-env'
         develop: 'stg-env'
+  cordova:
+    platforms:
+      - ios
+      - android
+    target: 'spalate-test'
+    output: 'public/plugins/cordova'
 config:
   env: default
   meta:

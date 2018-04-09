@@ -1,13 +1,14 @@
 {
-  "name": "spalate test",
+  "name": "spalate-test",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "spalate",
     "build": "spalate build",
-    "start": "spalate start",
+    "start": "spalate build; spalate start",
     "deploy": "spalate deploy",
+    "webfont": "spalate webfont",
     "test": "node ../bin/spalate.js"
   },
   "author": "",

@@ -25,11 +25,10 @@ spalate:
     - { type: 'style', path: '/fonts/icons/icons.css', }
   deploy:
     circleci:
-      app: 'client-template'
+      app: 'spalate-test'
       branches:
         master: 'prod-env'
         develop: 'stg-env'
-
   cordova:
     platforms:
       - ios

@@ -1,0 +1,26 @@
+module-tabbar
+  div.h50.border-top
+    div.container.s-full.f.fh
+      div.f.s-full(each='{tab in tabs}')
+        div.w-full.f.fh
+          i.material-icons.fs32 {tab.icon}
+
+  style(type='less').
+    :scope {
+      display: block;
+    }
+  
+  script.
+    var self = this;
+
+    this.tabs = [
+      { icon: 'access_time' },
+      { icon: 'search' },
+      { icon: 'camera' },
+      { icon: 'notifications' },
+      { icon: 'person' },
+    ];
+
+    this.on('mount', () => {
+
+    });

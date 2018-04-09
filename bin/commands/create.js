@@ -108,6 +108,7 @@ new Promise(resolve => {
     'app',
     'public',
     'config',
+    '.circleci',
   ];
 
   files.forEach(file => {

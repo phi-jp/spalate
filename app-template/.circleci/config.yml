@@ -1,0 +1,26 @@
+# version: 2 は必須
+version: 2
+jobs:
+# api から動かす時はbuild:しか動かないので、一旦buildというjobのみに記述する
+  build:
+    working_directory: ~/repo
+    docker:
+      - image: phijp/node-eb:latest
+
+    steps:
+      - checkout
+      # キャッシュをダウンロード
+      - restore_cache:
+          keys:
+            - node_modules-{{ checksum "package.json" }}
+            # 上がなければ最後に保存したキャッシュをロード
+            - node_modules-
+
+      - run: yarn install
+      # キャッシュを保存
+      - save_cache:
+          paths:
+            - node_modules
+          key: node_modules-{{ checksum "package.json" }}
+      - run: npm run deploy circleci
+      

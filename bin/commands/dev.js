@@ -12,6 +12,6 @@ var server = app.listen(app.get('port'), function() {
   console.log('Example app listening at http://%s:%s', host, port);
 });
 
-builder.watch().watcher
-  .on('ready', function() { console.log("監視開始"); })
-  .on('change', function(path) { console.log("修正されました-> " + path); })
+const watchingBuilder = builder.watch();
+watchingBuilder.watcher
+  .on('change', function(path) { watchingBuilder.log("修正されました-> " + path.cyan); })

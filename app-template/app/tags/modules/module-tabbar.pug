@@ -14,11 +14,11 @@ module-tabbar
     var self = this;
 
     this.tabs = [
-      { icon: 'access_time' },
-      { icon: 'search' },
-      { icon: 'camera' },
-      { icon: 'notifications' },
-      { icon: 'person' },
+      { icon: 'access_time', link: '/' },
+      { icon: 'search', link: '/search' },
+      { icon: 'camera', link: '/' },
+      { icon: 'notifications', link: '/notifications' },
+      { icon: 'person', link: '/user' },
     ];
 
     this.on('mount', () => {

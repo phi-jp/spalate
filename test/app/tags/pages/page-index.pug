@@ -1,7 +1,7 @@
 page-index
   div.flex.flex-column.h-full
     module-header
-    div.h-full.overflow-scroll
+    div.h-full.overflow-scroll(ref='content')
       div.container.p10
         i.icon-home.fs64
         i.icon-star.fs64
@@ -14,16 +14,40 @@ page-index
               h3.text-primary
                 a(href='/items/{id}') {title}
               p.line-clamp-3.word-break-all.s-hide {body}
+          div.f.fh.mb16(show='{scload.more}') Loading...
     module-tabbar
 
   script.
     var self = this;
 
+    this.on('mount', function() {
+      var scload = Scload({
+        target: this.refs.content,
+      });
+      scload.page = 1;
+      scload.more = true;
+      scload.on('scrollend', function() {
+        this.lock();
+        self.update();
+        app.ref.child('items').get({
+          page: ++scload.page,
+        }).then((res) => {
+          self.items = self.items.concat(res.data.items);
+
+          if (res.data.items.length <= 0) {
+            scload.more = false;
+          }
+          else {
+            this.unlock();
+          }
+          self.update();
+        });
+      });
+
+      this.scload = scload;
+    });
+
     this.on('fetch', function(e) {
       this.items = e.response.data.items;
       this.update();
     });
-    
-    this.on('show', function() {
-    });
-

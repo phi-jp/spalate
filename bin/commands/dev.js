@@ -31,7 +31,6 @@ var restartServer = () => {
     console.log('Server Restart'.cyan);
     server.close(resolve);
   })).then(startServer);
-  return serverPromise;
 };
 
 startServer();

@@ -5,7 +5,7 @@ var ejs = require('ejs');
 prompt.message = null;
 prompt.colors = false;
 
-var templatePath = path.join(__dirname, '..', '..', 'app-template');
+var templatePath = path.join(__dirname, '..', '..', 'templates', 'app');
 
 var spalatePackage = require(path.join(__dirname, '..', '..', 'package.json'));
 

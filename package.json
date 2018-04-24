@@ -45,7 +45,8 @@
     "socialink": "0.0.2",
     "spat": "0.0.9",
     "underscore": "^1.8.3",
-    "uuaa": "0.0.6"
+    "uuaa": "0.0.6",
+    "sclazy": "0.0.2"
   },
   "devDependencies": {
     "gulp": "^3.9.1",

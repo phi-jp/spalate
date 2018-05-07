@@ -24,6 +24,7 @@ gulp.task('copy', function() {
     'node_modules/spat/spat.js',
     'node_modules/socialink/socialink.js',
     'node_modules/meltline/meltline.css',
+    'node_modules/vercom/vercom.js',
   ];
   gulp.src(files)
     .pipe(gulp.dest('./src/assets/plugins'))

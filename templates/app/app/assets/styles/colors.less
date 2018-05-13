@@ -1,5 +1,7 @@
-
 .define-color(@key, @value) {
+  .@{key} {
+    color: @value;
+  }
   .text-@{key} {
     color: @value;
   }
@@ -11,7 +13,12 @@
   }
 }
 
-.define-color-grad(@key, @angle, @a, @b) {
+.define-color-grad(@key, @a, @b, @angle:0deg) {
+  .@{key} {
+    background-image: -webkit-linear-gradient(@a, @b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
   .text-@{key} {
     background-image: -webkit-linear-gradient(@a, @b);
     -webkit-background-clip: text;

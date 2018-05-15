@@ -1,12 +1,12 @@
 page-index
   div.flex.flex-column.h-full
     module-header
-    div.h-full.overflow-scroll(ref='content')
+    div.h-full.overflow-scroll
       div.container.p10
         i.icon-home.fs64
         i.icon-star.fs64
         div.items
-          div.rounded-4.mb32.f(each='{sclazy.items}')
+          div.rounded-4.mb32.f(each='{items}')
             div.flex-fixed.mr16
               div.w200.s-w100.rect
                 img.block.s-full.object-fit-cover(src='{image_url}')
@@ -14,41 +14,15 @@ page-index
               h3.text-primary
                 a(href='/items/{id}') {title}
               p.line-clamp-3.word-break-all.s-hide {body}
-          div.f.fh.mb16(show='{sclazy.isMore()}') Loading...
     module-tabbar
 
   script.
     var self = this;
 
-    this.on('mount', function() {
-      this.sclazy = Sclazy({
-        target: self.refs.content,
-        onload: function() {
-          app.ref.child('items').get({
-            page: self.sclazy.page++,
-          }).then(function(res) {
-            self.sclazy.addItems(res.data.items);
-            self.sclazy.next(res.data.page_info.next_page != null);
-            self.update();
-          });
-        },
-        onscrollend: function() {
-          self.sclazy.load();
-        },
-        onpulldown: function() {
-          self.sclazy.reset().load();
-          self.update();
-        },
-      });
-
-      this.sclazy.load();
-      this.update();
-
-    });
-
-
-
     this.on('fetch', function(e) {
       this.items = e.response.data.items;
       this.update();
+    });
+    
+    this.on('show', function() {
     });

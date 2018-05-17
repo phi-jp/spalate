@@ -53,6 +53,6 @@
           window.open(url);
         }
       },
-    }
-  }
+    },
+  };
 })(typeof exports === 'undefined' ? this.app = {} : exports);

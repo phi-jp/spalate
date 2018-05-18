@@ -11,6 +11,10 @@ var spalate = function(settings) {
 
     return defaultIncludes.concat(userIncludes);
   })();
+
+  // setup
+  var compress = require('compression');
+  app.use(compress()); 
   
   // setup less
   if (config.spalate.less) {

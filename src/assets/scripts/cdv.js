@@ -70,7 +70,37 @@
           });
         }
       },
-    }
+    },
+
+    checkUpdate: function() {
+      return new Promise(function(resolve, reject) {
+        // for Error
+        if (!window.cordova || !window.uuaa || !window.cordova.appInfoSync || !window.vercom) return reject('Error has been occurred. May be some Plugin has not been installed.');
+        if (uuaa.os.name === 'iOS' && (!config.app.ios || !config.app.ios.url || !config.app.ios.version)) {
+          return reject('Please settings `url` and `version` to `config.app.ios`');
+        }
+        else if (uuaa.os.name === 'Android' && (!config.app.android || !config.app.android.url || !config.app.android.version)) {
+          return reject('Please settings `url` and `version` to `config.app.android`');
+        }
+
+        var appVersion = window.cordova.appInfoSync.version+"";
+        var configVersion = (uuaa.os.name === 'iOS') ? config.app.ios.version : config.app.android.version;
+        var storeUrl = (uuaa.os.name === 'iOS') ? config.app.ios.url : config.app.android.url;
+
+        var r = {
+          isRequiredUpdate: false,
+          storeUrl: storeUrl,
+        };
+
+        if (vercom.compare(configVersion, appVersion) === 1) {
+          r.isRequiredUpdate = true;
+          return resolve(r);
+        }
+        else {
+          return resolve(r);
+        }
+      });
+    },
   };
 
   document.addEventListener('deviceready', function() {

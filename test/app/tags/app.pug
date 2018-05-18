@@ -31,3 +31,20 @@ app
         margin: auto;
       }
     }
+
+  script.
+    cdv.on('deviceready', function() {
+      cdv.checkUpdate().then(function(res) {
+
+        if (res.isRequiredUpdate) {
+          console.log('You have to required update !');
+          console.log("STORE URL: "+res.storeUrl);
+        }
+        else {
+          console.log('This is latest version !');
+        }
+
+      }).catch(function(error) {
+        console.log(error);
+      });
+    });

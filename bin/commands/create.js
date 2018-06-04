@@ -112,7 +112,11 @@ new Promise(resolve => {
   ];
 
   files.forEach(file => {
-    fs.copyFileSync(path.join(templatePath, file), path.join(distDir, file));
+    var src = file;
+    if (file === '.gitignore') {
+      src = 'gitignore';
+    }
+    fs.copyFileSync(path.join(templatePath, src), path.join(distDir, file));
   });
 
   dirs.forEach(dir => {

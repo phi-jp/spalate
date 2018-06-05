@@ -25,6 +25,7 @@ gulp.task('copy', function() {
     'node_modules/socialink/socialink.js',
     'node_modules/meltline/meltline.css',
     'node_modules/sclazy/sclazy.js',
+    'node_modules/flickable/flickable.js',
   ];
   gulp.src(files)
     .pipe(gulp.dest('./src/assets/plugins'))

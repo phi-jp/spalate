@@ -3444,6 +3444,10 @@ uuaa@0.0.8:
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/uuaa/-/uuaa-0.0.8.tgz#adcac1d73e9bcdd1cbb2eaaedc18fcce758ac4a7"
 
+uuaa@0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/uuaa/-/uuaa-0.1.0.tgz#e0a2726f8c3014431d95f03051655cb9d4ddf97d"
+
 uuid@^3.0.0, uuid@^3.1.0:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.2.1.tgz#12c528bb9d58d0b9265d9a2f6f0fe8be17ff1f14"

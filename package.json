@@ -47,7 +47,7 @@
     "socialink": "0.0.2",
     "spat": "0.0.9",
     "underscore": "^1.8.3",
-    "uuaa": "0.0.8",
+    "uuaa": "0.1.0",
     "flickable": "0.0.4"
   },
   "devDependencies": {

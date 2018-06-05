@@ -9,6 +9,7 @@
     "start": "spalate build; spalate start",
     "deploy": "spalate deploy",
     "webfont": "spalate webfont",
+    "sync": "node ../bin/spalate.js create",
     "test": "node ../bin/spalate.js"
   },
   "author": "",

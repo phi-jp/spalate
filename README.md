@@ -9,6 +9,23 @@ single page application template
 by @Haltie
 
 
+## Install
+
+```
+$ npm install -g spalate
+```
+
+## Usage
+
+環境構築
+
+```
+$ spalate create HelloSpalate
+$ cd HelloSpalate
+$ npm run dev
+```
+
+
 ## run test
 
 サーバーが立ち上がって watch & build する

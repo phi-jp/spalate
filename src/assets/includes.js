@@ -20,7 +20,7 @@ module.exports = [
   { type: 'script', path: 'https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.17/marked.js', },
 
   // riot.js
-  { type: 'script', path: 'https://cdnjs.cloudflare.com/ajax/libs/riot/3.6.0/riot+compiler.min.js', },
+  { type: 'script', path: 'https://cdnjs.cloudflare.com/ajax/libs/riot/3.8.2/riot+compiler.min.js', },
 
   // google icon
   { type: 'style', path: 'https://fonts.googleapis.com/icon?family=Material+Icons', },

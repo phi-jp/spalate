@@ -36,7 +36,7 @@
     "js-yaml": "^3.10.0",
     "less": "^3.0.1",
     "less-middleware": "^2.2.1",
-    "meltline": "0.1.7",
+    "meltline": "0.1.8",
     "moment": "^2.22.0",
     "prompt": "^1.0.0",
     "pug": "2.0.1",

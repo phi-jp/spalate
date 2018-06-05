@@ -2041,6 +2041,12 @@ meltline@0.1.7:
   dependencies:
     spalate "^0.1.4"
 
+meltline@0.1.8:
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/meltline/-/meltline-0.1.8.tgz#b6e08b654b754d51875480827213a46013aa7b5f"
+  dependencies:
+    spalate "^0.1.4"
+
 merge-descriptors@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/merge-descriptors/-/merge-descriptors-1.0.1.tgz#b00aaa556dd8b44568150ec9d1b953f3f90cbb61"

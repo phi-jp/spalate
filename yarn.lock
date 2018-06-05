@@ -1053,6 +1053,10 @@ flagged-respawn@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/flagged-respawn/-/flagged-respawn-1.0.0.tgz#4e79ae9b2eb38bf86b3bb56bf3e0a56aa5fcabd7"
 
+flickable@0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/flickable/-/flickable-0.0.4.tgz#f52e4ea90ed9beb9e078376ca3bc815890692ba4"
+
 for-in@^1.0.1, for-in@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
@@ -1417,8 +1421,8 @@ has-values@^1.0.0:
     kind-of "^4.0.0"
 
 has@^1.0.1:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/has/-/has-1.0.2.tgz#1a64bfe4b52e67fb87b9822503d97c019fb6ba42"
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/has/-/has-1.0.3.tgz#722d7cbfc1f6aa8241f16dd814e011e1f41e8796"
   dependencies:
     function-bind "^1.1.1"
 
@@ -2030,10 +2034,6 @@ math-random@^1.0.1:
 media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
-
-meltline@0.1.6:
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/meltline/-/meltline-0.1.6.tgz#632ec3b043a591023d3cdd0befeed39859c0ea1d"
 
 meltline@0.1.7:
   version "0.1.7"
@@ -3104,8 +3104,8 @@ source-map@^0.7.2:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.7.3.tgz#5302f8169031735226544092e64981f751750383"
 
 spalate@^0.1.4:
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/spalate/-/spalate-0.1.5.tgz#74d1ea8f2a85db29e1fce12d93072cc5f26f87be"
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/spalate/-/spalate-0.1.7.tgz#ecbb878f1d63a4584f473dd03911d9dac4432e99"
   dependencies:
     buble "^0.19.3"
     child-process-promise "^2.2.1"
@@ -3122,7 +3122,7 @@ spalate@^0.1.4:
     js-yaml "^3.10.0"
     less "^3.0.1"
     less-middleware "^2.2.1"
-    meltline "0.1.6"
+    meltline "0.1.7"
     moment "^2.22.0"
     prompt "^1.0.0"
     pug "2.0.1"

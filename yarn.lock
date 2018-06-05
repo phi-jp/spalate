@@ -2035,12 +2035,6 @@ media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
 
-meltline@0.1.7:
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/meltline/-/meltline-0.1.7.tgz#31d85c6974ed9eb6460e33dae40bc7eac38781cc"
-  dependencies:
-    spalate "^0.1.4"
-
 meltline@0.1.8:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/meltline/-/meltline-0.1.8.tgz#b6e08b654b754d51875480827213a46013aa7b5f"
@@ -3110,8 +3104,8 @@ source-map@^0.7.2:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.7.3.tgz#5302f8169031735226544092e64981f751750383"
 
 spalate@^0.1.4:
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/spalate/-/spalate-0.1.7.tgz#ecbb878f1d63a4584f473dd03911d9dac4432e99"
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/spalate/-/spalate-0.1.8.tgz#1e245a4744145a6db7f8daad25eb42369e1d1657"
   dependencies:
     buble "^0.19.3"
     child-process-promise "^2.2.1"
@@ -3123,12 +3117,13 @@ spalate@^0.1.4:
     ejs "^2.5.7"
     express "^4.16.2"
     firerest "0.1.0"
+    flickable "0.0.4"
     fs-extra "^5.0.0"
     helmeta "0.0.5"
     js-yaml "^3.10.0"
     less "^3.0.1"
     less-middleware "^2.2.1"
-    meltline "0.1.7"
+    meltline "0.1.8"
     moment "^2.22.0"
     prompt "^1.0.0"
     pug "2.0.1"

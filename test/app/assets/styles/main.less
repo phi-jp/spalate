@@ -1,10 +1,12 @@
 @import "reset.less";
 @import "colors.less";
+@import "form.less";
 
 
 :root {
-  --main-text-color: hsl(0, 0%, 31%);
-  --main-bg-color: white;
+  --main-text-color: #3E3E3E;
+  --main-bg-color: #F6F6F9;
+  --font-weight-bold: 600;
 }
 
 body {
@@ -13,8 +15,34 @@ body {
   font-smoothing: antialiased;
   font-size: 14px;
   color: var(--main-text-color);
+  line-height: 1;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--font-weight-bold);
+}
+
+textarea {
+  line-height: 1.4;
+}
+p {
+  line-height: 1.4;
+  -webkit-tap-highlight-color: initial;
+  -webkit-user-select: initial;
+  -webkit-touch-callout: initial;
+}
+
+
+/*
+ * for spat
+ */
+.app-body {
+  height: 100%;
+}
 .spat-page {
   background-color: var(--main-bg-color);
+}
+.container {
+  max-width: 960px;
+  margin: auto;
 }

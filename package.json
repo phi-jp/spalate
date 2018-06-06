@@ -1,6 +1,6 @@
 {
   "name": "spalate",
-  "version": "0.1.4",
+  "version": "0.1.8",
   "description": "single page application template",
   "main": "index.js",
   "scripts": {
@@ -36,7 +36,7 @@
     "js-yaml": "^3.10.0",
     "less": "^3.0.1",
     "less-middleware": "^2.2.1",
-    "meltline": "0.1.6",
+    "meltline": "0.1.8",
     "moment": "^2.22.0",
     "prompt": "^1.0.0",
     "pug": "2.0.1",
@@ -46,9 +46,10 @@
     "socialink": "0.0.2",
     "spat": "0.0.9",
     "underscore": "^1.8.3",
-    "uuaa": "0.0.8",
+    "uuaa": "0.1.0",
     "sclazy": "0.0.2",
-    "vercom": "0.0.2"
+    "vercom": "0.0.2",
+    "flickable": "0.0.4"
   },
   "devDependencies": {
     "gulp": "^3.9.1",

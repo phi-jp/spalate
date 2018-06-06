@@ -26,6 +26,7 @@ gulp.task('copy', function() {
     'node_modules/meltline/meltline.css',
     'node_modules/sclazy/sclazy.js',
     'node_modules/vercom/vercom.js',
+    'node_modules/flickable/flickable.js',
   ];
   gulp.src(files)
     .pipe(gulp.dest('./src/assets/plugins'))

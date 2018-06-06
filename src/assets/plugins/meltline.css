@@ -1,6 +1,11 @@
-/*
- * meltline
+/*!
+ * meltline 0.1.8
+ * 
+ * MIT Licensed
+ * 
+ * Copyright (C) 2016 phi, http://meltlinecss.com/
  */
+
 /*!
  * ress.css • v1.1.1
  * MIT License
@@ -345,6 +350,7 @@ svg {
 :root {
   --main-color: #222;
   --border-color: rgba(0, 0, 0, 0.1);
+  --font-weight-bold: 700;
 }
 /*
  * method
@@ -2139,7 +2145,9 @@ svg {
 }
 /*
  * gradients
- * ref: https://digitalsynopsis.com/design/beautiful-color-gradients-backgrounds/
+ * refs
+ * https://digitalsynopsis.com/design/beautiful-color-gradients-backgrounds/
+ * https://runstant.com/phi/projects/529a951c
  */
 .warmflame {
   background-image: -webkit-linear-gradient(#ff9a9e, #fad0c4);
@@ -2222,20 +2230,20 @@ svg {
   border-color: #cfd9df;
 }
 .cloudyknoxville {
-  background-image: -webkit-linear-gradient(#cfd9df, #e2ebf0);
+  background-image: -webkit-linear-gradient(#fdfbfb, #ebedee);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 .text-cloudyknoxville {
-  background-image: -webkit-linear-gradient(#cfd9df, #e2ebf0);
+  background-image: -webkit-linear-gradient(#fdfbfb, #ebedee);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 .bg-cloudyknoxville {
-  background-image: linear-gradient(0deg, #cfd9df 0%, #e2ebf0 100%);
+  background-image: linear-gradient(0deg, #fdfbfb 0%, #ebedee 100%);
 }
 .border-cloudyknoxville {
-  border-color: #cfd9df;
+  border-color: #fdfbfb;
 }
 .saintpetersberg {
   background-image: -webkit-linear-gradient(#f5f7fa, #c3cfe2);
@@ -2252,6 +2260,374 @@ svg {
 }
 .border-saintpetersberg {
   border-color: #f5f7fa;
+}
+.plumplate {
+  background-image: -webkit-linear-gradient(#667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-plumplate {
+  background-image: -webkit-linear-gradient(#667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bg-plumplate {
+  background-image: linear-gradient(0deg, #667eea 0%, #764ba2 100%);
+}
+.border-plumplate {
+  border-color: #667eea;
+}
+.everlastingsky {
+  background-image: -webkit-linear-gradient(#fdfcfb, #e2d1c3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-everlastingsky {
+  background-image: -webkit-linear-gradient(#fdfcfb, #e2d1c3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bg-everlastingsky {
+  background-image: linear-gradient(0deg, #fdfcfb 0%, #e2d1c3 100%);
+}
+.border-everlastingsky {
+  border-color: #fdfcfb;
+}
+.happyfisher {
+  background-image: -webkit-linear-gradient(#89f7fe, #66a6ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-happyfisher {
+  background-image: -webkit-linear-gradient(#89f7fe, #66a6ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bg-happyfisher {
+  background-image: linear-gradient(0deg, #89f7fe 0%, #66a6ff 100%);
+}
+.border-happyfisher {
+  border-color: #89f7fe;
+}
+.flyhigh {
+  background-image: -webkit-linear-gradient(#48c6ef, #6f86d6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-flyhigh {
+  background-image: -webkit-linear-gradient(#48c6ef, #6f86d6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bg-flyhigh {
+  background-image: linear-gradient(0deg, #48c6ef 0%, #6f86d6 100%);
+}
+.border-flyhigh {
+  border-color: #48c6ef;
+}
+.strongbliss {
+  background-image: -webkit-linear-gradient(#F68297, #FE9181);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-strongbliss {
+  background-image: -webkit-linear-gradient(#F68297, #FE9181);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bg-strongbliss {
+  background-image: linear-gradient(0deg, #F68297 0%, #FE9181 100%);
+}
+.border-strongbliss {
+  border-color: #F68297;
+}
+.freshmilk {
+  background-image: -webkit-linear-gradient(#feada6, #f5efef);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-freshmilk {
+  background-image: -webkit-linear-gradient(#feada6, #f5efef);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bg-freshmilk {
+  background-image: linear-gradient(0deg, #feada6 0%, #f5efef 100%);
+}
+.border-freshmilk {
+  border-color: #feada6;
+}
+.greatwhale {
+  background-image: -webkit-linear-gradient(#a3bded, #6991c7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-greatwhale {
+  background-image: -webkit-linear-gradient(#a3bded, #6991c7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bg-greatwhale {
+  background-image: linear-gradient(0deg, #a3bded 0%, #6991c7 100%);
+}
+.border-greatwhale {
+  border-color: #a3bded;
+}
+.aquasplash {
+  background-image: -webkit-linear-gradient(#13547a, #80d0c7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-aquasplash {
+  background-image: -webkit-linear-gradient(#13547a, #80d0c7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bg-aquasplash {
+  background-image: linear-gradient(0deg, #13547a 0%, #80d0c7 100%);
+}
+.border-aquasplash {
+  border-color: #13547a;
+}
+.cleanmirror {
+  background-image: -webkit-linear-gradient(#93a5cf, #e4efe9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-cleanmirror {
+  background-image: -webkit-linear-gradient(#93a5cf, #e4efe9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bg-cleanmirror {
+  background-image: linear-gradient(0deg, #93a5cf 0%, #e4efe9 100%);
+}
+.border-cleanmirror {
+  border-color: #93a5cf;
+}
+.premiumdark {
+  background-image: -webkit-linear-gradient(#434343, #000000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-premiumdark {
+  background-image: -webkit-linear-gradient(#434343, #000000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bg-premiumdark {
+  background-image: linear-gradient(0deg, #434343 0%, #000000 100%);
+}
+.border-premiumdark {
+  border-color: #434343;
+}
+.cochitilake {
+  background-image: -webkit-linear-gradient(#93a5cf, #e4efe9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-cochitilake {
+  background-image: -webkit-linear-gradient(#93a5cf, #e4efe9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bg-cochitilake {
+  background-image: linear-gradient(0deg, #93a5cf 0%, #e4efe9 100%);
+}
+.border-cochitilake {
+  border-color: #93a5cf;
+}
+.passionatebed {
+  background-image: -webkit-linear-gradient(#ff758c, #ff7eb3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-passionatebed {
+  background-image: -webkit-linear-gradient(#ff758c, #ff7eb3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bg-passionatebed {
+  background-image: linear-gradient(0deg, #ff758c 0%, #ff7eb3 100%);
+}
+.border-passionatebed {
+  border-color: #ff758c;
+}
+.mountainrock {
+  background-image: -webkit-linear-gradient(#868f96, #596164);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-mountainrock {
+  background-image: -webkit-linear-gradient(#868f96, #596164);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bg-mountainrock {
+  background-image: linear-gradient(0deg, #868f96 0%, #596164 100%);
+}
+.border-mountainrock {
+  border-color: #868f96;
+}
+.deserthump {
+  background-image: -webkit-linear-gradient(#c79081, #dfa579);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-deserthump {
+  background-image: -webkit-linear-gradient(#c79081, #dfa579);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bg-deserthump {
+  background-image: linear-gradient(0deg, #c79081 0%, #dfa579 100%);
+}
+.border-deserthump {
+  border-color: #c79081;
+}
+.eternalconstance {
+  background-image: -webkit-linear-gradient(#09203f, #537895);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-eternalconstance {
+  background-image: -webkit-linear-gradient(#09203f, #537895);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bg-eternalconstance {
+  background-image: linear-gradient(0deg, #09203f 0%, #537895 100%);
+}
+.border-eternalconstance {
+  border-color: #09203f;
+}
+.healthywater {
+  background-image: -webkit-linear-gradient(#96deda, #50c9c3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-healthywater {
+  background-image: -webkit-linear-gradient(#96deda, #50c9c3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bg-healthywater {
+  background-image: linear-gradient(0deg, #96deda 0%, #50c9c3 100%);
+}
+.border-healthywater {
+  border-color: #96deda;
+}
+.viciousstance {
+  background-image: -webkit-linear-gradient(#29323c, #485563);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-viciousstance {
+  background-image: -webkit-linear-gradient(#29323c, #485563);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bg-viciousstance {
+  background-image: linear-gradient(0deg, #29323c 0%, #485563 100%);
+}
+.border-viciousstance {
+  border-color: #29323c;
+}
+.nega {
+  background-image: -webkit-linear-gradient(#ee9ca7, #ffdde1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-nega {
+  background-image: -webkit-linear-gradient(#ee9ca7, #ffdde1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bg-nega {
+  background-image: linear-gradient(0deg, #ee9ca7 0%, #ffdde1 100%);
+}
+.border-nega {
+  border-color: #ee9ca7;
+}
+.nightsky {
+  background-image: -webkit-linear-gradient(#1e3c72, #2a5298);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-nightsky {
+  background-image: -webkit-linear-gradient(#1e3c72, #2a5298);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bg-nightsky {
+  background-image: linear-gradient(0deg, #1e3c72 0%, #2a5298 100%);
+}
+.border-nightsky {
+  border-color: #1e3c72;
+}
+.gentlecare {
+  background-image: -webkit-linear-gradient(#ffc3a0, #ffafbd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-gentlecare {
+  background-image: -webkit-linear-gradient(#ffc3a0, #ffafbd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bg-gentlecare {
+  background-image: linear-gradient(0deg, #ffc3a0 0%, #ffafbd 100%);
+}
+.border-gentlecare {
+  border-color: #ffc3a0;
+}
+.angelcare {
+  background-image: -webkit-linear-gradient(#FFDD96, #FF6691);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-angelcare {
+  background-image: -webkit-linear-gradient(#FFDD96, #FF6691);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bg-angelcare {
+  background-image: linear-gradient(0deg, #FFDD96 0%, #FF6691 100%);
+}
+.border-angelcare {
+  border-color: #FFDD96;
+}
+.morningsalad {
+  background-image: -webkit-linear-gradient(#B7F8DB, #50A7C2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-morningsalad {
+  background-image: -webkit-linear-gradient(#B7F8DB, #50A7C2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bg-morningsalad {
+  background-image: linear-gradient(0deg, #B7F8DB 0%, #50A7C2 100%);
+}
+.border-morningsalad {
+  border-color: #B7F8DB;
+}
+.deeprelief {
+  background-image: -webkit-linear-gradient(#D9F0F7, #657BAF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-deeprelief {
+  background-image: -webkit-linear-gradient(#D9F0F7, #657BAF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bg-deeprelief {
+  background-image: linear-gradient(0deg, #D9F0F7 0%, #657BAF 100%);
+}
+.border-deeprelief {
+  border-color: #D9F0F7;
 }
 /*
  * box
@@ -5269,30 +5645,45 @@ svg {
   width: 100%;
   height: 100%;
 }
-.rect-3_2 {
+.rect-4_3 {
   position: relative;
 }
-.rect-3_2:before {
+.rect-4_3:before {
   content: '';
   display: block;
-  padding-top: 80%;
+  padding-top: 75%;
 }
-.rect-3_2 > * {
+.rect-4_3 > * {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
 }
-.rect-3_2 {
+.rect-5_4 {
   position: relative;
 }
-.rect-3_2:before {
+.rect-5_4:before {
+  content: '';
+  display: block;
+  padding-top: 80%;
+}
+.rect-5_4 > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.rect-7_5 {
+  position: relative;
+}
+.rect-7_5:before {
   content: '';
   display: block;
   padding-top: 71.42857143%;
 }
-.rect-3_2 > * {
+.rect-7_5 > * {
   position: absolute;
   top: 0;
   left: 0;
@@ -8596,11 +8987,17 @@ svg {
 .text-right {
   text-align: right;
 }
-.bold {
-  font-weight: bold;
-}
 .italic {
   font-style: italic;
+}
+.bold {
+  font-weight: var(--font-weight-bold);
+}
+.bolder {
+  font-weight: bolder;
+}
+.lighter {
+  font-weight: lighter;
 }
 .font-weight-100 {
   font-weight: 100 !important;
@@ -8627,6 +9024,33 @@ svg {
   font-weight: 800 !important;
 }
 .font-weight-900 {
+  font-weight: 900 !important;
+}
+.fw1 {
+  font-weight: 100 !important;
+}
+.fw2 {
+  font-weight: 200 !important;
+}
+.fw3 {
+  font-weight: 300 !important;
+}
+.fw4 {
+  font-weight: 400 !important;
+}
+.fw5 {
+  font-weight: 500 !important;
+}
+.fw6 {
+  font-weight: 600 !important;
+}
+.fw7 {
+  font-weight: 700 !important;
+}
+.fw8 {
+  font-weight: 800 !important;
+}
+.fw9 {
   font-weight: 900 !important;
 }
 .text-capitalize {
@@ -9363,28 +9787,28 @@ textarea.input {
   pointer-events: none;
 }
 .list-style-type-disc {
-  list-style: disc;
+  list-style-type: disc;
 }
 .list-style-type-circle {
-  list-style: circle;
+  list-style-type: circle;
 }
 .list-style-type-square {
-  list-style: square;
+  list-style-type: square;
 }
 .list-style-type-decimal {
-  list-style: decimal;
+  list-style-type: decimal;
 }
 .list-style-type-georgian {
-  list-style: georgian;
+  list-style-type: georgian;
 }
 .list-style-type-cjk-ideographic {
-  list-style: cjk-ideographic;
+  list-style-type: cjk-ideographic;
 }
 .list-style-type-kannada {
-  list-style: kannada;
+  list-style-type: kannada;
 }
 .list-style-type-none {
-  list-style: none;
+  list-style-type: none;
 }
 /*
  * shrothand

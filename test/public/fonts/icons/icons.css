@@ -1,0 +1,48 @@
+/*
+  Icon Font: icons
+*/
+
+@font-face {
+  font-family: "icons";
+  src: url("./icons_d8b19a4fdafc5935fb3dced17e7ea950.eot");
+  src: url("./icons_d8b19a4fdafc5935fb3dced17e7ea950.eot?#iefix") format("embedded-opentype"),
+       url("./icons_d8b19a4fdafc5935fb3dced17e7ea950.woff2") format("woff2"),
+       url("./icons_d8b19a4fdafc5935fb3dced17e7ea950.woff") format("woff"),
+       url("./icons_d8b19a4fdafc5935fb3dced17e7ea950.ttf") format("truetype"),
+       url("./icons_d8b19a4fdafc5935fb3dced17e7ea950.svg#icons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "icons";
+    src: url("./icons_d8b19a4fdafc5935fb3dced17e7ea950.svg#icons") format("svg");
+  }
+}
+
+[data-icon]:before { content: attr(data-icon); }
+
+[data-icon]:before,
+.icon-home:before,
+.icon-polygon:before,
+.icon-settings:before,
+.icon-star:before {
+  display: inline-block;
+  font-family: "icons";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+.icon-home:before { content: "\f100"; }
+.icon-polygon:before { content: "\f101"; }
+.icon-settings:before { content: "\f102"; }
+.icon-star:before { content: "\f103"; }

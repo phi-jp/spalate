@@ -76,8 +76,8 @@ acorn@^4.0.4, acorn@~4.0.2:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-4.0.13.tgz#105495ae5361d697bd195c825192e1ad7f253787"
 
 acorn@^5.0.0, acorn@^5.0.3, acorn@^5.4.1:
-  version "5.6.0"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.6.0.tgz#572bedb377a1c61b7a289e72b8c5cfeb7baaf0bf"
+  version "5.6.2"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.6.2.tgz#b1da1d7be2ac1b4a327fb9eab851702c5045b4e7"
 
 ajv@^4.9.1:
   version "4.11.8"
@@ -1053,6 +1053,10 @@ flagged-respawn@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/flagged-respawn/-/flagged-respawn-1.0.0.tgz#4e79ae9b2eb38bf86b3bb56bf3e0a56aa5fcabd7"
 
+flickable@0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/flickable/-/flickable-0.0.4.tgz#f52e4ea90ed9beb9e078376ca3bc815890692ba4"
+
 for-in@^1.0.1, for-in@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
@@ -1128,7 +1132,7 @@ fsevents@^1.0.0, fsevents@^1.1.2:
     nan "^2.9.2"
     node-pre-gyp "^0.10.0"
 
-function-bind@^1.0.2:
+function-bind@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
 
@@ -1417,10 +1421,10 @@ has-values@^1.0.0:
     kind-of "^4.0.0"
 
 has@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/has/-/has-1.0.1.tgz#8461733f538b0837c9361e39a9ab9e9704dc2f28"
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/has/-/has-1.0.3.tgz#722d7cbfc1f6aa8241f16dd814e011e1f41e8796"
   dependencies:
-    function-bind "^1.0.2"
+    function-bind "^1.1.1"
 
 hawk@~3.1.3:
   version "3.1.3"
@@ -1759,8 +1763,8 @@ js-stringify@^1.0.1:
   resolved "https://registry.yarnpkg.com/js-stringify/-/js-stringify-1.0.2.tgz#1736fddfd9724f28a3682adc6230ae7e4e9679db"
 
 js-yaml@^3.10.0:
-  version "3.11.0"
-  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.11.0.tgz#597c1a8bd57152f26d622ce4117851a51f5ebaef"
+  version "3.12.0"
+  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.12.0.tgz#eaed656ec8344f10f527c6bfa1b6e2244de167d1"
   dependencies:
     argparse "^1.0.7"
     esprima "^4.0.0"
@@ -2031,9 +2035,11 @@ media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
 
-meltline@0.1.6:
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/meltline/-/meltline-0.1.6.tgz#632ec3b043a591023d3cdd0befeed39859c0ea1d"
+meltline@0.1.8:
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/meltline/-/meltline-0.1.8.tgz#b6e08b654b754d51875480827213a46013aa7b5f"
+  dependencies:
+    spalate "^0.1.4"
 
 merge-descriptors@1.0.1:
   version "1.0.1"
@@ -2079,7 +2085,11 @@ micromatch@^3.0.4, micromatch@^3.1.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.2"
 
-"mime-db@>= 1.33.0 < 2", mime-db@~1.33.0:
+"mime-db@>= 1.33.0 < 2":
+  version "1.34.0"
+  resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.34.0.tgz#452d0ecff5c30346a6dc1e64b1eaee0d3719ff9a"
+
+mime-db@~1.33.0:
   version "1.33.0"
   resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.33.0.tgz#a3492050a5cb9b63450541e39d9788d2272783db"
 
@@ -2151,8 +2161,8 @@ mkdirp@0.x.x, mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.1:
     minimist "0.0.8"
 
 moment@^2.22.0:
-  version "2.22.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.1.tgz#529a2e9bf973f259c9643d237fda84de3a26e8ad"
+  version "2.22.2"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.2.tgz#3c257f9839fc0e93ff53149632239eb90783ff66"
 
 ms@2.0.0:
   version "2.0.0"
@@ -3093,6 +3103,39 @@ source-map@^0.7.2:
   version "0.7.3"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.7.3.tgz#5302f8169031735226544092e64981f751750383"
 
+spalate@^0.1.4:
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/spalate/-/spalate-0.1.8.tgz#1e245a4744145a6db7f8daad25eb42369e1d1657"
+  dependencies:
+    buble "^0.19.3"
+    child-process-promise "^2.2.1"
+    chokidar "^2.0.2"
+    colors "^1.2.1"
+    commander "^2.14.1"
+    compression "^1.7.2"
+    config "^1.28.1"
+    ejs "^2.5.7"
+    express "^4.16.2"
+    firerest "0.1.0"
+    flickable "0.0.4"
+    fs-extra "^5.0.0"
+    helmeta "0.0.5"
+    js-yaml "^3.10.0"
+    less "^3.0.1"
+    less-middleware "^2.2.1"
+    meltline "0.1.8"
+    moment "^2.22.0"
+    prompt "^1.0.0"
+    pug "2.0.1"
+    querysearch "0.0.3"
+    riot "^3.9.0"
+    routeful "0.0.7"
+    sclazy "0.0.2"
+    socialink "0.0.2"
+    spat "0.0.9"
+    underscore "^1.8.3"
+    uuaa "0.0.8"
+
 sparkles@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/sparkles/-/sparkles-1.0.1.tgz#008db65edce6c50eec0c5e228e1945061dd0437c"
@@ -3329,8 +3372,8 @@ unc-path-regex@^0.1.2:
   resolved "https://registry.yarnpkg.com/unc-path-regex/-/unc-path-regex-0.1.2.tgz#e73dd3d7b0d7c5ed86fbac6b0ae7d8c6a69d50fa"
 
 underscore@^1.8.3:
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.9.0.tgz#31dbb314cfcc88f169cd3692d9149d81a00a73e4"
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.9.1.tgz#06dce34a0e68a7babc29b365b8e74b8925203961"
 
 union-value@^1.0.0:
   version "1.0.0"
@@ -3400,6 +3443,10 @@ utils-merge@1.0.1:
 uuaa@0.0.8:
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/uuaa/-/uuaa-0.0.8.tgz#adcac1d73e9bcdd1cbb2eaaedc18fcce758ac4a7"
+
+uuaa@0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/uuaa/-/uuaa-0.1.0.tgz#e0a2726f8c3014431d95f03051655cb9d4ddf97d"
 
 uuid@^3.0.0, uuid@^3.1.0:
   version "3.2.1"

@@ -1,7 +1,4 @@
 .define-color(@key, @value) {
-  .@{key} {
-    color: @value;
-  }
   .text-@{key} {
     color: @value;
   }
@@ -14,11 +11,6 @@
 }
 
 .define-color-grad(@key, @a, @b, @angle:0deg) {
-  .@{key} {
-    background-image: -webkit-linear-gradient(@a, @b);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
   .text-@{key} {
     background-image: -webkit-linear-gradient(@a, @b);
     -webkit-background-clip: text;
@@ -33,14 +25,19 @@
 }
 
 // サービスのメインカラー
-.define-color(main, hsl(210, 100%, 21%));
+.define-color(main, hsl(210, 100%, 21%)) !important;
 // 通常色
-.define-color(normal, hsl(0, 0%, 24%));
+.define-color(normal, hsl(0, 0%, 24%)) !important;
 // 弱色
-.define-color(weak, hsl(0, 0%, 66%));
+.define-color(weak, hsl(0, 0%, 66%)) !important;
 // リンク色
-.define-color(link, hsl(210, 90%, 54%));
+.define-color(link, hsl(210, 90%, 54%)) !important;
 // 強調色
-.define-color-grad(primary, 135deg, #3023AE, #C86DD7);
+.define-color-grad(primary, #3023AE, #C86DD7, 135deg) !important;
 // 危険色
-.define-color(danger, hsl(12, 74%, 49%));
+.define-color(danger, hsl(12, 74%, 49%)) !important;
+
+// gray
+.define-color(deepgray, #9E9E9E) !important;
+.define-color(softgray, #B2BDC6) !important;
+.define-color(palegray, hsla(207, 15%, 74%, 0.1)) !important;

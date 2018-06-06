@@ -14,6 +14,7 @@
 
     return {
       name: name,
+      key: name.replace(/\s+/g, '_').toLowerCase(),
     };
   })();
   var os = (function() {
@@ -30,6 +31,7 @@
 
     return {
       name: name,
+      key: name.replace(/\s+/g, '_').toLowerCase(),
     };
   })();
   var browser = (function() {
@@ -45,6 +47,7 @@
 
     return {
       name: name,
+      key: name.replace(/\s+/g, '_').toLowerCase(),
     };
   })();
   var mobile = (function() {
@@ -80,6 +83,8 @@
     }
   })();
 
+  var cordova = ua.indexOf('cordova') !== -1;
+
   var service = {
     name: '',
   };
@@ -104,6 +109,7 @@
     mobile: mobile,
     standalone: standalone,
     webview: webview,
+    cordova: cordova,
     language: nav.language.substr(0, 2),
     userAgent: ua,
   };

@@ -8,6 +8,8 @@ program.version(version, '-v, --version');
 
 var commands = {
   help: {
+    // 別ファイルに切り分けていない場合 true
+    ignore: true,
     description: 'ヘルプを表示します',
     action: () => {
       program.help();
@@ -62,7 +64,7 @@ for (let key in commands) {
 
 var cmd = process.argv[2];
 
-if (Object.keys(commands).indexOf(cmd) !== -1) {
+if (Object.keys(commands).indexOf(cmd) !== -1 && !commands[cmd].ignore) {
   require(path.join(__dirname, 'commands', cmd));
 }
 else {

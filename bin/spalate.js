@@ -39,7 +39,6 @@ var commands = {
 for (let key in commands) {
   let command = commands[key];
   let args = command.args ? ' ' + command.args : '';
-  // 一旦説明文を -h で表示できるようにするだけ
   let action = command.action || (() => {
     require(path.join(__dirname, 'commands', key));
   });

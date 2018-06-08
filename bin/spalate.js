@@ -42,8 +42,8 @@ for (let key in commands) {
   let action = command.action || (() => {
     require(path.join(__dirname, 'commands', key));
   });
-
-  let cmd = program
+  
+  program
     .command(`${key}${args}`)
     .description(command.description || '')  
     .action(action);

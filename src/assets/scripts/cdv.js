@@ -14,6 +14,18 @@
  */
   var cdv = {
     _listener: [],
+
+    init: function() {
+      var p = new Promise((resolve) => {
+        document.addEventListener('deviceready', () => {
+          this._init();
+          resolve();
+        });
+      });
+
+      return p;
+    },
+
     on: function(type, func) {
       if (!this._listener[type]) this._listener[type] = [];
       this._listener[type].push(func);
@@ -70,54 +82,48 @@
           });
         }
       },
-    }
+    },
+
+    _init: function() {
+      // header登録
+      if (cordova.appInfoSync) {
+        cdv.appInfo = {
+          identifier: cordova.appInfoSync.identifier,
+          build: cordova.appInfoSync.build,
+          version: cordova.appInfoSync.version,
+        };
+      }
+      if (window.device) {
+        cdv.device = {
+          model: window.device.model || 'null',
+          platform: window.device.platform.toLowerCase(),
+          version: window.device.version,
+          uuid: window.device.uuid,
+        };
+      }
+      
+      // keyboard
+      if (window.Keyboard) {
+        Keyboard.shrinkView(true);
+        Keyboard.hideFormAccessoryBar(true);
+      }
+      
+      // splash screen
+      if (navigator.splashscreen) {
+        setTimeout(function() {
+          navigator.splashscreen.hide();
+        }, 512);
+      }
+
+      // tapped on statusbar
+      window.addEventListener('statusTap', function() {
+        cdv.fire('statusTap');
+      });
+      
+      cdv.fire('deviceready');
+    },
   };
 
-  document.addEventListener('deviceready', function() {
-    /*
-     * header登録
-     */
-    if (cordova.appInfoSync) {
-      app.ref.headers({
-        'X-Nearby-App-Id': cordova.appInfoSync.identifier,
-        'X-Nearby-App-Version-Code': cordova.appInfoSync.build,
-        'X-Nearby-App-Version': cordova.appInfoSync.version,
-      })
-    }
-    if (window.device) {
-      app.ref.headers({
-        'X-Nearby-Model': window.device.model || 'null',
-        'X-Nearby-Os': window.device.platform.toLowerCase(),
-        'X-Nearby-Os-Version': window.device.version,
-        'X-Nearby-Uuid': window.device.uuid,
-      });
-    }
-    
-
-    // push notification setup
-    cdv.pushNotification.setup();
-    
-    // keyboard
-    if (window.Keyboard) {
-      Keyboard.shrinkView(true);
-      Keyboard.hideFormAccessoryBar(true);
-    }
-    
-    // splash screen
-    if (navigator.splashscreen) {
-      setTimeout(function() {
-        navigator.splashscreen.hide();
-      }, 512);
-    }
-
-    // tapped on statusbar
-    window.addEventListener('statusTap', function() {
-      cdv.fire('statusTap');
-    });
-
-    
-    cdv.fire('deviceready');
-  });
   
   // 復帰時のイベント
   document.addEventListener('resume', function() {

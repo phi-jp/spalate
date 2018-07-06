@@ -1,7 +1,10 @@
 
 ;(function(global) {
   spalate = {
-    start: function() {
+    start: function(exec) {
+      // ルーティングイベントを実行するかどうかのフラグ(デフォルトは true)
+      exec = (exec === undefined) ? true : exec;
+
       // 全ての要素をクリックに反応するようにする
       if (uuaa.os.name === 'iOS') {
         document.body.classList.add('cursor-pointer');
@@ -25,7 +28,6 @@
       }, false);
 
       app.routeful = Routeful();
-
 
       Object.keys(router.map).forEach(function(key) {
         var route = router.map[key];
@@ -101,7 +103,16 @@
       });
 
       var tags = riot.mount('app');
-      app.routeful.start(true);
+      var cordovaPromise = Promise.resolve();
+
+      // cordova の場合は deviceready が終わってから routing を開始する
+      if (window.cordova) {
+        cordovaPromise = cdv.init();
+      }
+
+      return Promise.all([cordovaPromise]).then(() => {
+        app.routeful.start(exec);
+      });
     },
   };
 

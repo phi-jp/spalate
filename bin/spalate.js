@@ -16,8 +16,8 @@ var commands = {
   cordova: {
     description: 'cordova のセットアップをします',
   },
-  webfont: {
-    description: 'webfont を作成します',
+  iconfont: {
+    description: 'iconfont を作成します',
   },
   dev: {
     description: 'サーバーを起動し、ビルドの監視を行います',

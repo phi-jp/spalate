@@ -8,7 +8,7 @@
     "build": "spalate build",
     "start": "spalate build; spalate start",
     "deploy": "spalate deploy",
-    "webfont": "spalate webfont",
+    "iconfont": "spalate iconfont",
     "test": ""
   },
   "author": "",

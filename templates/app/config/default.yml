@@ -14,7 +14,7 @@ spalate:
   less:
     target: 'app/assets'
     output: 'public'
-  webfont:
+  iconfont:
     target: 'public/images/icons'
     output: 'public/fonts/icons'
   includes:

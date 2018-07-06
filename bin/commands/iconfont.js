@@ -1,5 +1,5 @@
 var path    = require('path');
-var config  = require('config').spalate.webfont;
+var config  = require('config').spalate.iconfont;
 var exec    = require('child-process-promise').exec
 
 var target = path.join(process.cwd(), config.target);

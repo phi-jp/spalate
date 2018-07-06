@@ -1,5 +1,5 @@
 
-window.onload = function() {
+document.addEventListener('DOMContentLoaded', function() {
   cdv.on('deviceready', () => {
     // cdv.appInfo と cdv.device を使う
     // app.ref.headers({
@@ -13,7 +13,8 @@ window.onload = function() {
     // });
 
     // push notification setup
-    cdv.pushNotification.setup();
+    // cdv.pushNotification.setup();
   });
   spalate.start();
-};
+});
+

@@ -23,9 +23,9 @@
     },
     '/': {
       tag: 'page-index',
-      fetch: function(req, res) {
-        req.fetch = req.clientApp.ref.child('items').get();
-      },
+      // fetch: function(req, res) {
+      //   req.fetch = req.clientApp.ref.child('items').get();
+      // },
     }
   };
 

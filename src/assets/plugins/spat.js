@@ -1,6 +1,6 @@
 
 /* 
- * spat 0.0.9
+ * spat 0.1.1
  * single page application framework for riot.js
  * MIT Licensed
  * 
@@ -15,10 +15,10 @@ var spat = {
   toast: {},
 };
 
-riot.tag2('modal-alert', '<div class="modal rounded-4" ref="modal"> <div class="header px16 py12 w100per border-bottom"> <div class="fs16 bold">{opts.title || \'Message\'}</div> </div> <div class="main p16"> <div class="fs14 white-space-pre-wrap">{opts.text}</div> </div> <div class="footer f fr p16"> <button class="button primary px30 rounded-2 fs16" onclick="{close}">OK</button> </div> </div>', 'modal-alert,[data-is="modal-alert"]{background-color:rgba(0,0,0,0.5)} modal-alert .modal,[data-is="modal-alert"] .modal{background-color:white;min-width:300px} modal-alert .modal .main,[data-is="modal-alert"] .modal .main{min-height:100px}', 'class="s-full t0 l0 f fh p19" spat-animation="scale"', function(opts) {
+riot.tag2('modal-alert', '<div class="modal rounded-4" ref="modal"> <div class="header px16 py12 w100per border-bottom"> <div class="fs16 bold">{opts.title || \'Message\'}</div> </div> <div class="main p16"> <div class="fs14 white-space-pre-wrap">{opts.text}</div> </div> <div class="footer f fr p16"> <button class="button primary px30 rounded-2 fs16" ref="autofocus" onclick="{close}">OK</button> </div> </div>', 'modal-alert,[data-is="modal-alert"]{background-color:rgba(0,0,0,0.5)} modal-alert .modal,[data-is="modal-alert"] .modal{background-color:white;min-width:300px} modal-alert .modal .main,[data-is="modal-alert"] .modal .main{min-height:100px}', 'class="s-full t0 l0 f fh p19" spat-animation="scale"', function(opts) {
 });
 
-riot.tag2('modal-confirm', '<div class="modal rounded-4" ref="modal"> <div class="header px16 py12 w100per border-bottom"> <div class="fs16 bold">{opts.title || \'Message\'}</div> </div> <div class="main p16"> <div class="fs14">{opts.text}</div> </div> <div class="footer f fr p16"> <button class="button px30 rounded-2 fs16 mr8" onclick="{close}">cancel</button> <button class="button primary px30 rounded-2 fs16" onclick="{confirm}">OK</button> </div> </div>', 'modal-confirm,[data-is="modal-confirm"]{background-color:rgba(0,0,0,0.5)} modal-confirm .modal,[data-is="modal-confirm"] .modal{background-color:white;min-width:300px} modal-confirm .modal .main,[data-is="modal-confirm"] .modal .main{min-height:100px}', 'class="s-full t0 l0 f fh p19" spat-animation="scale"', function(opts) {
+riot.tag2('modal-confirm', '<div class="modal rounded-4" ref="modal"> <div class="header px16 py12 w100per border-bottom"> <div class="fs16 bold">{opts.title || \'Message\'}</div> </div> <div class="main p16"> <div class="fs14">{opts.text}</div> </div> <div class="footer f fr p16"> <button class="button px30 rounded-2 fs16 mr8" onclick="{close}">cancel</button> <button class="button primary px30 rounded-2 fs16" ref="autofocus" onclick="{confirm}">OK</button> </div> </div>', 'modal-confirm,[data-is="modal-confirm"]{background-color:rgba(0,0,0,0.5)} modal-confirm .modal,[data-is="modal-confirm"] .modal{background-color:white;min-width:300px} modal-confirm .modal .main,[data-is="modal-confirm"] .modal .main{min-height:100px}', 'class="s-full t0 l0 f fh p19" spat-animation="scale"', function(opts) {
     var self = this;
 
     this.confirm = function() {
@@ -30,7 +30,7 @@ riot.tag2('modal-confirm', '<div class="modal rounded-4" ref="modal"> <div class
 riot.tag2('modal-indicator', '<div class="modal white" ref="modal"> <div>Sync...</div> </div>', 'modal-indicator,[data-is="modal-indicator"]{background-color:rgba(0,0,0,0.5)}', 'class="f fh" spat-animation="scale" spat-dismissible="{false}"', function(opts) {
 });
 
-riot.tag2('spat-modal-actionsheet', '<div class="modal" ref="modal"> <div class="spat-modal-content"> <div class="spat-modal-title" if="{opts.title}">{opts.title}</div> <div class="spat-modal-button {style}" each="{opts.buttons}" onclick="{select}">{label}</div> </div> <div class="spat-modal-footer"> <div class="spat-modal-button" onclick="{close}">Cancel</div> </div> </div>', 'spat-modal-actionsheet,[data-is="spat-modal-actionsheet"]{display:flex;justify-content:center;align-items:flex-end;background-color:rgba(0,0,0,0.1)} spat-modal-actionsheet .modal,[data-is="spat-modal-actionsheet"] .modal{margin:8px;width:100%;max-width:640px;font-size:16px} spat-modal-actionsheet .modal .spat-modal-content,[data-is="spat-modal-actionsheet"] .modal .spat-modal-content{margin-bottom:12px;border-radius:8px;overflow:hidden} spat-modal-actionsheet .modal .spat-modal-content .spat-modal-title,[data-is="spat-modal-actionsheet"] .modal .spat-modal-content .spat-modal-title{background-color:rgba(255,255,255,0.95);text-align:center;padding:12px;border-bottom:1px solid rgba(0,0,0,0.1);color:#666;font-size:14px} spat-modal-actionsheet .modal .spat-modal-content .spat-modal-button,[data-is="spat-modal-actionsheet"] .modal .spat-modal-content .spat-modal-button{font-weight:bold;background-color:rgba(255,255,255,0.95);text-align:center;padding:12px;color:#006FFF;cursor:pointer} spat-modal-actionsheet .modal .spat-modal-content .spat-modal-button:not(:last-child),[data-is="spat-modal-actionsheet"] .modal .spat-modal-content .spat-modal-button:not(:last-child){border-bottom:1px solid rgba(0,0,0,0.1)} spat-modal-actionsheet .modal .spat-modal-content .spat-modal-button.danger,[data-is="spat-modal-actionsheet"] .modal .spat-modal-content .spat-modal-button.danger{color:red} spat-modal-actionsheet .modal .spat-modal-content .spat-modal-button.disable,[data-is="spat-modal-actionsheet"] .modal .spat-modal-content .spat-modal-button.disable{color:#b4b4b4} spat-modal-actionsheet .modal .spat-modal-footer,[data-is="spat-modal-actionsheet"] .modal .spat-modal-footer{border-radius:8px;overflow:hidden} spat-modal-actionsheet .modal .spat-modal-footer .spat-modal-button,[data-is="spat-modal-actionsheet"] .modal .spat-modal-footer .spat-modal-button{cursor:pointer;color:#006FFF;font-weight:bold;background-color:rgba(255,255,255,0.95);padding:16px 12px;text-align:center}', 'spat-animation="bottom"', function(opts) {
+riot.tag2('spat-modal-actionsheet', '<div class="modal" ref="modal"> <div class="spat-modal-content"> <div class="spat-modal-title" if="{opts.title}">{opts.title}</div> <button class="block w-full spat-modal-button {style}" each="{opts.buttons}" onclick="{select}" ref="{autofocus ? &quot;autofocus&quot; : null}">{label}</button> </div> <div class="spat-modal-footer"> <button class="block w-full spat-modal-button" onclick="{close}">Cancel</button> </div> </div>', 'spat-modal-actionsheet,[data-is="spat-modal-actionsheet"]{display:flex;justify-content:center;align-items:flex-end;background-color:rgba(0,0,0,0.1)} spat-modal-actionsheet .modal,[data-is="spat-modal-actionsheet"] .modal{margin:8px;width:100%;max-width:640px;font-size:16px} spat-modal-actionsheet .modal .spat-modal-content,[data-is="spat-modal-actionsheet"] .modal .spat-modal-content{margin-bottom:12px;border-radius:8px;overflow:hidden} spat-modal-actionsheet .modal .spat-modal-content .spat-modal-title,[data-is="spat-modal-actionsheet"] .modal .spat-modal-content .spat-modal-title{background-color:rgba(255,255,255,0.95);text-align:center;padding:12px;border-bottom:1px solid rgba(0,0,0,0.1);color:#666;font-size:14px} spat-modal-actionsheet .modal .spat-modal-content .spat-modal-button,[data-is="spat-modal-actionsheet"] .modal .spat-modal-content .spat-modal-button{font-weight:bold;background-color:rgba(255,255,255,0.95);text-align:center;padding:12px;color:#006FFF;cursor:pointer} spat-modal-actionsheet .modal .spat-modal-content .spat-modal-button:not(:last-child),[data-is="spat-modal-actionsheet"] .modal .spat-modal-content .spat-modal-button:not(:last-child){border-bottom:1px solid rgba(0,0,0,0.1)} spat-modal-actionsheet .modal .spat-modal-content .spat-modal-button.danger,[data-is="spat-modal-actionsheet"] .modal .spat-modal-content .spat-modal-button.danger{color:red} spat-modal-actionsheet .modal .spat-modal-content .spat-modal-button.disable,[data-is="spat-modal-actionsheet"] .modal .spat-modal-content .spat-modal-button.disable{color:#b4b4b4} spat-modal-actionsheet .modal .spat-modal-footer,[data-is="spat-modal-actionsheet"] .modal .spat-modal-footer{border-radius:8px;overflow:hidden} spat-modal-actionsheet .modal .spat-modal-footer .spat-modal-button,[data-is="spat-modal-actionsheet"] .modal .spat-modal-footer .spat-modal-button{cursor:pointer;color:#006FFF;font-weight:bold;background-color:rgba(255,255,255,0.95);padding:16px 12px;text-align:center}', 'spat-animation="bottom"', function(opts) {
     var self = this;
     this.select = function(e) {
       self.trigger('select', e);
@@ -38,7 +38,7 @@ riot.tag2('spat-modal-actionsheet', '<div class="modal" ref="modal"> <div class=
     };
 });
 
-riot.tag2('spat-list', '<yield></yield>', 'spat-list,[data-is="spat-list"]{display:block;overflow:scroll;-webkit-overflow-scrolling:touch;overflow-scrolling:touch;height:100%;will-change:transform}', 'onmousedown="{_dragstart}" onmousemove="{_dragmove}" onmouseup="{_dragend}" riot-style="transform: translateY({_y}px);"', function(opts) {
+riot.tag2('spat-list', '<yield></yield>', 'spat-list,[data-is="spat-list"]{display:block;overflow:scroll;-webkit-overflow-scrolling:touch;overflow-scrolling:touch;height:100%;will-change:transform}', 'onmousedown="{_dragstart}" onmousemove="{_dragmove}" onmouseup="{_dragend}" riot-style="transform: translateY({_y}px)"', function(opts) {
     var self = this;
 
     this.setup = function() {
@@ -135,14 +135,6 @@ riot.tag2('spat-list', '<yield></yield>', 'spat-list,[data-is="spat-list"]{displ
     this.setup();
 });
 
-riot.tag2('spat-marked', '', 'spat-marked,[data-is="spat-marked"]{display:block}', '', function(opts) {
-    this.on('mount', function() {
-      if (!window.marked) {
-        console.error('marked を読み込んでないと使えません!');
-      }
-    });
-});
-
 riot.tag2('spat-modal', '', 'spat-modal,[data-is="spat-modal"]{position:fixed;transform:translate3d(0, 0, 0);top:0;right:0;bottom:0;left:0;display:block;z-index:9999} spat-modal modal-content,[data-is="spat-modal"] modal-content{position:absolute;display:block;left:0;right:0;top:0;bottom:0}@keyframes modal-fade-in{ 0%{opacity:0} 100%{opacity:1}}@keyframes modal-fade-out{ 0%{opacity:1} 100%{opacity:0}}@keyframes modal-left-in{ 0%{transform:translateX(-200px);opacity:0} 100%{transform:translateX(0);opacity:1}}@keyframes modal-left-out{ 0%{transform:translateX(0);opacity:1} 100%{transform:translateX(-200px);opacity:0}}@keyframes modal-right-in{ 0%{transform:translateX(200px);opacity:0} 100%{transform:translateX(0);opacity:1}}@keyframes modal-right-out{ 0%{transform:translateX(0);opacity:1} 100%{transform:translateX(200px);opacity:0}}@keyframes modal-bottom-in{ 0%{transform:translateY(200px);opacity:0} 100%{transform:translateY(0);opacity:1}}@keyframes modal-bottom-out{ 0%{transform:translateY(0);opacity:1} 100%{transform:translateY(200px);opacity:0}}@keyframes modal-scale-in{ 0%{transform:scale(1.5);opacity:0} 100%{transform:scale(1);opacity:1}}@keyframes modal-scale-out{ 0%{transform:scale(1);opacity:1} 100%{transform:scale(.5);opacity:0}}', 'show="{visible}"', function(opts) {
     var self = this;
 
@@ -171,10 +163,23 @@ riot.tag2('spat-modal', '', 'spat-modal,[data-is="spat-modal"]{position:fixed;tr
         }
       };
 
+      var prevFocusElement = document.activeElement;
+      prevFocusElement && prevFocusElement.blur();
       tag.close = function() {
         self._closeModal(tag);
+        prevFocusElement && prevFocusElement.focus();
       };
       tag.update();
+
+      setTimeout(function() {
+        var autofocus = tag.refs.autofocus;
+        if (autofocus) {
+          while (autofocus.refs && autofocus.refs.autofocus) {
+            autofocus = autofocus.refs.autofocus;
+          }
+          autofocus.focus();
+        }
+      }, 1);
 
       self.visible = true;
       self.update();
@@ -259,7 +264,7 @@ riot.tag2('spat-modal', '', 'spat-modal,[data-is="spat-modal"]{position:fixed;tr
 
 });
 
-riot.tag2('spat-nav', '<div class="spat-pages" ref="pages"></div> <div class="spat-lock" show="{_locked}" ref="lock"></div>', 'spat-nav,[data-is="spat-nav"]{position:relative;display:block;width:100%;height:100%} spat-nav .spat-pages,[data-is="spat-nav"] .spat-pages{position:absolute;width:100%;height:100%} spat-nav .spat-pages .spat-page,[data-is="spat-nav"] .spat-pages .spat-page{position:absolute;width:100%;height:100%;backface-visibility:hidden;animation-fill-mode:forwards;overflow:scroll;-webkit-overflow-scrolling:touch;overflow-scrolling:touch} spat-nav .spat-pages .spat-page.spat-hide,[data-is="spat-nav"] .spat-pages .spat-page.spat-hide{display:none} spat-nav .spat-lock,[data-is="spat-nav"] .spat-lock{position:fixed;top:0;right:0;bottom:0;left:0;z-index:9999;background-color:transparent}@keyframes slide-in{ 0%{transform:translate(250px, 0);opacity:0} 100%{transform:translate(0, 0);opacity:1}}@keyframes slide-out{ 0%{opacity:1} 100%{opacity:.8}}@keyframes scale-in{ 0%{transform:scale(.5);opacity:0} 0%{transform:scale(.5);opacity:0} 100%{transform:scale(1);opacity:1}}@keyframes scale-out{ 0%{transform:scale(1);opacity:1} 50%{transform:scale(1.5);opacity:0} 100%{transform:scale(1.5);opacity:0}}@keyframes rotate-in{ 0%{transform:perspective(800px) rotateY(180deg);opacity:0;-webkit-backface-visibility:initial !important} 100%{transform:perspective(800px) rotateY(0deg);opacity:1;-webkit-backface-visibility:initial !important}}@keyframes rotate-out{ 0%{transform:perspective(800px) rotateY(0deg);opacity:1;-webkit-backface-visibility:initial !important} 100%{transform:perspective(800px) rotateY(-180deg);opacity:0;-webkit-backface-visibility:initial !important}}@keyframes pushed-in{ 0%{transform:translate(0, 50vh);opacity:0} 100%{transform:translate(0, 0);opacity:1}}@keyframes pushed-out{ 0%{opacity:1} 100%{opacity:.8}}', '', function(opts) {
+riot.tag2('spat-nav', '<div class="spat-pages" ref="pages" onmousedown="{_swipestart}" onmousemove="{_swipe}" onmouseup="{_swipeend}" ontouchstart="{_swipestart}" ontouchmove="{_swipe}" ontouchend="{_swipeend}" ondragend="{_swipeend}"></div> <div class="spat-lock" show="{_locked}" ref="lock" onmousemove="{_swipe}" onmouseup="{_swipeend}"></div>', 'spat-nav,[data-is="spat-nav"]{position:relative;display:block;width:100%;height:100%} spat-nav .spat-pages,[data-is="spat-nav"] .spat-pages{position:absolute;width:100%;height:100%;z-index:0} spat-nav .spat-pages .spat-page,[data-is="spat-nav"] .spat-pages .spat-page{position:absolute;z-index:0;width:100%;height:100%;backface-visibility:hidden;animation-fill-mode:forwards;overflow:scroll;-webkit-overflow-scrolling:touch;overflow-scrolling:touch} spat-nav .spat-pages .spat-page.current,[data-is="spat-nav"] .spat-pages .spat-page.current{z-index:9999} spat-nav .spat-pages .spat-page.spat-hide,[data-is="spat-nav"] .spat-pages .spat-page.spat-hide{display:none} spat-nav .spat-lock,[data-is="spat-nav"] .spat-lock{position:fixed;top:0;right:0;bottom:0;left:0;z-index:9999;background-color:transparent}@keyframes slide-in{ 0%{transform:translate(250px, 0);opacity:0} 100%{transform:translate(0, 0);opacity:1}}@keyframes slide-out{ 0%{opacity:1} 100%{opacity:.8}}@keyframes scale-in{ 0%{transform:scale(.5);opacity:0} 0%{transform:scale(.5);opacity:0} 100%{transform:scale(1);opacity:1}}@keyframes scale-out{ 0%{transform:scale(1);opacity:1} 50%{transform:scale(1.5);opacity:0} 100%{transform:scale(1.5);opacity:0}}@keyframes rotate-in{ 0%{transform:perspective(800px) rotateY(180deg);opacity:0;-webkit-backface-visibility:initial !important} 100%{transform:perspective(800px) rotateY(0deg);opacity:1;-webkit-backface-visibility:initial !important}}@keyframes rotate-out{ 0%{transform:perspective(800px) rotateY(0deg);opacity:1;-webkit-backface-visibility:initial !important} 100%{transform:perspective(800px) rotateY(-180deg);opacity:0;-webkit-backface-visibility:initial !important}}@keyframes pushed-in{ 0%{transform:translate(0, 50vh);opacity:0} 100%{transform:translate(0, 0);opacity:1}}@keyframes pushed-out{ 0%{opacity:1} 100%{opacity:.8}}', '', function(opts) {
     var self = this;
 
     this.animation = '';
@@ -267,6 +272,14 @@ riot.tag2('spat-nav', '<div class="spat-pages" ref="pages"></div> <div class="sp
     this._back = false;
     this._locked = false;
     this._autoRender = true;
+
+    this.swipeWidthRate = 1;
+
+    this.swipeThreshold = 1;
+
+    this.on('mount', function() {
+      var pages = self.refs.pages;
+    });
 
     this.lock = function(color) {
       this._locked = true;
@@ -282,12 +295,16 @@ riot.tag2('spat-nav', '<div class="spat-pages" ref="pages"></div> <div class="sp
       this.update();
     };
 
+    this.getPage = function(pageId) {
+      return self.refs.pages.querySelector('[data-page-id="' + pageId + '"]');
+    };
+
     this.swap = function(tagName, opts) {
       var prevPage = this.currentPage;
 
       var pageId = location.href.replace(location.origin, '');
 
-      var page = this.refs.pages.querySelector('[data-page-id="' + pageId + '"]');
+      var page = self.getPage(pageId);
 
       var cached = false;
 
@@ -295,6 +312,7 @@ riot.tag2('spat-nav', '<div class="spat-pages" ref="pages"></div> <div class="sp
         page = document.createElement('div');
         page.classList.add('spat-page');
         page.classList.add('spat-hide');
+        page.classList.add('current');
         page.setAttribute('data-page-id', pageId);
         this.refs.pages.appendChild(page);
         riot.mount(page, tagName);
@@ -306,6 +324,8 @@ riot.tag2('spat-nav', '<div class="spat-pages" ref="pages"></div> <div class="sp
           var parent = page.parentNode;
           parent.removeChild(page);
           parent.appendChild(page);
+
+          page.classList.add('current');
         }
       };
 
@@ -328,6 +348,11 @@ riot.tag2('spat-nav', '<div class="spat-pages" ref="pages"></div> <div class="sp
           }
         },
       };
+      delete page.dataset.canBack;
+      delete page.dataset.canForward;
+      delete page.dataset.backId;
+      delete page.dataset.nextId;
+      this.trigger('swap', e);
       page._tag.trigger('show', e);
       page._tag.update();
 
@@ -341,20 +366,41 @@ riot.tag2('spat-nav', '<div class="spat-pages" ref="pages"></div> <div class="sp
       }
     };
 
+    this.setupPageSwipe = function(page, data) {
+      data = data || {};
+      if (data.canBack) {
+        page.dataset.canBack = 'true';
+      }
+      if (data.canForward) {
+        page.dataset.canForward = 'true';
+      }
+      page.dataset.backId = data.backId;
+      page.dataset.nextId = data.nextId;
+      return this;
+    };
+
     this._swap = function(page, prevPage) {
 
       page.classList.remove('spat-hide');
 
-      swapAnimation(page, prevPage, this._back).then(function() {
+      var swapPromise = self.disableSwapAnimation ? Promise.resolve() : swapAnimation(page, prevPage, this._back);
 
-        if (prevPage) {
-          prevPage.classList.add('spat-hide');
-        }
+      swapPromise.then(function() {
+
+        Array.prototype.forEach.call(self.refs.pages.children, function(page) {
+          if (page !== self.currentPage) {
+            page.classList.add('spat-hide');
+            page.classList.remove('current');
+          }
+        });
+
+        page.classList.add('current');
 
         self.unlock();
       });
 
       self._back = false;
+      self.disableSwapAnimation = false;
 
       this.currentPage = page;
       this.prevPage = prevPage;
@@ -393,6 +439,187 @@ riot.tag2('spat-nav', '<div class="spat-pages" ref="pages"></div> <div class="sp
         this.currentPage.setAttribute('data-page-id', pageId);
       }
       return this;
+    };
+
+    this._swipestart = function(e) {
+      e.preventUpdate = true;
+
+      if (self._locked || !self.currentPage.dataset.canBack || e.defaultPrevented) {
+        self.cancelSwipe();
+        return ;
+      }
+      var p = self.toPoint(e);
+
+      if (p.clientX < innerWidth * self.swipeWidthRate) {
+        self._holdSwipe = true;
+        self.x = self.sx = self.px = p.clientX;
+        self.y = self.sy = self.py = p.clientY;
+        self.mx = self.my = self.dx = self.dy = 0;
+      }
+    };
+
+    this._swipe = function(e) {
+      e.preventUpdate = true;
+
+      if (!self._holdSwipe || e.defaultPrevented) {
+        self.cancelSwipe();
+        return ;
+      }
+      var p = self.toPoint(e);
+      self.mx = p.clientX - self.px;
+      self.my = p.clientY - self.py;
+      self.px = self.x;
+      self.py = self.y;
+      self.x = p.clientX;
+      self.y = p.clientY;
+      self.dx = self.x - self.sx;
+      self.dy = self.y - self.sy;
+
+      if (self._swiping) {
+
+        if (self._swipeAnimation) {
+          e.preventDefault();
+          e.stopPropagation();
+          self._updatePageSwipe();
+          return ;
+        }
+
+        if (self.dx > self.swipeThreshold) {
+          e.preventDefault();
+          e.stopPropagation();
+          self._startPageSwipe();
+        }
+        return ;
+      }
+
+      var ax = Math.abs(self.dx);
+      var ay = Math.abs(self.dy);
+
+      if (ax === ay) {
+        return ;
+      }
+
+      if (ax > ay) {
+        e.preventDefault();
+        e.stopPropagation();
+        self._swiping = true;
+      }
+      else {
+        self._holdSwipe = false;
+      }
+
+    };
+
+    this._resetSwipe = function() {
+      self.currentFinger = null;
+      if (!self._holdSwipe || !self._swipeAnimation) {
+        self._swipeAnimation = false;
+        self._holdSwipe = false;
+        self._swiping = false;
+        if (self._locked) {
+          self.unlock();
+        }
+        return ;
+      }
+      return true;
+    };
+
+    this._releaseSwipe = function(back) {
+      if (back === undefined) {
+        back = self._checkSwipeBack();
+      }
+      self._swipeAnimation = false;
+      self._holdSwipe = false;
+      self._swiping = false;
+      var page = self._swipePage;
+      self._swipePage = null;
+      var style = page.style;
+      style.transition = '256ms';
+
+      var x = back ? '100%' : '-0.1px';
+      style.transform = 'translateX(' + x + ')';
+      if (back) {
+        style.opacity = '0';
+      }
+      onceEvent(page, 'transitionend', function() {
+        if (back) {
+          page.classList.add('spat-hide');
+          self.disableSwapAnimation = true;
+          self.trigger('swipebackend');
+        }
+        else {
+          var backPage = self.getPage(page.dataset.backId);
+          if (backPage && self.currentPage !== backPage) {
+            backPage.classList.add('spat-hide');
+          }
+        }
+        style.removeProperty('opacity');
+        style.removeProperty('transform');
+        style.removeProperty('transition');
+        style.removeProperty('box-shadow');
+
+        self.unlock();
+      });
+    };
+
+    this._swipeend = function(e) {
+      e.preventUpdate = true;
+      if (self._resetSwipe()) {
+        e.preventDefault();
+        e.stopPropagation();
+        self._releaseSwipe();
+      }
+    };
+
+    this.cancelSwipe = function() {
+      if (self._resetSwipe()) {
+        self._releaseSwipe(false);
+      }
+    };
+
+    this._startPageSwipe = function() {
+      self.trigger('swipebackstart');
+      self._swipeAnimation = true;
+      var page = self._swipePage = self.currentPage;
+      var style = page.style;
+      style.boxShadow = '0 0 100vw -1px rgba(0, 0, 0, 0.5)';
+      style.opacity = '1';
+      var backPage = self.getPage(page.dataset.backId);
+      if (backPage) {
+        backPage.classList.remove('spat-hide');
+      }
+      self.lock();
+    };
+
+    this._updatePageSwipe = function() {
+      self._swipePage.style.transform = 'translateX(' + Math.max(self.dx, 0) + 'px)';
+    };
+
+    this._checkSwipeBack = function() {
+      var SWIPE_WIDTH_THRESHOLD = 0.5;
+      var SWIPE_SPEED_THRESHOLD = 10;
+      var rate = self.dx / (innerWidth * SWIPE_WIDTH_THRESHOLD);
+      rate += self.mx / SWIPE_SPEED_THRESHOLD;
+      return rate > 1;
+    };
+
+    this.toPoint = function(e) {
+      var touches = e.changedTouches;
+
+      if (touches) {
+        if (!self.currentFinger) {
+          return self.currentFinger = touches[0];
+        }
+        else {
+          return Array.prototype.find.call(touches, function(touch) {
+            return touch.identifier === self.currentFinger.identifier;
+          });
+        }
+      }
+
+      else {
+        return e;
+      }
     };
 
     window.spat.nav = this;
@@ -447,12 +674,6 @@ riot.tag2('spat-nav', '<div class="spat-pages" ref="pages"></div> <div class="sp
       };
       elm.addEventListener(evtName, temp, false);
     };
-});
-
-riot.tag2('spat-raw', '', 'spat-raw,[data-is="spat-raw"]{display:block}', '', function(opts) {
-    this.on('update', function() {
-      this.root.innerHTML = opts.html;
-    });
 });
 
 riot.tag2('spat-scroll-loader', '<div class="loader" if="{_show}"><span>loading...</span></div>', 'spat-scroll-loader,[data-is="spat-scroll-loader"]{display:block} spat-scroll-loader .loader,[data-is="spat-scroll-loader"] .loader{display:flex;justify-content:center;align-items:center;height:44px} spat-scroll-loader .loader [class^=icon],[data-is="spat-scroll-loader"] .loader [class^=icon]{display:block;font-size:22px}@keyframes scroll-loader-spin{ from{transform:rotate(0deg)} to{transform:rotate(360deg)}}', '', function(opts) {

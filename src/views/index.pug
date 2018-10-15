@@ -35,6 +35,8 @@ html
           script(src=v.path)
         when "style"
           link(rel="stylesheet", href=v.path)
+        when "link"
+          link(rel=v.rel, href=v.path)
     //- script
     //-   include ../assets/scripts/app.js
 

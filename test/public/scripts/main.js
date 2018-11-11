@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function() {
   cdv.on('deviceready', () => {
     // cdv.appInfo と cdv.device を使う
@@ -17,4 +16,3 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   spalate.start();
 });
-

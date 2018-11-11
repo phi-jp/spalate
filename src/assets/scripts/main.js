@@ -29,6 +29,10 @@
 
       app.routeful = Routeful();
 
+      // mount tag
+      var appElement = document.createElement('div');
+      var appTag = riot.mount(appElement, 'app')[0];
+
       Object.keys(router.map).forEach(function(key) {
         var route = router.map[key];
     
@@ -58,13 +62,19 @@
             helmeta.set( meta );
           }
 
+          // 初回だけ判定して入れ替える
+          if (appElement) {
+            var tempElement = document.querySelector('[data-is=app]');
+            tempElement.parentNode.replaceChild(appElement, tempElement);
+
+            appElement = null;
+          }
+
           next();
         };
     
         app.routeful.on(key, swap);
       });
-      var appElement = document.createElement('div');
-      var appTag = riot.mount(appElement, 'app')[0];
       
       var cordovaPromise = Promise.resolve();
 
@@ -75,9 +85,6 @@
 
       return Promise.all([cordovaPromise]).then(() => {
         app.routeful.start(exec);
-
-        var tempElement = document.querySelector('[data-is=app]');
-        tempElement.parentNode.replaceChild(appElement, tempElement);
       });
     },
   };

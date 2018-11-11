@@ -57,7 +57,6 @@ Object.keys(clientRouter.map).forEach(function(key) {
 
     getTagOutput(tagName, req, res).then(({content, head}) => {
       var meta = clientApp.meta.create(head);
-      console.log(meta);
       res.render('index', {
         content: content,
         config: config,

@@ -3,15 +3,17 @@ page-index
     module-header
     div.h-full.overflow-scroll
       div.container
-        div.items
-          div.m8(data-is='item-post', each='{item in items}', item='{item}')
+        div.posts
+          div.m8(data-is='item-post', each='{item in posts}', item='{item}')
     module-tabbar
 
   script.
     this.fetch = async ({app}) => {
+      if (this.posts) return {};
+      
       var posts = await app.ref.child('posts').get();
       return {
-        items: posts.splice(0, 10),
+        posts: posts.splice(0, 10),
       };
     };
 

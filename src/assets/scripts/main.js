@@ -32,7 +32,7 @@
       Object.keys(router.map).forEach(function(key) {
         var route = router.map[key];
     
-        var swap = function(req, res, next) {
+        var swap = async (req, res, next) => {
           // reset meta
           helmeta.set( config.meta );
     
@@ -43,22 +43,22 @@
 
           // fetch があれば fetch する
           if (tag.fetch) {
-            tag.fetch({
-              app: app,
-              req: req,
-              res: res,
-            }).then(data => {
-              Object.keys(data).forEach(key => {
-                var value = data[key];
-                tag[key] = value;
-              });
-              tag.update();
-              next();
+            var data = await tag.fetch({app, req, res});
+            Object.keys(data).forEach(key => {
+              var value = data[key];
+              tag[key] = value;
             });
+            tag.update();
           }
-          else {
-            next();
+
+          // head があれば head する
+          if (tag.head) {
+            var data = tag.head();
+            var meta = app.meta.create(data);
+            helmeta.set( meta );
           }
+
+          next();
         };
     
         app.routeful.on(key, swap);

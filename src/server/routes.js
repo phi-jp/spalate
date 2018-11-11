@@ -37,47 +37,35 @@ var getTagOutput = async (tagName, req, res) => {
     tag.update();
   }
 
-  var tagOutput = sdom.serialize(tag.root);
+  var head = {};
+  if (tag.head) {
+    head = tag.head();
+  }
 
-  return tagOutput;
+  var content = sdom.serialize(tag.root);
+
+  return {
+    content: content,
+    head: head,
+  };
 };
 
 Object.keys(clientRouter.map).forEach(function(key) {
-
   router.get(key, function(req, res) {
     var route = clientRouter.map[key];
     var tagName = typeof route.tag === 'function' ? route.tag(req, res) : route.tag;
 
-    getTagOutput(tagName, req, res).then((tagOutput) => {
+    getTagOutput(tagName, req, res).then(({content, head}) => {
+      var meta = clientApp.meta.create(head);
+      console.log(meta);
       res.render('index', {
-        content: tagOutput,
+        content: content,
         config: config,
-        meta: {},
+        meta: meta,
         includes: includes,
         pretty: true,
       });
-      // res.render('index', {
-      //   // includes: includes,
-      //   // meta: meta,
-      //   // config: config,
-      //   // responseCache: req.responseCache,
-      //   // content: tagOutput,
-      //   pretty: true,
-      // });
-      // res.json(tagOutput);
     });
-
-    // res.send('hoge');
-
-    // var meta = clientApp.meta.create(req.meta);
-
-    // res.render('index', {
-    //   includes: includes,
-    //   meta: meta,
-    //   config: config,
-    //   responseCache: req.responseCache,
-    //   pretty: true,
-    // });
   });
 });
 

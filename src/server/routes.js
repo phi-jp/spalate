@@ -5,7 +5,7 @@ var router = express.Router();
 var config = require('config');
 
 var riot = require('riot');
-var sdom = require( path.join( process.cwd(), '../node_modules/riot/lib/server/sdom.js' ) );
+var sdom = require( path.join( process.cwd() + '/node_modules/riot/lib/server/sdom.js') );
 riot.util.tmpl.errorHandler = function() {};
 var tags = fs.readFileSync(config.spalate.riot.output + '/tags.js', 'utf-8');
 eval(tags);

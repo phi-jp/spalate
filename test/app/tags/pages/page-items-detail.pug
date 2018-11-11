@@ -17,6 +17,8 @@ page-items-detail(spat-animation='slide')
     var self = this;
 
     this.fetch = async ({app, req}) => {
+      if (this.post) return {};
+
       var res = await app.ref.child('posts').child(req.params.id).get();
       return {
         post: res,

@@ -1,7 +1,7 @@
 module-tabbar
   div.h50.border-top.bg-white
     div.container.s-full.f.fh
-      div.f.s-full(each='{tab in tabs}')
+      a.f.s-full(each='{tab in tabs}', href='{tab.link}')
         div.w-full.f.fh
           i.fs24(class='icon-{tab.icon}')
 
@@ -15,9 +15,9 @@ module-tabbar
 
     this.tabs = [
       { icon: 'lightning', link: '/' },
-      { icon: 'search', link: '/search' },
+      { icon: 'search', link: '/' },
       { icon: 'tag', link: '/' },
-      { icon: 'menu', link: '/user' },
+      { icon: 'menu', link: '/settings' },
     ];
 
     this.on('mount', () => {

@@ -2,22 +2,12 @@ page-index
   div.flex.flex-column.h-full
     module-header
     div.h-full.overflow-scroll
-      div.container.p10
-        i.icon-home.fs64(onclick='{onclick}')
-        i.icon-star.fs64
+      div.container
         div.items
-          div.rounded-4.mb32.f(each='{item in items}')
-            div.flex-fixed.mr16
-              div.w200.s-w100.rect
-                img.block.s-full.object-fit-cover(src='https://loremflickr.com/320/240?random={item.id}')
-            div.w-full
-              h3.text-primary
-                a(href='/items/{item.id}') {item.title}
-              p.line-clamp-3.word-break-all {item.body}
+          div.m8(data-is='item-post', each='{item in items}', item='{item}')
     module-tabbar
 
   script.
-    
     this.fetch = async ({app}) => {
       var posts = await app.ref.child('posts').get();
       return {

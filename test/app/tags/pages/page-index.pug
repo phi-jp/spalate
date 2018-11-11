@@ -6,14 +6,14 @@ page-index
         i.icon-home.fs64(onclick='{onclick}')
         i.icon-star.fs64
         div.items
-          div.rounded-4.mb32.f(each='{items}')
+          div.rounded-4.mb32.f(each='{item in items}')
             div.flex-fixed.mr16
               div.w200.s-w100.rect
-                img.block.s-full.object-fit-cover(src='{image_url}')
+                img.block.s-full.object-fit-cover(src='https://loremflickr.com/320/240?random={item.id}')
             div.w-full
               h3.text-primary
-                a(href='/items/{id}') {title}
-              p.line-clamp-3.word-break-all {body}
+                a(href='/items/{item.id}') {item.title}
+              p.line-clamp-3.word-break-all {item.body}
     module-tabbar
 
   script.

@@ -73,7 +73,7 @@ Object.keys(clientRouter.map).forEach(function(key) {
           pretty: true,
         }, (err, content) => {
           renderCaches[cacheKey] = content;
-          console.log('cache: ' + cacheKey);
+          // console.log('cache: ' + cacheKey);
           res.send(content);
         });
       });

@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="20px" height="17px" viewBox="0 0 20 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
-    <title>Shape</title>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>Icons/ic_home</title>
     <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="home" fill="#000000" fill-rule="nonzero">
-            <polygon id="Shape" points="8 17 8 11 12 11 12 17 17 17 17 9 20 9 10 0 0 9 3 9 3 17"></polygon>
+    <defs>
+        <circle id="path-1" cx="7" cy="7" r="7"></circle>
+    </defs>
+    <g id="Icons/ic_home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(1.000000, 1.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Oval" stroke="#999999" xlink:href="#path-1"></use>
+            <polyline id="Path-7" stroke="#999999" mask="url(#mask-2)" points="4 15 9 7 5 7 10 -1"></polyline>
         </g>
     </g>
 </svg>

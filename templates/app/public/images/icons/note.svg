@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>Icons/ic_like</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Icons/ic_like" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M18,6 C18.5522847,6 19,6.44771525 19,7 L19,18 C19,18.5522847 18.5522847,19 18,19 L8,19 C7.44771525,19 7,18.5522847 7,18 L7,17 L6,17 C5.44771525,17 5,16.5522847 5,16 L5,5 C5,4.44771525 5.44771525,4 6,4 L16,4 C16.5522847,4 17,4.44771525 17,5 L17,6 L18,6 Z M8,13 L11,13 L11,14 L8,14 L8,13 Z M8,11 L14,11 L14,12 L8,12 L8,11 Z M8,7 L14,7 L14,8 L8,8 L8,7 Z M8,9 L14,9 L14,10 L8,10 L8,9 Z M6,16 L16,16 L16,5 L6,5 L6,16 Z M18,18 L18,7 L17,7 L17,16 C17,16.5522847 16.5522847,17 16,17 L8,17 L8,18 L18,18 Z" id="Combined-Shape" fill="#000000" fill-rule="nonzero"></path>
+    </g>
+</svg>

@@ -3,7 +3,7 @@ module-header
     div.container.s-full.f.fh.relative
       div.bold.fs24
         a(href='/') { opts.title || 'Spalate' }
-      div.absolute.t0.l0.h-full.f.fh.px10.cursor-pointer(onclick='spat.nav.back();')
+      div.absolute.t0.l0.h-full.f.fh.px10.cursor-pointer(if='{opts.back}', onclick='spat.nav.back();')
         i.icon-back.fs24
 
   style(type='less').

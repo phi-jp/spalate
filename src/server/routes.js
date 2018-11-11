@@ -1,8 +1,10 @@
 var path = require('path');
 var fs = require('fs');
+var config = require('config');
+
 var express = require('express');
 var router = express.Router();
-var config = require('config');
+var renderCaches = {};
 
 var riot = require('riot');
 var sdom = require( path.join( process.cwd() + '/node_modules/riot/lib/server/sdom.js') );
@@ -52,19 +54,30 @@ var getTagOutput = async (tagName, req, res) => {
 
 Object.keys(clientRouter.map).forEach(function(key) {
   router.get(key, function(req, res) {
-    var route = clientRouter.map[key];
-    var tagName = typeof route.tag === 'function' ? route.tag(req, res) : route.tag;
+    var cacheKey = req.url;
 
-    getTagOutput(tagName, req, res).then(({content, head}) => {
-      var meta = clientApp.meta.create(head);
-      res.render('index', {
-        content: content,
-        config: config,
-        meta: meta,
-        includes: includes,
-        pretty: true,
+    if (renderCaches[cacheKey]) {
+      res.send(renderCaches[cacheKey]);
+    }
+    else {
+      var route = clientRouter.map[key];
+      var tagName = typeof route.tag === 'function' ? route.tag(req, res) : route.tag;
+
+      getTagOutput(tagName, req, res).then(({content, head}) => {
+        var meta = clientApp.meta.create(head);
+        res.render('index', {
+          content: content,
+          config: config,
+          meta: meta,
+          includes: includes,
+          pretty: true,
+        }, (err, content) => {
+          renderCaches[cacheKey] = content;
+          console.log('cache: ' + cacheKey);
+          res.send(content);
+        });
       });
-    });
+    }
   });
 });
 

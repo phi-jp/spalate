@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "spalate dev",
     "build": "spalate build",
-    "start": "spalate build; spalate start",
+    "start": "npm run build; spalate start",
+    "dev": "npm run build; spalate dev",
     "deploy": "spalate deploy",
     "iconfont": "spalate iconfont",
     "test": ""

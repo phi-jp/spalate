@@ -1,7 +1,8 @@
 module-header
   div.bg-main.h44.white
     div.container.s-full.f.fh
-      div.bold.fs24 { opts.title || 'Spalate' }
+      div.bold.fs24
+        a(href='/') { opts.title || 'Spalate' }
 
   style(type='less').
     :scope {

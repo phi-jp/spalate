@@ -44,10 +44,6 @@ html
     //- script(src='/scripts/all.js')
     //- link(rel="stylesheet", href='/styles/all.css')
     //- fetch
-    if responseCache
-      script.
-        var responseCache = "!{ encodeURIComponent(JSON.stringify(responseCache)) }";
-        responseCache = JSON.parse( decodeURIComponent(responseCache) );
 
     //- for cordova
     script.
@@ -72,6 +68,10 @@ html
       }
 
   body
-    app
+    div(data-is='app')
+      div.app-body
+        spat-nav
+          div.spat-pages
+            div.spat-page !{content}
 
     //- include "!{config.spalate.views.body}"

@@ -3,9 +3,9 @@ page-items-detail(spat-animation='slide')
     module-header
     div.h-full.overflow-scroll
       div.container.p10
-        a(href='', onclick='spat.nav.back()') <
-        h1 {item.title}
-        div.body(ref='body')
+        a(href='', onclick='spat.nav.back()') ◀
+        h1 {post.title}
+        div {post.body}
     module-tabbar
 
   style(type='less').
@@ -67,16 +67,12 @@ page-items-detail(spat-animation='slide')
   script.
     var self = this;
 
-    this.on('fetch', function(e) {
-      this.item = e.response.data.item;
-      this.update();
-    });
+    this.fetch = async ({app, req}) => {
+      var res = await app.ref.child('posts').child(req.params.id).get();
+      return {
+        post: res,
+      };
+    };
 
     this.on('show', function(e) {
-    });
-
-    this.on('update', function() {
-      if (this.item) {
-        this.refs.body.innerHTML = marked(this.item.body);
-      }
     });

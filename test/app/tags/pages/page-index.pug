@@ -11,16 +11,21 @@ page-index
               div.w200.s-w100.rect
                 img.block.s-full.object-fit-cover(src='{image_url}')
             div.w-full
-              h3.text-primary {title}
+              h3.text-primary
+                a(href='/items/{id}') {title}
               p.line-clamp-3.word-break-all {body}
     module-tabbar
 
   script.
-    var self = this;
+    
+    this.fetch = async ({app}) => {
+      var posts = await app.ref.child('posts').get();
+      return {
+        items: posts.splice(0, 10),
+      };
+    };
 
-    this.on('fetch', function(e) {
-      this.items = e.response.data.items;
-      this.update();
+    this.on('mount', () => {
     });
     
     this.on('show', function() {

@@ -32,77 +32,40 @@
       Object.keys(router.map).forEach(function(key) {
         var route = router.map[key];
     
-        var swap = function(req, res) {
+        var swap = function(req, res, next) {
           // reset meta
           helmeta.set( config.meta );
     
-          var tag = 'index';
-          if (req.tag) {
-            tag = req.tag;
-          }
-          else if (typeof route.tag === 'string') {
-            tag = route.tag;
-          }
-    
-          spat.nav.swap(tag, req.params);
-        };
-        route.fetch = route.fetch || function() {};
+          var tagName = typeof route.tag === 'function' ? route.tag(req, res) : route.tag;
+  
+          spat.nav.swap(tagName, req.params);
+          var tag = spat.nav.currentPage._tag;
 
-        var fetch = function(req, res, next) {
-          req.clientApp = app;
-          // キャッシュがある場合
-          if (window.responseCache) {
-            req.responseCache = window.responseCache;
-            window.responseCache = null;
-            next();
-          }
-          else if (route.fetch) {
-            route.fetch(req, res);
-
-            // fetch がセットされていた場合
-            if (req.fetch) {
-              req.fetch.then(function(res) {
-                req.responseCache = res;
-                next();
-              }).catch(function() {
-                next();
+          // fetch があれば fetch する
+          if (tag.fetch) {
+            tag.fetch({
+              app: app,
+              req: req,
+              res: res,
+            }).then(data => {
+              Object.keys(data).forEach(key => {
+                var value = data[key];
+                tag[key] = value;
               });
-            }
-            else {
+              tag.update();
               next();
-            }
+            });
           }
           else {
             next();
           }
         };
-
-        var fetched = function(req, res) {
-          if (route.fetched) {
-            route.fetched(req, res);
-          }
-          // set meta
-          if (req.meta) {
-            var meta = app.meta.create(req.meta);
-            helmeta.set( meta );
-          }
-
-          if (req.responseCache) {
-            spat.nav.currentPage._tag.trigger('fetch', {
-              response: req.responseCache,
-            });
-          }
-        };
     
-        if (typeof route.tag === 'function') {
-          app.routeful.on(key, route.tag, swap, fetch, fetched);
-        }
-        else {
-          app.routeful.on(key, swap, fetch, fetched);
-        }
+        app.routeful.on(key, swap);
       });
-
-      var tags = riot.mount('app');
+      var appElement = document.createElement('div');
+      var appTag = riot.mount(appElement, 'app')[0];
+      
       var cordovaPromise = Promise.resolve();
 
       // cordova の場合は deviceready が終わってから routing を開始する
@@ -112,6 +75,9 @@
 
       return Promise.all([cordovaPromise]).then(() => {
         app.routeful.start(exec);
+
+        var tempElement = document.querySelector('[data-is=app]');
+        tempElement.parentNode.replaceChild(appElement, tempElement);
       });
     },
   };

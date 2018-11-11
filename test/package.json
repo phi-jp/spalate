@@ -10,7 +10,7 @@
     "deploy": "spalate deploy",
     "iconfont": "spalate iconfont",
     "sync": "node ../bin/spalate.js create",
-    "test": "node ../bin/spalate.js"
+    "test": "node ../bin/spalate.js dev"
   },
   "author": "",
   "license": "MIT",

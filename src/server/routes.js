@@ -1,5 +1,6 @@
 var path = require('path');
 var fs = require('fs');
+var colors = require('colors');
 var config = require('config');
 
 var express = require('express');
@@ -31,6 +32,9 @@ var getTagOutput = async (tagName, req, res) => {
       app: clientApp,
       req: req,
       res: res,
+    }).catch(err => {
+      console.error(`fetch でエラーが起きました: ${tagName}`.red);
+      console.log(err);
     });
     Object.keys(res).forEach(key => {
       var value = res[key];

@@ -1,0 +1,13 @@
+item-post
+  a.f.bg-white.rounded-3.p8(href='/items/{opts.item.id}')
+    div.flex-fixed.mr8
+      div.w200.s-w100.rect
+        img.block.s-full.object-fit-cover(src='https://loremflickr.com/320/240?random={opts.item.id}')
+    div.w-full
+      h3.lh14.line-clamp-1.text-primary {opts.item.title}
+      p.line-clamp-3.word-break-all.fs12 {opts.item.body}
+
+  style(type='less').
+    :scope {
+      display: block;
+    }

@@ -32,9 +32,9 @@ $ npm run dev
 
 ```
 $ cd test
-$ npm test
+$ yarn
+$ npm run dev
 ```
-
 
 ## webfont
 

@@ -2,26 +2,27 @@ page-index
   div.flex.flex-column.h-full
     module-header
     div.h-full.overflow-scroll
-      div.container.p10
-        i.icon-home.fs64
-        i.icon-star.fs64
-        div.items
-          div.rounded-4.mb32.f(each='{items}')
-            div.flex-fixed.mr16
-              div.w200.s-w100.rect
-                img.block.s-full.object-fit-cover(src='{image_url}')
-            div.w-full
-              h3.text-primary {title}
-              p.line-clamp-3.word-break-all {body}
+      div.container
+        div.posts
+          div.m8(data-is='item-post', each='{item in posts}', item='{item}')
     module-tabbar
 
   script.
-    var self = this;
+    this.fetch = async ({app}) => {
+      if (this.posts) return {};
+      
+      var posts = await app.ref.child('posts').get();
+      return {
+        posts: posts.splice(0, 10),
+      };
+    };
 
-    this.on('fetch', function(e) {
-      this.items = e.response.data.items;
-      this.update();
+    this.on('mount', () => {
     });
     
     this.on('show', function() {
     });
+
+    this.onclick = () => {
+      alert();
+    };

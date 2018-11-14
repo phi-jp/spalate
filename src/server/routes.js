@@ -5,6 +5,7 @@ var config = require('config');
 var express = require('express');
 var router = express.Router();
 var renderCaches = {};
+var cacheDuration = config.spalate.cache ? config.spalate.cache.duration || 3600000 : 0;
 
 var riot = require('riot');
 var sdom = require( path.join( process.cwd() + '/node_modules/riot/lib/server/sdom.js') );
@@ -57,7 +58,15 @@ Object.keys(clientRouter.map).forEach(function(key) {
     var cacheKey = req.url;
 
     if (renderCaches[cacheKey]) {
-      res.send(renderCaches[cacheKey]);
+      res.send(renderCaches[cacheKey].content);
+
+      // 経過時間を取得
+      var duration = Date.now() - renderCaches[cacheKey].timestamp;
+
+      // 経過時間がキャッシュ時間を超えていた場合キャッシュクリアする
+      if (duration > cacheDuration) {
+        delete renderCaches[cacheKey];
+      }
     }
     else {
       var route = clientRouter.map[key];
@@ -72,8 +81,15 @@ Object.keys(clientRouter.map).forEach(function(key) {
           includes: includes,
           pretty: true,
         }, (err, content) => {
-          renderCaches[cacheKey] = content;
-          // console.log('cache: ' + cacheKey);
+          if (cacheDuration) {
+            // キャッシュする
+            renderCaches[cacheKey] = {
+              key: cacheKey,
+              content: content,
+              timestamp: Date.now(),
+            };
+            console.log(`cached: ${cacheKey}`.blue);
+          }
           res.send(content);
         });
       });

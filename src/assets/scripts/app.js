@@ -14,7 +14,7 @@
     api: config.api.endpoint,
     cacheKey: config.api.cacheKey,
     tokenKey: config.api.tokenKey,
-    debug: config.api.debug,
+    debug: isNode ? false : config.api.debug,
   });
 
   exports.meta = {

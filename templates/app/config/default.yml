@@ -14,7 +14,7 @@ spalate:
   less:
     target: 'app/assets'
     output: 'public'
-  webfont:
+  iconfont:
     target: 'public/images/icons'
     output: 'public/fonts/icons'
   includes:
@@ -46,7 +46,7 @@ config:
     favicon: /images/icon.png
     url: https://getit.co.jp
   api:
-    endpoint: https://noteput-api.herokuapp.com/v1
+    endpoint: http://jsonplaceholder.typicode.com
     cacheKey: noteput.auth.token
     tokenKey: X-Noteput-Token
     debug: true

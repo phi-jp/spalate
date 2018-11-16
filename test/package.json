@@ -4,13 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "spalate",
-    "build": "spalate build",
-    "start": "spalate build; spalate start",
-    "deploy": "spalate deploy",
-    "webfont": "spalate webfont",
-    "sync": "node ../bin/spalate.js create",
-    "test": "node ../bin/spalate.js"
+    "build": "node ../bin/spalate.js build",
+    "start": "npm run build; node ../bin/spalate.js start",
+    "dev": "npm run build; node ../bin/spalate.js dev",
+    "deploy": "node ../bin/spalate.js deploy",
+    "iconfont": "node ../bin/spalate.js iconfont",
+    "sync": "node ../bin/spalate.js create"
   },
   "author": "",
   "license": "MIT",

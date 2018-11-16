@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "spalate",
     "build": "spalate build",
-    "start": "spalate build; spalate start",
+    "start": "npm run build; spalate start",
+    "dev": "npm run build; spalate dev",
     "deploy": "spalate deploy",
-    "webfont": "spalate webfont",
+    "iconfont": "spalate iconfont",
     "test": ""
   },
   "author": "",

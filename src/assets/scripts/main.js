@@ -1,7 +1,10 @@
 
 ;(function(global) {
   spalate = {
-    start: function() {
+    start: function(exec) {
+      // ルーティングイベントを実行するかどうかのフラグ(デフォルトは true)
+      exec = (exec === undefined) ? true : exec;
+
       // 全ての要素をクリックに反応するようにする
       if (uuaa.os.name === 'iOS') {
         document.body.classList.add('cursor-pointer');
@@ -26,82 +29,63 @@
 
       app.routeful = Routeful();
 
+      // mount tag
+      var appElement = document.createElement('div');
+      var appTag = riot.mount(appElement, 'app')[0];
 
       Object.keys(router.map).forEach(function(key) {
         var route = router.map[key];
     
-        var swap = function(req, res) {
+        var swap = async (req, res, next) => {
           // reset meta
           helmeta.set( config.meta );
     
-          var tag = 'index';
-          if (req.tag) {
-            tag = req.tag;
-          }
-          else if (typeof route.tag === 'string') {
-            tag = route.tag;
-          }
-    
-          spat.nav.swap(tag, req.params);
-        };
-        route.fetch = route.fetch || function() {};
+          var tagName = typeof route.tag === 'function' ? route.tag(req, res) : route.tag;
+  
+          spat.nav.swap(tagName, req.params);
+          var tag = spat.nav.currentPage._tag;
 
-        var fetch = function(req, res, next) {
-          req.clientApp = app;
-          // キャッシュがある場合
-          if (window.responseCache) {
-            req.responseCache = window.responseCache;
-            window.responseCache = null;
-            next();
+          // fetch があれば fetch する
+          if (tag.fetch) {
+            var data = await tag.fetch({app, req, res});
+            Object.keys(data).forEach(key => {
+              var value = data[key];
+              tag[key] = value;
+            });
+            tag.update();
           }
-          else if (route.fetch) {
-            route.fetch(req, res);
 
-            // fetch がセットされていた場合
-            if (req.fetch) {
-              req.fetch.then(function(res) {
-                req.responseCache = res;
-                next();
-              }).catch(function() {
-                next();
-              });
-            }
-            else {
-              next();
-            }
-          }
-          else {
-            next();
-          }
-        };
-
-        var fetched = function(req, res) {
-          if (route.fetched) {
-            route.fetched(req, res);
-          }
-          // set meta
-          if (req.meta) {
-            var meta = app.meta.create(req.meta);
+          // head があれば head する
+          if (tag.head) {
+            var data = tag.head();
+            var meta = app.meta.create(data);
             helmeta.set( meta );
           }
 
-          if (req.responseCache) {
-            spat.nav.currentPage._tag.trigger('fetch', {
-              response: req.responseCache,
-            });
+          // 初回だけ判定して入れ替える
+          if (appElement) {
+            var tempElement = document.querySelector('[data-is=app]');
+            tempElement.parentNode.replaceChild(appElement, tempElement);
+
+            appElement = null;
           }
+
+          next();
         };
     
-        if (typeof route.tag === 'function') {
-          app.routeful.on(key, route.tag, swap, fetch, fetched);
-        }
-        else {
-          app.routeful.on(key, swap, fetch, fetched);
-        }
+        app.routeful.on(key, swap);
       });
+      
+      var cordovaPromise = Promise.resolve();
 
-      var tags = riot.mount('app');
-      app.routeful.start(true);
+      // cordova の場合は deviceready が終わってから routing を開始する
+      if (window.cordova) {
+        cordovaPromise = cdv.init();
+      }
+
+      return Promise.all([cordovaPromise]).then(() => {
+        app.routeful.start(exec);
+      });
     },
   };
 

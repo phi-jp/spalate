@@ -35,8 +35,38 @@
       sep = sep || '&';
       eq = eq || '=';
       var encode = (isEncode) ? encodeURIComponent : function(a) { return a; };
-      return Object.keys(value).map(function(key) {
-        return key + eq + encode(value[key]);
+
+      var params = [];
+      Object.keys(value).forEach(function(key) {
+        var v = value[key];
+
+        if (typeof v === 'string') {
+          params.push([key, v]);
+        }
+        else if (typeof v === 'number') {
+          params.push([key, v]);
+        }
+        else if (typeof v === 'boolean') {
+          params.push([key, v]);
+        }
+        else if (v instanceof Array) {
+          v.forEach(function(vv) {
+            params.push([key+'[]', vv]);
+          });
+        }
+        else if (v === null) {
+          params.push([key, "null"]);
+        }
+        else if (typeof v === 'object') {
+          Object.keys(v).forEach(function(kk) {
+            var vv = v[kk];
+            params.push([key + '[' + kk + ']', vv]);
+          })
+        }
+      });
+
+      return params.map(function(p){
+        return encode(p[0]) + eq + encode(p[1]);
       }).join(sep);
     },
   };

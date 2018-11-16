@@ -35,17 +35,10 @@ html
           script(src=v.path)
         when "style"
           link(rel="stylesheet", href=v.path)
+        when "link"
+          link(rel=v.rel, href=v.path)
     //- script
     //-   include ../assets/scripts/app.js
-
-    //- release
-    //- script(src='/scripts/all.js')
-    //- link(rel="stylesheet", href='/styles/all.css')
-    //- fetch
-    if responseCache
-      script.
-        var responseCache = "!{ encodeURIComponent(JSON.stringify(responseCache)) }";
-        responseCache = JSON.parse( decodeURIComponent(responseCache) );
 
     //- for cordova
     script.
@@ -70,6 +63,8 @@ html
       }
 
   body
-    app
-
-    //- include "!{config.spalate.views.body}"
+    div(data-is='app')
+      div.app-body
+        spat-nav
+          div.spat-pages
+            div.spat-page !{content}

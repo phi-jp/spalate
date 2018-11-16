@@ -35,24 +35,21 @@
       return m;
     },
   };
-
-  exports.utils = {
-    webview: {
-      open: function(url) {
-        if (window.cordova) {
-          cordova.plugins.browsertab.isAvailable(function(result) {
-            if (!result) {
-              // TODO: in app browser
-            }
-            else {
-              cordova.plugins.browsertab.openUrl(url);
-            }
-          });
-        }
-        else {
-          window.open(url);
-        }
-      },
+  exports.webview = {
+    open: function(url) {
+      if (window.cordova) {
+        cordova.plugins.browsertab.isAvailable(function(result) {
+          if (!result) {
+            // TODO: in app browser
+          }
+          else {
+            cordova.plugins.browsertab.openUrl(url);
+          }
+        });
+      }
+      else {
+        window.open(url);
+      }
     },
   };
 })(typeof exports === 'undefined' ? this.app = {} : exports);

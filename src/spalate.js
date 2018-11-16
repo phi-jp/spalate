@@ -32,6 +32,15 @@ var spalate = function(settings) {
   app.set('views', path.join(__dirname, 'views'));
   app.set('view engine', 'pug');
 
+  // setup plugins
+  if (config.spalate.plugins) {
+    config.spalate.plugins.forEach(p => {
+      require(path.join(process.cwd(), 'app/plugins/' + p))({
+        app: app,
+      });
+    });
+  }
+
   // setup route
   var routes = require('./server/routes.js');
   app.use('/', routes);

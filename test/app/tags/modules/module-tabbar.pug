@@ -3,7 +3,7 @@ module-tabbar
     div.container.s-full.f.fh
       a.f.s-full(each='{tab in tabs}', href='{tab.link}')
         div.w-full.f.fh
-          i.fs24(class='icon-{tab.icon}')
+          i.fs28(class='icon-{tab.icon}')
 
   style(type='less').
     :scope {
@@ -14,9 +14,9 @@ module-tabbar
     var self = this;
 
     this.tabs = [
-      { icon: 'lightning', link: '/' },
+      { icon: 'home', link: '/' },
       { icon: 'search', link: '/' },
-      { icon: 'tag', link: '/' },
+      { icon: 'bookmark', link: '/' },
       { icon: 'menu', link: '/settings' },
     ];
 

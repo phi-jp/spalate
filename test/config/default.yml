@@ -50,3 +50,8 @@ config:
     cacheKey: noteput.auth.token
     tokenKey: X-Noteput-Token
     debug: true
+
+  app:
+    ios:
+      version: '2.0.0'
+      url: 'https://google.com'

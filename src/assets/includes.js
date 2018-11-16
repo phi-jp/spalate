@@ -34,6 +34,7 @@ module.exports = [
   { type: 'script', path: '/spalate/plugins/spat.js', },
   { type: 'script', path: '/spalate/plugins/socialink.js', },
   { type: 'script', path: '/spalate/plugins/sclazy.js', },
+  { type: 'script', path: '/spalate/plugins/vercom.js', },
   { type: 'script', path: '/spalate/plugins/flickable.js', },
   { type: 'style', path: '/spalate/plugins/meltline.css', },
 

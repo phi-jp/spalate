@@ -3,7 +3,7 @@ page-settings
     module-header
     div.h-full.overflow-scroll
       div.my16
-        a.f.bg-white.p16.mb1(each='{item in items}', href='')
+        a.f.bg-white.p16.mb1(each='{item in items}', href='{item.link}', target='_blank')
           div {item.label}
     module-tabbar
 
@@ -11,8 +11,8 @@ page-settings
 
     this.items = [
       { label: 'ログイン・登録' },
-      { label: 'Spalate を応援する' },
-      { label: '不具合を報告する' },
+      { label: 'Spalate を応援する', link: 'https://github.com/phi-jp/spalate/' },
+      { label: '不具合を報告する', link: 'https://github.com/phi-jp/spalate/issues' },
       { label: '利用規約' },
     ];
 

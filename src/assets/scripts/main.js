@@ -41,26 +41,27 @@
           helmeta.set( config.meta );
     
           var tagName = typeof route.tag === 'function' ? route.tag(req, res) : route.tag;
-  
-          spat.nav.swap(tagName, req.params);
-          var tag = spat.nav.currentPage._tag;
 
           // fetch があれば fetch する
-          if (tag.fetch) {
-            var data = await tag.fetch({app, req, res});
-            Object.keys(data).forEach(key => {
-              var value = data[key];
-              tag[key] = value;
-            });
-            tag.update();
-          }
+          spat.nav.one('swap', async (e) => {
+            var tag = e.currentPage._tag;
 
-          // head があれば head する
-          if (tag.head) {
-            var data = tag.head();
-            var meta = app.meta.create(data);
-            helmeta.set( meta );
-          }
+            if (tag.fetch) {
+              var data = await tag.fetch({app, req, res});
+              Object.keys(data).forEach(key => {
+                var value = data[key];
+                tag[key] = value;
+              });
+              tag.update();
+            }
+            // head があれば head する
+            if (tag.head) {
+              var data = tag.head();
+              var meta = app.meta.create(data);
+              helmeta.set( meta );
+            }
+          });
+          spat.nav.swap(tagName, req.params);
 
           // 初回だけ判定して入れ替える
           if (appElement) {

@@ -36,7 +36,7 @@
     "helmeta": "0.0.5",
     "js-yaml": "^3.10.0",
     "less": "^3.8.1",
-    "less-middleware": "^3.0.1",
+    "less-middleware": "git://github.com/phi-jp/less.js-middleware.git#d4761c83910f37524821a0ed9cb94060edee4c40",
     "meltline": "0.1.8",
     "moment": "^2.22.0",
     "prompt": "^1.0.0",

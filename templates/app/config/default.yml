@@ -44,7 +44,7 @@ config:
     type: website
     image: ""
     favicon: /images/icon.png
-    url: https://getit.co.jp
+    url: https://rabee.jp
   api:
     endpoint: http://jsonplaceholder.typicode.com
     cacheKey: noteput.auth.token

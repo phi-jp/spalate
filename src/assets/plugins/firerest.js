@@ -1,5 +1,4 @@
-;(function(exports) {
-
+;(function(exports, global) {
   var isNode = (typeof module === "object" && typeof module.exports === "object" );
 
   if (isNode) {
@@ -161,7 +160,7 @@
         }
       }
       else {
-        if (options.data && options.data.constructor !== FormData) {
+        if (options.data && options.data.constructor !== global.FormData) {
           headers['Content-Type'] = 'application/json; charset=utf-8';
           data = JSON.stringify( extend(this.data(), options.data) );
         }
@@ -462,7 +461,7 @@
     return new Firerest(options);
   };
 
-})(typeof exports === 'undefined' ? this.Firerest = {} : exports);
+})(typeof exports === 'undefined' ? this.Firerest = {} : exports, this);
 
 // test
 ;(function() {

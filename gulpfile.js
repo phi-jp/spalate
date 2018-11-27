@@ -1,18 +1,4 @@
 var gulp = require('gulp');  
-var riot    = require('gulp-riot');
-var sort    = require('gulp-sort');
-var concat  = require('gulp-concat');
-
-gulp.task('tags', function() {
-  var target = ['./src/tags/*.pug', './src/tags/**/*.pug']
-  var output = './src/assets/scripts';
-  return gulp
-    .src(target)
-    .pipe(riot({template: 'pug'}))
-    .pipe(sort())
-    .pipe(concat('tags.js'))
-    .pipe(gulp.dest(output))
-});
 
 gulp.task('copy', function() {  
   var files = [

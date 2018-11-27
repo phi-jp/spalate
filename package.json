@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "gulp copy; gulp tags"
+    "build": "gulp copy"
   },
   "repository": {
     "type": "git",
@@ -37,7 +37,7 @@
     "js-yaml": "^3.10.0",
     "less": "^3.8.1",
     "less-middleware": "git://github.com/phi-jp/less.js-middleware.git#d4761c83910f37524821a0ed9cb94060edee4c40",
-    "meltline": "0.1.8",
+    "meltline": "0.1.9",
     "moment": "^2.22.0",
     "prompt": "^1.0.0",
     "pug": "2.0.1",
@@ -50,5 +50,8 @@
     "underscore": "^1.8.3",
     "uuaa": "0.1.0",
     "vercom": "0.0.2"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1"
   }
 }

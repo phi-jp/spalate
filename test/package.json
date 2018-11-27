@@ -14,8 +14,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "spalate": "../",
     "node-fetch": "^2.3.0",
-    "rss-generator": "^0.0.2",
-    "spalate": "../"
+    "rss-generator": "^0.0.2"
   }
 }

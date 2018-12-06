@@ -46,3 +46,19 @@ p {
   max-width: 960px;
   margin: auto;
 }
+
+
+// meltline
+
+each(360 400, {
+  .w@{value} {
+    width: unit(@value, px);
+  }
+  .h@{value} {
+    height: unit(@value, px);
+  }
+  .s@{value} {
+    width: unit(@value, px);
+    height: unit(@value, px);
+  }
+});

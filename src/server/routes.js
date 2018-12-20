@@ -11,6 +11,7 @@ var cacheDuration = config.spalate.cache ? config.spalate.cache.duration || 3600
 var riot = require('riot');
 var sdom = require( path.join( process.cwd() + '/node_modules/riot/lib/server/sdom.js') );
 riot.util.tmpl.errorHandler = function() {};
+riot.mixin({ _ssr: true });
 var tags = fs.readFileSync(config.spalate.riot.output + '/tags.js', 'utf-8');
 eval(tags);
 

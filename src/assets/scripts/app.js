@@ -10,6 +10,8 @@
     Firerest = require('firerest');
   }
 
+  exports.isNode = isNode;
+
   exports.ref = Firerest.create({
     api: config.api.endpoint,
     cacheKey: config.api.cacheKey,

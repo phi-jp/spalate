@@ -64,7 +64,7 @@ async function copyToPlatformFolder(platform) {
 
   // Config ファイルに input output 先が明記されているか
   if (!config.target || !config.output)  {
-    return console.error("Error: ".red + ": could't find the path target or output");
+    return console.error("Error: ".red + ": Cannot find the path target or output please write config.target or config.output");
   }
   
   let targetPlatform = config.target + '/platforms/' + platform;

@@ -13,6 +13,7 @@ let appVersion = '';
   // xml を パース
   const xmlResult = await readFileFromConfigXml(pathToCofigXml).catch(err => {
     console.log("Err! Could't read or parse file from config xml \n".red + err);
+    return;
   });
 
   // パースしたファイルから アプリの version を取得

@@ -43,7 +43,7 @@ function readFileFromConfigXml(path) {
         if (err !== null) {
           reject(err);
         }
-        console.log('✓  '.green + 'Read & Parse file from config.xml');
+        console.log(' ✓  '.green + 'Read & Parse file from config.xml');
         resolve(result);
       });
     });
@@ -64,7 +64,7 @@ async function copyToPlatformFolder(platform) {
   // Cordova プロジェクト配下に プラットフォームがあるかどうか
   let exists = await fse.pathExists(targetPath);
   if (!exists) {
-    return console.log('✗  '.red + "Cannot find " + platform + " folder on app directry. Please checking directory")
+    return console.log(' ✗  '.red + "Cannot find " + platform + " folder on app directry. Please checking directory")
   }
   
   let output = config.output + '/' + platform + '/' + appVersion;
@@ -72,10 +72,10 @@ async function copyToPlatformFolder(platform) {
   // Copy 実行
   try {
     await fse.copy(targetPath, output);
-    console.log('✓  '.green + platform +": Success copying!");
+    console.log(' ✓  '.green + platform +": Success copying!");
   }
   catch(err) {
-    console.error('✗  '.red + err);
+    console.error(' ✗  '.red + err);
   }
 };
 

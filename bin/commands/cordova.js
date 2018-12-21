@@ -9,21 +9,18 @@ const pathToCofigXml = config.target + '/config.xml';
 let appVersion = '';
 
 (async () => {
-  // config.xml があるかどうかチェック
-  let exists = await fse.pathExists(pathToCofigXml);
-  if (!exists) {
-    console.log(' ✗  Error: '.red + "Cannot find config.xml. Please check below directory \n" + "　→　" + pathToCofigXml);
-    return;
+
+  // ファイルとパスの存在チェックをしつつパースする
+  let xmlParseResult;
+  try {
+    xmlParseResult = await getXmlParseResult();
+  }
+  catch(err) {
+    return errorLog(err);
   }
 
-  // xml を パース
-  const xmlResult = await readFileFromConfigXml(pathToCofigXml).catch(err => {
-    console.log(" ✗  Error: ".red + "Cannot read or parse file from config xml \n" + err);
-    return;
-  });
-
   // パースしたファイルから アプリの version を取得
-  appVersion = xmlResult.widget['$'].version;
+  appVersion = xmlParseResult.widget['$'].version;
   
   // プラットフォームごとにファイルをコピーする
   config.platforms.forEach(platform => {
@@ -34,6 +31,33 @@ let appVersion = '';
 
 
 // 以下関数
+
+// xml ファイルをパースした結果を取得する
+async function getXmlParseResult() {
+  // Config ファイルに input 先が明記されているか
+  if (!config.target)  {
+    throw(" Cannot find the path of target. Please checking defulat.yml or production.yml");
+  }
+  // Config ファイルに output 先が明記されているか
+  if (!config.output) {
+    throw(" Cannot find the path of output. Please checking defulat.yml or production.yml");
+  }
+
+  // config.xml があるかどうかチェック
+  let exists = await fse.pathExists(pathToCofigXml);
+  if (!exists) {
+    throw(" Cannot find config.xml. Please check below directory \n" + "　→　" + pathToCofigXml);
+  }
+
+  // xml を パース
+  const xmlResult = await readFileFromConfigXml(pathToCofigXml).catch(err => {
+    throw(" Cannot read or parse file from config xml \n");
+  });
+
+  return xmlResult;
+};
+
+// pathにおいてあるxmlファイルを読み込む
 function readFileFromConfigXml(path) {
   return new Promise((resolve, reject) => {
 
@@ -57,15 +81,11 @@ function readFileFromConfigXml(path) {
   });
 };
 
+// プラットフォームごとにコピーする
 async function copyToPlatformFolder(platform) {
 
   // コピースタートを宣言
   console.log( '    Copying ' + platform + ' ...')
-
-  // Config ファイルに input output 先が明記されているか
-  if (!config.target || !config.output)  {
-    return console.error("Error: ".red + ": Cannot find the path target or output please write config.target or config.output");
-  }
   
   let targetPlatform = config.target + '/platforms/' + platform;
 
@@ -89,5 +109,9 @@ async function copyToPlatformFolder(platform) {
   }
 };
 
+// error のログを吐き出す
+function errorLog(message) {
+  console.error(" ✗  Error: ".red + message);
+};
 
 

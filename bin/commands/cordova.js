@@ -72,7 +72,7 @@ async function copyToPlatformFolder(platform) {
   // Cordova プロジェクト配下に プラットフォームがあるかどうか
   let exists = await fse.pathExists(targetPlatform);
   if (!exists) {
-    return console.log(' ✗  '.red + "Cannot find " + platform + " folder on application directry. Please checking application directory\n" + "　→　" + targetPlatform);
+    return console.log(' ✗  '.red + "Cannot find " + platform + " folder on platforms directry. Please checking platforms directory\n" + "　→　" + targetPlatform);
   }
   
   // コピー先とコピー元を指定

@@ -6,9 +6,7 @@ const xml2js = require('xml2js');
 const colors = require('colors');
 
 const pathToCofigXml = config.target + '/config.xml';
-
 let appVersion = '';
-
 
 (async () => {
 
@@ -28,7 +26,7 @@ let appVersion = '';
 })();
 
 
-
+// 以下関数
 function readFileFromConfigXml(path) {
   return new Promise((resolve, reject) => {
 

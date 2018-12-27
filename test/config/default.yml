@@ -35,7 +35,7 @@ spalate:
     platforms:
       - ios
       - android
-    target: 'spalate-test'
+    target: 'test-app'
     output: 'public/plugins/cordova'
 config:
   env: default

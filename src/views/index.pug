@@ -42,12 +42,11 @@ html
 
     //- for cordova
     script.
-
-      // ua に CordovaApplication/1.1.1 みたいな感じでバージョンが入っている
-      if (ua.indexOf('CordovaApplication') !== -1) {
+      // navigator.userAgent に CordovaApplication/1.1.1 みたいな感じでバージョンが入っている
+      if (navigator.userAgent.indexOf('CordovaApplication') !== -1) {
         var matcher = ua.match(/^.*CordovaApplication\/(.*)/);
         var version = (matcher) ? matcher[1] : null;
-
+        
         // version があればそのバージョンに応じたフォルダを参照するようにする
         if (version) {
           document.write('<scri' + 'pt src="/plugins/cordova/' + uuaa.os.name.toLowerCase() + '/' + version + '/cordova.js"></scrip' + 't>');

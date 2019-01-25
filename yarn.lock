@@ -2936,7 +2936,7 @@ safe-regex@^1.1.0:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
 
-sax@^1.2.4:
+sax@>=0.6.0, sax@^1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
 
@@ -3136,6 +3136,10 @@ sparkles@^1.0.0:
 spat@0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/spat/-/spat-0.1.1.tgz#a96ea522bad7f6f5805e48c0bd59fada7d297312"
+
+spat@0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/spat/-/spat-0.1.2.tgz#13bf7ec446958fb9c097e3d589b05dd76b525c9d"
 
 split-string@^3.0.1, split-string@^3.0.2:
   version "3.1.0"
@@ -3583,6 +3587,17 @@ wordwrap@~1.0.0:
 wrappy@1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
+
+xml2js@^0.4.19:
+  version "0.4.19"
+  resolved "https://registry.yarnpkg.com/xml2js/-/xml2js-0.4.19.tgz#686c20f213209e94abf0d1bcf1efaa291c7827a7"
+  dependencies:
+    sax ">=0.6.0"
+    xmlbuilder "~9.0.1"
+
+xmlbuilder@~9.0.1:
+  version "9.0.7"
+  resolved "https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-9.0.7.tgz#132ee63d2ec5565c557e20f4c22df9aca686b10d"
 
 "xtend@>=4.0.0 <4.1.0-0", xtend@~4.0.1:
   version "4.0.1"

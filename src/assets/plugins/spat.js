@@ -135,7 +135,7 @@ riot.tag2('spat-list', '<yield></yield>', 'spat-list,[data-is="spat-list"]{displ
     this.setup();
 });
 
-riot.tag2('spat-modal', '', 'spat-modal,[data-is="spat-modal"]{position:fixed;transform:translate3d(0, 0, 0);top:0;right:0;bottom:0;left:0;display:block;z-index:9999} spat-modal modal-content,[data-is="spat-modal"] modal-content{position:absolute;display:block;left:0;right:0;top:0;bottom:0}@keyframes modal-fade-in{ 0%{opacity:0} 100%{opacity:1}}@keyframes modal-fade-out{ 0%{opacity:1} 100%{opacity:0}}@keyframes modal-left-in{ 0%{transform:translateX(-200px);opacity:0} 100%{transform:translateX(0);opacity:1}}@keyframes modal-left-out{ 0%{transform:translateX(0);opacity:1} 100%{transform:translateX(-200px);opacity:0}}@keyframes modal-right-in{ 0%{transform:translateX(200px);opacity:0} 100%{transform:translateX(0);opacity:1}}@keyframes modal-right-out{ 0%{transform:translateX(0);opacity:1} 100%{transform:translateX(200px);opacity:0}}@keyframes modal-bottom-in{ 0%{transform:translateY(200px);opacity:0} 100%{transform:translateY(0);opacity:1}}@keyframes modal-bottom-out{ 0%{transform:translateY(0);opacity:1} 100%{transform:translateY(200px);opacity:0}}@keyframes modal-scale-in{ 0%{transform:scale(1.5);opacity:0} 100%{transform:scale(1);opacity:1}}@keyframes modal-scale-out{ 0%{transform:scale(1);opacity:1} 100%{transform:scale(.5);opacity:0}}', 'show="{visible}"', function(opts) {
+riot.tag2('spat-modal', '', 'spat-modal,[data-is="spat-modal"]{position:fixed;transform:translate3d(0, 0, 0);top:0;right:0;bottom:0;left:0;display:block;z-index:9999} spat-modal modal-content,[data-is="spat-modal"] modal-content{position:absolute;display:block;left:0;right:0;top:0;bottom:0}@keyframes modal-fade-in{ 0%{opacity:0} 100%{opacity:1}}@keyframes modal-fade-out{ 0%{opacity:1} 100%{opacity:0}}@keyframes modal-left-in{ 0%{transform:translateX(-200px);opacity:0} 100%{transform:translateX(0);opacity:1}}@keyframes modal-left-out{ 0%{transform:translateX(0);opacity:1} 100%{transform:translateX(-200px);opacity:0}}@keyframes modal-right-in{ 0%{transform:translateX(200px);opacity:0} 100%{transform:translateX(0);opacity:1}}@keyframes modal-right-out{ 0%{transform:translateX(0);opacity:1} 100%{transform:translateX(200px);opacity:0}}@keyframes modal-bottom-in{ 0%{transform:translateY(200px);opacity:0} 100%{transform:translateY(0);opacity:1}}@keyframes modal-bottom-out{ 0%{transform:translateY(0);opacity:1} 100%{transform:translateY(200px);opacity:0}}@keyframes modal-push-in{ 0%{transform:translateY(200px);opacity:0} 100%{transform:translateY(0);opacity:1}}@keyframes modal-push-out{ 0%{transform:translateY(0);opacity:1} 100%{transform:translateY(200px);opacity:0}}@keyframes modal-scale-in{ 0%{transform:scale(1.5);opacity:0} 100%{transform:scale(1);opacity:1}}@keyframes modal-scale-out{ 0%{transform:scale(1);opacity:1} 100%{transform:scale(.5);opacity:0}}', 'show="{visible}"', function(opts) {
     var self = this;
 
     window.addEventListener('keydown', function(e) {
@@ -168,6 +168,11 @@ riot.tag2('spat-modal', '', 'spat-modal,[data-is="spat-modal"]{position:fixed;tr
       tag.close = function() {
         self._closeModal(tag);
         prevFocusElement && prevFocusElement.focus();
+      };
+
+      tag.closeWith = function(promise) {
+        promise.then(tag.close).catch(tag.close);
+        return promise;
       };
       tag.update();
 
@@ -219,7 +224,7 @@ riot.tag2('spat-modal', '', 'spat-modal,[data-is="spat-modal"]{position:fixed;tr
     };
 
     this._openModal = function(modal) {
-      var animation = modal.root.getAttribute('spat-animation') || 'scale';
+      var animation = modal.root.getAttribute('spat-animation');
       var modalElm = modal.refs.modal;
 
       if (animation) {
@@ -235,7 +240,7 @@ riot.tag2('spat-modal', '', 'spat-modal,[data-is="spat-modal"]{position:fixed;tr
     };
 
     this._closeModal = function(modal) {
-      var animation = modal.root.getAttribute('spat-animation') || 'scale';
+      var animation = modal.root.getAttribute('spat-animation');
       var modalElm = modal.refs.modal;
 
       modal.trigger('close');
@@ -249,6 +254,10 @@ riot.tag2('spat-modal', '', 'spat-modal,[data-is="spat-modal"]{position:fixed;tr
           modal.unmount();
           self.close();
         });
+      }
+      else {
+        modal.unmount();
+        self.close();
       }
     };
 
@@ -264,7 +273,7 @@ riot.tag2('spat-modal', '', 'spat-modal,[data-is="spat-modal"]{position:fixed;tr
 
 });
 
-riot.tag2('spat-nav', '<div class="spat-pages" ref="pages" onmousedown="{_swipestart}" onmousemove="{_swipe}" onmouseup="{_swipeend}" ontouchstart="{_swipestart}" ontouchmove="{_swipe}" ontouchend="{_swipeend}" ondragend="{_swipeend}"></div> <div class="spat-lock" show="{_locked}" ref="lock" onmousemove="{_swipe}" onmouseup="{_swipeend}"></div>', 'spat-nav,[data-is="spat-nav"]{position:relative;display:block;width:100%;height:100%} spat-nav .spat-pages,[data-is="spat-nav"] .spat-pages{position:absolute;width:100%;height:100%;z-index:0} spat-nav .spat-pages .spat-page,[data-is="spat-nav"] .spat-pages .spat-page{position:absolute;z-index:0;width:100%;height:100%;backface-visibility:hidden;animation-fill-mode:forwards;overflow:scroll;-webkit-overflow-scrolling:touch;overflow-scrolling:touch} spat-nav .spat-pages .spat-page.current,[data-is="spat-nav"] .spat-pages .spat-page.current{z-index:9999} spat-nav .spat-pages .spat-page.spat-hide,[data-is="spat-nav"] .spat-pages .spat-page.spat-hide{display:none} spat-nav .spat-lock,[data-is="spat-nav"] .spat-lock{position:fixed;top:0;right:0;bottom:0;left:0;z-index:9999;background-color:transparent}@keyframes slide-in{ 0%{transform:translate(250px, 0);opacity:0} 100%{transform:translate(0, 0);opacity:1}}@keyframes slide-out{ 0%{opacity:1} 100%{opacity:.8}}@keyframes scale-in{ 0%{transform:scale(.5);opacity:0} 0%{transform:scale(.5);opacity:0} 100%{transform:scale(1);opacity:1}}@keyframes scale-out{ 0%{transform:scale(1);opacity:1} 50%{transform:scale(1.5);opacity:0} 100%{transform:scale(1.5);opacity:0}}@keyframes rotate-in{ 0%{transform:perspective(800px) rotateY(180deg);opacity:0;-webkit-backface-visibility:initial !important} 100%{transform:perspective(800px) rotateY(0deg);opacity:1;-webkit-backface-visibility:initial !important}}@keyframes rotate-out{ 0%{transform:perspective(800px) rotateY(0deg);opacity:1;-webkit-backface-visibility:initial !important} 100%{transform:perspective(800px) rotateY(-180deg);opacity:0;-webkit-backface-visibility:initial !important}}@keyframes pushed-in{ 0%{transform:translate(0, 50vh);opacity:0} 100%{transform:translate(0, 0);opacity:1}}@keyframes pushed-out{ 0%{opacity:1} 100%{opacity:.8}}', '', function(opts) {
+riot.tag2('spat-nav', '<div class="spat-pages" ref="pages" onmousedown="{_swipestart}" onmousemove="{_swipe}" onmouseup="{_swipeend}" ontouchstart="{_swipestart}" ontouchmove="{_swipe}" ontouchend="{_swipeend}" ondragend="{_swipeend}"></div> <div class="spat-lock" show="{_locked}" ref="lock" onmousemove="{_swipe}" onmouseup="{_swipeend}"></div>', 'spat-nav,[data-is="spat-nav"]{position:relative;display:block;width:100%;height:100%} spat-nav .spat-pages,[data-is="spat-nav"] .spat-pages{position:absolute;width:100%;height:100%;z-index:0} spat-nav .spat-pages .spat-page,[data-is="spat-nav"] .spat-pages .spat-page{position:absolute;z-index:0;width:100%;height:100%;backface-visibility:hidden;animation-fill-mode:forwards;overflow:scroll;-webkit-overflow-scrolling:touch;overflow-scrolling:touch} spat-nav .spat-pages .spat-page.current,[data-is="spat-nav"] .spat-pages .spat-page.current{z-index:9999} spat-nav .spat-pages .spat-page.spat-hide,[data-is="spat-nav"] .spat-pages .spat-page.spat-hide{display:none} spat-nav .spat-lock,[data-is="spat-nav"] .spat-lock{position:fixed;top:0;right:0;bottom:0;left:0;z-index:9999;background-color:transparent}@keyframes fade-in{ 0%{opacity:0} 100%{opacity:1}}@keyframes fade-out{ 0%{opacity:1} 100%{opacity:0}}@keyframes slide-in{ 0%{transform:translate(250px, 0);opacity:0} 100%{transform:translate(0, 0);opacity:1}}@keyframes slide-out{ 0%{opacity:1} 100%{opacity:.8}}@keyframes scale-in{ 0%{transform:scale(.5);opacity:0} 0%{transform:scale(.5);opacity:0} 100%{transform:scale(1);opacity:1}}@keyframes scale-out{ 0%{transform:scale(1);opacity:1} 50%{transform:scale(1.5);opacity:0} 100%{transform:scale(1.5);opacity:0}}@keyframes rotate-in{ 0%{transform:perspective(800px) rotateY(180deg);opacity:0;-webkit-backface-visibility:initial !important} 100%{transform:perspective(800px) rotateY(0deg);opacity:1;-webkit-backface-visibility:initial !important}}@keyframes rotate-out{ 0%{transform:perspective(800px) rotateY(0deg);opacity:1;-webkit-backface-visibility:initial !important} 100%{transform:perspective(800px) rotateY(-180deg);opacity:0;-webkit-backface-visibility:initial !important}}@keyframes pushed-in{ 0%{transform:translate(0, 50vh);opacity:0} 100%{transform:translate(0, 0);opacity:1}}@keyframes pushed-out{ 0%{opacity:1} 100%{opacity:.8}}', '', function(opts) {
     var self = this;
 
     this.animation = '';
@@ -347,11 +356,11 @@ riot.tag2('spat-nav', '<div class="spat-pages" ref="pages" onmousedown="{_swipes
             console.log(Date.now() - d);
           }
         },
-      };
-      delete page.dataset.canBack;
-      delete page.dataset.canForward;
-      delete page.dataset.backId;
-      delete page.dataset.nextId;
+      }
+      page.removeAttribute('data-can-back');
+      page.removeAttribute('data-can-forward');
+      page.removeAttribute('data-back-id');
+      page.removeAttribute('data-next-id');
       this.trigger('swap', e);
       page._tag.trigger('show', e);
       page._tag.update();

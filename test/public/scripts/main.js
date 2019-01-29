@@ -14,5 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // push notification setup
     // cdv.pushNotification.setup();
   });
+  
   spalate.start();
 });

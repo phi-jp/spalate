@@ -1,4 +1,5 @@
 spalate:
+  ssr: true
   views:
     head: 'hoge'
     body: 'hoge'

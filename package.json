@@ -42,6 +42,7 @@
     "meltline": "0.1.9",
     "moment": "^2.22.0",
     "morgan": "^1.9.1",
+    "pretty-error": "^2.1.1",
     "prompt": "^1.0.0",
     "pug": "2.0.1",
     "querysearch": "0.0.3",

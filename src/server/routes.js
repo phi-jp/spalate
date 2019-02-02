@@ -29,12 +29,11 @@ var includes = (function() {
 
 var getTagOutput = async (tagName, req, res) => {
   var root = document.createElement(tagName);
-
   try {
     var tag = riot.mount(root)[0];
   }
-  catch(err) {
-    console.error(`mount でエラーが起きました: ${tagName}`.red);
+  catch (err) {
+    console.log(`error: ${tagName} の mount に失敗しました`.red);
     console.log(err);
   }
 
@@ -44,7 +43,7 @@ var getTagOutput = async (tagName, req, res) => {
       req: req,
       res: res,
     }).catch(err => {
-      console.error(`fetch でエラーが起きました: ${tagName}`.red);
+      console.error(`error: ${tagName} の fetch でエラーが起きました`.red);
       console.log(err);
     });
     Object.keys(res).forEach(key => {

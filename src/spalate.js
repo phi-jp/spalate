@@ -4,6 +4,7 @@ var express = require('express');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+var pe = require('pretty-error').start();
 
 var spalate = function(settings) {
   var app = express();

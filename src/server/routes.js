@@ -13,7 +13,9 @@ var sdom = require( path.join( process.cwd() + '/node_modules/riot/lib/server/sd
 riot.util.tmpl.errorHandler = function() {};
 riot.mixin({ _ssr: true });
 var tags = fs.readFileSync(config.spalate.riot.output + '/tags.js', 'utf-8');
-eval(tags);
+if (config.spalate.ssr) {
+  eval(tags);
+}
 
 var clientApp = require('../assets/scripts/app');
 var clientRouter = require(path.join(process.cwd(), config.spalate.router));
@@ -27,7 +29,14 @@ var includes = (function() {
 
 var getTagOutput = async (tagName, req, res) => {
   var root = document.createElement(tagName);
-  var tag = riot.mount(root)[0];
+
+  try {
+    var tag = riot.mount(root)[0];
+  }
+  catch(err) {
+    console.error(`mount でエラーが起きました: ${tagName}`.red);
+    console.log(err);
+  }
 
   if (tag.fetch) {
     var res = await tag.fetch({
@@ -54,12 +63,12 @@ var getTagOutput = async (tagName, req, res) => {
 
   return {
     content: content,
-    head: head,
+    meta: clientApp.meta.create(head),
   };
 };
 
 Object.keys(clientRouter.map).forEach(function(key) {
-  router.get(key, function(req, res) {
+  router.get(key, async function(req, res) {
     var cacheKey = req.url;
 
     if (renderCaches[cacheKey]) {
@@ -77,26 +86,33 @@ Object.keys(clientRouter.map).forEach(function(key) {
       var route = clientRouter.map[key];
       var tagName = typeof route.tag === 'function' ? route.tag(req, res) : route.tag;
 
-      getTagOutput(tagName, req, res).then(({content, head}) => {
-        var meta = clientApp.meta.create(head);
-        res.render('index', {
-          content: content,
-          config: config,
-          meta: meta,
-          includes: includes,
-          pretty: true,
-        }, (err, content) => {
-          if (cacheDuration) {
-            // キャッシュする
-            renderCaches[cacheKey] = {
-              key: cacheKey,
-              content: content,
-              timestamp: Date.now(),
-            };
-            console.log(`cached: ${cacheKey}`.blue);
-          }
-          res.send(content);
-        });
+      var content = '';
+      var meta = {};
+      if (config.spalate.ssr) {
+        var {content, meta} = await getTagOutput(tagName, req, res);
+      }
+      else {
+        var content = '';
+        var meta = clientApp.meta.create();
+      }
+
+      res.render('index', {
+        content: content,
+        config: config,
+        meta: meta,
+        includes: includes,
+        pretty: true,
+      }, (err, content) => {
+        if (cacheDuration) {
+          // キャッシュする
+          renderCaches[cacheKey] = {
+            key: cacheKey,
+            content: content,
+            timestamp: Date.now(),
+          };
+          console.log(`cached: ${cacheKey}`.blue);
+        }
+        res.send(content);
       });
     }
   });

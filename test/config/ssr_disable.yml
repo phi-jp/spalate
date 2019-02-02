@@ -1,0 +1,4 @@
+spalate:
+  ssr: false
+config:
+  env: ssr_disable

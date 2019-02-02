@@ -16,4 +16,10 @@
     }
   };
 
+  exports.pages = {
+    '404': {
+      tag: 'page-404',
+    },
+  };
+
 })(typeof exports === 'undefined' ? this.router = {} : exports);

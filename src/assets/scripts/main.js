@@ -61,7 +61,17 @@
               helmeta.set( meta );
             }
           });
-          spat.nav.swap(tagName, req.params);
+
+          // try {
+            spat.nav.swap(tagName, req.params);
+          // }
+          // catch (err) {
+          //   console.error('error:', `${tagName} の mount に失敗しました`);
+          //   console.error(err);
+          //   // if (router.pages && router.pages['404']) {
+          //   //   spat.nav.swap(router.pages['404'].tag, req.params);
+          //   // }
+          // }
 
           // 初回だけ判定して入れ替える
           if (appElement) {

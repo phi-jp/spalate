@@ -23,8 +23,11 @@ spalate:
     - { type: 'script', path: '/scripts/main.js' }
     - { type: 'style', path: '/styles/main.css', }
     - { type: 'style', path: '/fonts/icons/icons.css', }
+  logger:
+    type: 'dev'
   plugins:
     - 'rss.js'
+    - 'sample.js'
   deploy:
     circleci:
       app: 'spalate-test'

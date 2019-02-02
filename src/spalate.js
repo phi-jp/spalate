@@ -1,10 +1,22 @@
 var path = require('path');
 var _ = require('underscore');
 var express = require('express');
+var logger = require('morgan');
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 
 var spalate = function(settings) {
   var app = express();
   var config = require('config');
+
+  // ログ出力
+  if (config.spalate.logger) {
+    app.use(logger(config.spalate.logger.type || 'dev'));
+  }
+  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(bodyParser.json());
+  app.use(cookieParser());
+
   var includes = (function() {
     var defaultIncludes = require(path.join(__dirname, 'assets/includes.js'));
     var userIncludes = config.spalate.includes;

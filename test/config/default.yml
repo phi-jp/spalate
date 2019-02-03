@@ -12,6 +12,11 @@ spalate:
     output: 'public/scripts'
     options:
       template: 'pug'
+  style:
+    type: less
+    entry: 'app/assets/main.less'
+    target: 'app/assets/*'
+    output: 'public/styles'
   less:
     target: 'app/assets'
     output: 'public'

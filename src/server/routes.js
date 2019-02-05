@@ -28,13 +28,21 @@ var includes = (function() {
 })();
 
 var getTagOutput = async (tagName, req, res) => {
-  var root = document.createElement(tagName);
+  var root = document.createElement('div');
+  root.setAttribute('class', 'spat-page');
+  
   try {
+    root.setAttribute('data-is', tagName);
     var tag = riot.mount(root)[0];
   }
   catch (err) {
     console.log(`error: ${tagName} の mount に失敗しました`.red);
     console.log(err);
+
+    if (clientRouter.pages && clientRouter.pages['404']) {
+      root.setAttribute('data-is', clientRouter.pages['404'].tag);
+      var tag = riot.mount(root)[0];
+    }
   }
 
   if (tag.fetch) {

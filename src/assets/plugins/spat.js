@@ -1,6 +1,6 @@
 
 /* 
- * spat 0.1.1
+ * spat 0.1.3
  * single page application framework for riot.js
  * MIT Licensed
  * 
@@ -323,8 +323,9 @@ riot.tag2('spat-nav', '<div class="spat-pages" ref="pages" onmousedown="{_swipes
         page.classList.add('spat-hide');
         page.classList.add('current');
         page.setAttribute('data-page-id', pageId);
-        this.refs.pages.appendChild(page);
         riot.mount(page, tagName);
+
+        this.refs.pages.appendChild(page);
       }
       else {
         cached = true;

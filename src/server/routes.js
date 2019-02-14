@@ -67,6 +67,8 @@ var getTagOutput = async (tagName, req, res) => {
   }
 
   var content = sdom.serialize(tag.root);
+  // メモリリーク対策
+  tag.unmount();
 
   return {
     content: content,

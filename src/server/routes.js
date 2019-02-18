@@ -55,7 +55,7 @@ var getTagOutput = async (tagName, req, res) => {
       console.log(err);
     });
     Object.keys(fetchRes || {}).forEach(key => {
-      var value = res[key];
+      var value = fetchRes[key];
       tag[key] = value;
     });
     try {

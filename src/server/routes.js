@@ -2,13 +2,39 @@ var path = require('path');
 var fs = require('fs');
 var colors = require('colors');
 var config = require('config');
-
 var express = require('express');
 var router = express.Router();
 var renderCaches = {};
 var cacheDuration = config.spalate.cache ? config.spalate.cache.duration || 3600000 : 0;
 
 var renderer = require('./renderer');
+
+// modules
+var modules = (() => {
+  var working = process.cwd();
+  var map = {};
+  var modules = config.spalate.modules.map((module) => {
+    var m = {};
+    if (typeof module === 'string') {
+      m.key = module;
+      m.name = module;
+    }
+    else {
+      var key = Object.keys(module)[0];
+      m.key = key;
+      m.name = module[key];
+    }
+
+    // 相対パスの場合は working ディレクトリから探す
+    if (/\//.test(m.name)) {
+      m.name = path.join(working, m.name);
+    }
+
+    map[m.key] = require(m.name);
+  });
+
+  return map;
+})();
 
 var riot = require('riot');
 var sdom = require( path.join( process.cwd() + '/node_modules/riot/lib/server/sdom.js') );
@@ -20,7 +46,7 @@ if (config.spalate.ssr) {
 }
 
 var clientApp = require('../assets/scripts/app');
-var clientRouter = require(path.join(process.cwd(), config.spalate.router));
+var clientRouter = modules.router;
 
 var includes = (function() {
   var defaultIncludes = require('../assets/includes.js');
@@ -121,6 +147,9 @@ Object.keys(clientRouter.map).forEach(function(key) {
         pretty: true,
         renderer: renderer,
       }, (err, content) => {
+        if (err) {
+          console.log(err);
+        }
         if (cacheDuration) {
           // キャッシュする
           renderCaches[cacheKey] = {

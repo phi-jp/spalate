@@ -42,7 +42,7 @@ var spalate = function(settings) {
   app.use('/spalate', express.static( path.join(__dirname, 'assets') ) );
 
   // setup views
-  app.set('views', path.join(__dirname, 'views'));
+  app.set('views', process.cwd());
   app.set('view engine', 'pug');
 
   // setup plugins

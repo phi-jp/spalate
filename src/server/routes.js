@@ -8,6 +8,8 @@ var router = express.Router();
 var renderCaches = {};
 var cacheDuration = config.spalate.cache ? config.spalate.cache.duration || 3600000 : 0;
 
+var renderer = require('./renderer');
+
 var riot = require('riot');
 var sdom = require( path.join( process.cwd() + '/node_modules/riot/lib/server/sdom.js') );
 riot.util.tmpl.errorHandler = function() {};
@@ -111,12 +113,13 @@ Object.keys(clientRouter.map).forEach(function(key) {
         var meta = clientApp.meta.create();
       }
 
-      res.render('index', {
+      res.render(config.spalate.views.default, {
         content: content,
         config: config,
         meta: meta,
         includes: includes,
         pretty: true,
+        renderer: renderer,
       }, (err, content) => {
         if (cacheDuration) {
           // キャッシュする

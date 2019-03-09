@@ -2,10 +2,16 @@ spalate:
   ssr: true
   views:
     default: app/views/default.pug
+  modules:
+    - router: './app/assets/scripts/router.js'
+    - routeful
+    - helmeta
+    - firerest
+    - querysearch
+    - _: underscore
   static:
     - 'public'
     - 'app/assets'
-  router: '/app/assets/scripts/router.js'
   riot:
     target: 'app/tags'
     output: 'public/scripts'
@@ -17,15 +23,6 @@ spalate:
   iconfont:
     target: 'public/images/icons'
     output: 'public/fonts/icons'
-  includes:
-    - { type: 'script', path: '/scripts/router.js' }
-    - { type: 'script', path: '/scripts/tags.js' }
-    - { type: 'script', path: '/scripts/main.js' }
-    - { type: 'style', path: '/styles/main.css', }
-    - { type: 'style', path: '/fonts/icons/icons.css', }
-  modules:
-    - firerest: firerest
-    - querysearch
   logger:
     type: 'dev'
   plugins:
@@ -57,8 +54,6 @@ config:
       - { rel: "stylesheet", href: "/spalate/plugins/meltline.css" }
       - { rel: "stylesheet", href: "/fonts/icons/icons.css" }
     script:
-      # underscore.js
-      - { src: 'https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js' }
       # jquery
       - { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js' }
       # moment.js
@@ -66,8 +61,15 @@ config:
       - { src: 'https://cdnjs.cloudflare.com/ajax/libs/moment-duration-format/2.2.2/moment-duration-format.js' }
       # marked js
       - { src: 'https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.17/marked.js' }
+      # my plugins
+      - { src: '/spalate/plugins/uuaa.js' }
+      - { src: '/spalate/plugins/socialink.js' }
+      - { src: '/spalate/plugins/sclazy.js' }
+      - { src: '/spalate/plugins/vercom.js' }
+      - { src: '/spalate/plugins/flickable.js' }
+      # node
+      - { src: '/scripts/bundle.js' }
       # user
-      - { src: "/scripts/router.js" }
       - { src: "/scripts/tags.js" }
       - { src: "/scripts/main.js" }
   meta:

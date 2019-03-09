@@ -1,5 +1,4 @@
 var config = require('config');
-console.log(config.spalate.modules);
 
 module.exports = {
   head: () => {

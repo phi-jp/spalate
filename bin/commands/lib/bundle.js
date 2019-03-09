@@ -1,4 +1,5 @@
 var fs = require('fs');
+var path = require('path');
 var config = require('config');
 
 var readModuleFile = (path) => {
@@ -18,6 +19,7 @@ var readModuleFile = (path) => {
 
 module.exports = {
   bundle: (modules) => {
+    var working = process.cwd();
     // すべてオブジェクト型にする
     modules = modules.map((module) => {
       var m = {};
@@ -30,6 +32,12 @@ module.exports = {
         m.key = key;
         m.name = module[key];
       }
+
+      // 相対パスの場合は working ディレクトリから探す
+      if (/\//.test(m.name)) {
+        m.name = path.join(working, m.name);
+      }
+
       return m;
     });
 

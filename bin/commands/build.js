@@ -1,4 +1,13 @@
 var config = require('config');
+require('./lib/bundle.js').bundle(config.spalate.modules);
 
 require('./lib/riot-builder').build();
-require('./lib/bundle.js').bundle(config.spalate.modules);
+
+if (config.spalate.style && config.spalate.style.type === 'less') {
+  require('less-css-builder').build({
+    less: require('less'),
+    entry: config.spalate.style.entry,
+    target: config.spalate.style.target,
+    output: config.spalate.style.output,
+  });
+}

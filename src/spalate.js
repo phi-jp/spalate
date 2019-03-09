@@ -29,12 +29,6 @@ var spalate = function(settings) {
   var compress = require('compression');
   app.use(compress()); 
   
-  // setup less
-  if (config.spalate.less) {
-    var lessMiddleware = require('less-middleware');
-    app.use( lessMiddleware( path.join(process.cwd(), config.spalate.less.target), { dest: config.spalate.less.output } ) );
-  }
-
   // setup static path
   config.spalate.static.forEach(function(p) {
     app.use( express.static( path.join(process.cwd(), p) ) );

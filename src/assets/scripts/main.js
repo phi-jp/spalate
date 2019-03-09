@@ -44,8 +44,15 @@
 
           // fetch があれば fetch する
           spat.nav.one('swap', async (e) => {
-            var tag = e.currentPage._tag;
+            // 初回だけ判定して入れ替える
+            if (appElement) {
+              var tempElement = document.querySelector('[data-is=app]');
+              tempElement.parentNode.replaceChild(appElement, tempElement);
 
+              appElement = null;
+            }
+
+            var tag = e.currentPage._tag;
             if (tag.fetch) {
               var data = await tag.fetch({app, req, res});
               Object.keys(data).forEach(key => {
@@ -61,14 +68,16 @@
               helmeta.set( meta );
             }
           });
-          spat.nav.swap(tagName, req.params);
 
-          // 初回だけ判定して入れ替える
-          if (appElement) {
-            var tempElement = document.querySelector('[data-is=app]');
-            tempElement.parentNode.replaceChild(appElement, tempElement);
-
-            appElement = null;
+          try {
+            spat.nav.swap(tagName, req.params);
+          }
+          catch (err) {
+            console.error('error:', `${tagName} の mount に失敗しました`);
+            console.error(err);
+            if (router.pages && router.pages['404']) {
+              spat.nav.swap(router.pages['404'].tag, req.params);
+            }
           }
 
           next();

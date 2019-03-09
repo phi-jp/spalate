@@ -28,17 +28,25 @@ var includes = (function() {
 })();
 
 var getTagOutput = async (tagName, req, res) => {
-  var root = document.createElement(tagName);
+  var root = document.createElement('div');
+  root.setAttribute('class', 'spat-page');
+  
   try {
+    root.setAttribute('data-is', tagName);
     var tag = riot.mount(root)[0];
   }
   catch (err) {
     console.log(`error: ${tagName} の mount に失敗しました`.red);
     console.log(err);
+
+    if (clientRouter.pages && clientRouter.pages['404']) {
+      root.setAttribute('data-is', clientRouter.pages['404'].tag);
+      var tag = riot.mount(root)[0];
+    }
   }
 
   if (tag.fetch) {
-    var res = await tag.fetch({
+    var fetchRes = await tag.fetch({
       app: clientApp,
       req: req,
       res: res,
@@ -46,11 +54,17 @@ var getTagOutput = async (tagName, req, res) => {
       console.error(`error: ${tagName} の fetch でエラーが起きました`.red);
       console.log(err);
     });
-    Object.keys(res).forEach(key => {
-      var value = res[key];
+    Object.keys(fetchRes || {}).forEach(key => {
+      var value = fetchRes[key];
       tag[key] = value;
     });
-    tag.update();
+    try {
+      tag.update();
+    }
+    catch (err) {
+      console.error(`error: ${tagName} の update でエラーが起きました`.red);
+      console.log(err);
+    }
   }
 
   var head = {};
@@ -59,6 +73,8 @@ var getTagOutput = async (tagName, req, res) => {
   }
 
   var content = sdom.serialize(tag.root);
+  // メモリリーク対策
+  tag.unmount();
 
   return {
     content: content,

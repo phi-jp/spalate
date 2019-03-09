@@ -14,8 +14,8 @@ spalate:
       template: 'pug'
   style:
     type: less
-    entry: 'app/assets/main.less'
-    target: 'app/assets/*'
+    entry: 'app/assets/styles/main.less'
+    target: 'app/assets/styles/'
     output: 'public/styles'
   less:
     target: 'app/assets'

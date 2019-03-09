@@ -45,3 +45,13 @@ chokidar.watch([routerPath, path.join('config')], {
 const watchingBuilder = builder.watch();
 watchingBuilder.watcher
   .on('change', function(path) { watchingBuilder.log("修正されました-> " + path.cyan); })
+
+// less
+if (config.spalate.style && config.spalate.style.type === 'less') {
+  require('less-css-builder').watch({
+    less: require('less'),
+    entry: config.spalate.style.entry,
+    target: config.spalate.style.target,
+    output: config.spalate.style.output,
+  });
+}

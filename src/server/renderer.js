@@ -38,14 +38,18 @@ ${meta}
 
 <!-- link -->
 ${link}`;
+
     text = text.replace(/\n/g, '\n    ');
     return text + '\n  ';
   },
 
   footer: () => {
+    var head = config.config.head;
+    var script = '';
+
     var scripts = [
       // polyfill
-      { src: 'https://www.promisejs.org/polyfills/promise-6.1.0.min.js', },
+      { src: 'https://www.promisejs.org/polyfills/promise-6.1.0.min.js', async: 'async' },
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js', },
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/object-fit-images/3.2.3/ofi.js' },
 
@@ -53,5 +57,19 @@ ${link}`;
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/riot/3.8.2/riot+compiler.min.js', },
       { src: '/spalate/plugins/spat.js', },
     ];
+
+    scripts = scripts.concat(head.script);
+
+    var script_text = scripts.map((meta) => {
+      var attrs = Object.keys(meta).map(key => `${key}="${meta[key]}"`).join(' ');
+      return `<script ${attrs}></script>`;
+    }).join('\n');
+
+    var text = `
+<!-- scripts -->
+${script_text}`;
+
+    text = text.replace(/\n/g, '\n    ');
+    return text + '\n  ';
   },
 };

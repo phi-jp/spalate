@@ -8,10 +8,10 @@ spalate:
   bundle:
     target:
       - router: './app/assets/scripts/router.js'
-      - routeful
+      - Routeful: routeful
       - helmeta
-      - firerest
-      - querysearch
+      - Firerest: firerest
+      - QuerySearch: querysearch
       - _: underscore
       - app: 'public/scripts/app.js'
     output: 'public/scripts/bundle.js'

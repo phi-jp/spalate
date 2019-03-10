@@ -52,7 +52,14 @@ module.exports = {
         return `// ${m.key}: ${m.name}
 ${m.file}
 `;
-      }).join('\n\n')
+      }).join('\n\n');
+
+      // export module
+      files += `var modules = [];\n`;
+      var modulesText = modules.map((m) => {
+        return `modules["${m.key}"] = ${m.key};`;
+      }).join('\n');
+      files += modulesText;
 
       fs.writeFileSync('public/scripts/bundle.js', files);
     });

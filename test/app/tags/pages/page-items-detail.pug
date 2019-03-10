@@ -14,10 +14,10 @@ page-items-detail(spat-animation='slide')
   script.
     var self = this;
 
-    this.fetch = async ({app, req}) => {
+    this.fetch = async ({req, res, modules}) => {
       if (this.post) return {};
 
-      var res = await app.ref.child('posts').child(req.params.id).get();
+      var res = await modules.app.ref.child('posts').child(req.params.id).get();
       return {
         post: res,
       };

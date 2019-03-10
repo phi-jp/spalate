@@ -72,6 +72,7 @@ var getTagOutput = async (tagName, req, res) => {
     var fetchRes = await tag.fetch({
       req: req,
       res: res,
+      modules: modules,
     }).catch(err => {
       console.error(`error: ${tagName} の fetch でエラーが起きました`.red);
       console.log(err);

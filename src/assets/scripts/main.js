@@ -54,7 +54,7 @@
 
             var tag = e.currentPage._tag;
             if (tag.fetch) {
-              var data = await tag.fetch({app, req, res});
+              var data = await tag.fetch({req, res, modules});
               Object.keys(data).forEach(key => {
                 var value = data[key];
                 tag[key] = value;

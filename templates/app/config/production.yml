@@ -1,5 +1,0 @@
-spalate:
-  cache:
-    duration: 3600000
-config:
-  env: production

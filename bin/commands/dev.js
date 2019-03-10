@@ -3,6 +3,7 @@ var chokidar = require('chokidar');
 var colors = require('colors');
 var path = require('path');
 var config = require('config');
+var modules = require('./lib/modules');
 
 var server;
 var serverPromise = Promise.resolve();
@@ -34,8 +35,8 @@ var restartServer = () => {
 };
 
 startServer();
-var routerPath = path.resolve(path.join(process.cwd(), config.spalate.router));
-chokidar.watch([routerPath, path.join('config')], {
+var modulePaths = modules.map(m => m.path);
+chokidar.watch(modulePaths, {
   ignored: /[\/\\]\./,
   persistent: true,
 }).on('change', function(path) {;

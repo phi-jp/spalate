@@ -38,7 +38,7 @@
     
         var swap = async (req, res, next) => {
           // reset meta
-          helmeta.set( config.meta );
+          helmeta.set( config.head );
     
           var tagName = typeof route.tag === 'function' ? route.tag(req, res) : route.tag;
 
@@ -63,9 +63,8 @@
             }
             // head があれば head する
             if (tag.head) {
-              var data = tag.head();
-              var meta = app.meta.create(data);
-              helmeta.set( meta );
+              var head = Object.assign({}, config.head, tag.head());
+              helmeta.set(head);
             }
           });
 

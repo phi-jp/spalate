@@ -2,16 +2,19 @@ spalate:
   ssr: true
   views:
     default: app/views/default.pug
-  modules:
-    - router: './app/assets/scripts/router.js'
-    - routeful
-    - helmeta
-    - firerest
-    - querysearch
-    - _: underscore
   static:
     - 'public'
     - 'app/assets'
+  bundle:
+    target:
+      - router: './app/assets/scripts/router.js'
+      - routeful
+      - helmeta
+      - firerest
+      - querysearch
+      - _: underscore
+      - app: 'public/scripts/app.js'
+    output: 'public/scripts/bundle.js'
   riot:
     target: 'app/tags'
     output: 'public/scripts'
@@ -37,9 +40,8 @@ spalate:
     target: 'test-app'
     output: 'public/plugins/cordova'
     
-config:
+client:
   env: default
-  spalate:
   head:
     title: spalate-test
     description: Hello, spalate!
@@ -55,6 +57,7 @@ config:
       - { rel: "stylesheet", href: "https://fonts.googleapis.com/icon?family=Material+Icons" }
       - { rel: "stylesheet", href: "/spalate/plugins/meltline.css" }
       - { rel: "stylesheet", href: "/fonts/icons/icons.css" }
+      - { rel: "stylesheet", href: "/styles/main.css" }
     script:
       # jquery
       - { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js' }
@@ -69,25 +72,16 @@ config:
       - { src: '/spalate/plugins/sclazy.js' }
       - { src: '/spalate/plugins/vercom.js' }
       - { src: '/spalate/plugins/flickable.js' }
-      # node
+      # node modules
       - { src: '/scripts/bundle.js' }
       # user
       - { src: "/scripts/tags.js" }
       - { src: "/scripts/main.js" }
-  meta:
-    title: spalate-test
-    keywords: web,tool
-    description: Hello, client template!
-    type: website
-    image: ""
-    favicon: /images/icon.png
-    url: https://rabee.jp
-  api:
+  firerest:
     endpoint: http://jsonplaceholder.typicode.com
     cacheKey: noteput.auth.token
     tokenKey: X-Noteput-Token
     debug: true
-
   app:
     ios:
       version: '2.0.0'

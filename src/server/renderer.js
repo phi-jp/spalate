@@ -2,7 +2,7 @@ var config = require('config');
 
 module.exports = {
   head: () => {
-    var head = config.config.head;
+    var head = config.client.head;
     var meta = '';
     var link = '';
 
@@ -37,14 +37,31 @@ module.exports = {
 ${meta}
 
 <!-- link -->
-${link}`;
+${link}
+
+<!-- config -->
+<script>
+var config = ${JSON.stringify(config.client)};
+</script>
+`;
 
     text = text.replace(/\n/g, '\n    ');
     return text + '\n  ';
   },
 
+  app: () => {
+    var text = `
+<div data-is='app'>
+  <div class='app-body'>
+    <spat-nav></spat-nav>
+  </div>
+</div>`;
+    text = text.replace(/\n/g, '\n    ');
+    return text;
+  },
+
   footer: () => {
-    var head = config.config.head;
+    var head = config.client.head;
     var script = '';
 
     var scripts = [
@@ -56,6 +73,9 @@ ${link}`;
       // riot.js
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/riot/3.8.2/riot+compiler.min.js', },
       { src: '/spalate/plugins/spat.js', },
+
+      // spalate.js
+      { src: '/spalate/scripts/main.js', },
     ];
 
     scripts = scripts.concat(head.script);

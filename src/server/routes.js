@@ -13,7 +13,7 @@ var renderer = require('./renderer');
 var modules = (() => {
   var working = process.cwd();
   var map = {};
-  var modules = config.spalate.modules.map((module) => {
+  var modules = config.spalate.bundle.target.map((module) => {
     var m = {};
     if (typeof module === 'string') {
       m.key = module;
@@ -45,14 +45,9 @@ if (config.spalate.ssr) {
   eval(tags);
 }
 
-var clientApp = require('../assets/scripts/app');
-var clientRouter = modules.router;
-
-var includes = (function() {
-  var defaultIncludes = require('../assets/includes.js');
-  var userIncludes = config.spalate.includes;
-
-  return defaultIncludes.concat(userIncludes);
+var clientRouter = (() => {
+  var routerModule = config.spalate.bundle.target.find(m => m.router);
+  return require(path.join(process.cwd(), routerModule.router));
 })();
 
 var getTagOutput = async (tagName, req, res) => {
@@ -75,7 +70,6 @@ var getTagOutput = async (tagName, req, res) => {
 
   if (tag.fetch) {
     var fetchRes = await tag.fetch({
-      app: clientApp,
       req: req,
       res: res,
     }).catch(err => {
@@ -106,7 +100,7 @@ var getTagOutput = async (tagName, req, res) => {
 
   return {
     content: content,
-    meta: clientApp.meta.create(head),
+    meta: head,
   };
 };
 
@@ -136,14 +130,11 @@ Object.keys(clientRouter.map).forEach(function(key) {
       }
       else {
         var content = '';
-        var meta = clientApp.meta.create();
       }
 
       res.render(config.spalate.views.default, {
         content: content,
         config: config,
-        meta: meta,
-        includes: includes,
         pretty: true,
         renderer: renderer,
       }, (err, content) => {

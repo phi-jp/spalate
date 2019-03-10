@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-  cdv.on('deviceready', () => {
+  // cdv.on('deviceready', () => {
     // cdv.appInfo と cdv.device を使う
     // app.ref.headers({
     //   'X-Noteput-App-Id': cordova.appInfoSync.identifier,
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // push notification setup
     // cdv.pushNotification.setup();
-  });
+  // });
   
   spalate.start();
 });

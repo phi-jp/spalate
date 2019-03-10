@@ -1,12 +1,12 @@
 var fs = require('fs-extra');
+var ghdownload = require('github-download');
 var path = require('path');
 var prompt = require('prompt');
 var ejs = require('ejs');
 prompt.message = null;
 prompt.colors = false;
 
-var templatePath = path.join(__dirname, '..', '..', 'templates', 'app');
-
+var templatePath = __dirname + '/_template';
 var spalatePackage = require(path.join(__dirname, '..', '..', 'package.json'));
 
 // spalate create [distDir]
@@ -101,36 +101,48 @@ new Promise(resolve => {
     });
   });
 }).then(function(res) {
-  var files = [
-    'gitignore',
-  ];
-  var dirs = [
-    'app',
-    'public',
-    'config',
-    '.circleci',
-  ];
+  var repo = 'spalate-template';
+  // github から ダウンロード
+  ghdownload({ user: 'phi-jp', repo: repo, ref: 'master' }, templatePath)
+    .on('error', function(err) {
+      console.error(err)
+    })
+    .on('end', () => {          
+      var files = [
+        'gitignore',
+      ];
+      var dirs = [
+        'app',
+        'public',
+        'config',
+        '.circleci',
+      ];
 
-  files.forEach(file => {
-    var dist = file;
-    if (dist === 'gitignore') {
-      dist = '.gitignore';
-    }
-    fs.copyFileSync(path.join(templatePath, file), path.join(distDir, dist));
-  });
+      files.forEach(file => {
+        var dist = file;
+        if (dist === 'gitignore') {
+          dist = '.gitignore';
+        }
+        fs.copyFileSync(path.join(templatePath, file), path.join(distDir, dist));
+      });
 
-  dirs.forEach(dir => {
-    fs.copySync(path.join(templatePath, dir), path.join(distDir, dir));
-  });
-  // package.json の spalate の npm install で install されるバージョンを指定
-  res.spalateVersion = '^' + spalatePackage.version;
-  return Promise.all([
-    renderFile('package.json', res),
-    renderFile(path.join('config', 'default.yml'), res),
-  ]).then(() => {
-    console.log(`${res.name} を ${distDir} に作成しました。`);
-  });
-  
+      dirs.forEach(dir => {
+        fs.copySync(path.join(templatePath, dir), path.join(distDir, dir));
+      });
+      // package.json の spalate の npm install で install されるバージョンを指定
+      res.spalateVersion = '^' + spalatePackage.version;
+      Promise.all([
+        renderFile('package.json', res),
+        renderFile(path.join('config', 'default.yml'), res),
+      ]).then(() => {
+        console.log(`${res.name} を ${distDir} に作成しました。`);
+      }).then(() => {
+        return fs.remove(templatePath);
+      }).catch(e => {
+        console.log(e);
+      });
+
+    });
 });
 
 

@@ -1,8 +1,54 @@
+var fs = require('fs');
+var path = require('path');
 var config = require('config');
 
-module.exports = {
-  head: () => {
-    var head = config.client.head;
+// riot build
+var riot = require('riot');
+var sdom = require( path.join( process.cwd() + '/node_modules/riot/lib/server/sdom.js') );
+riot.util.tmpl.errorHandler = function() {};
+riot.mixin({ _ssr: true });
+var tags = fs.readFileSync(config.spalate.riot.output + '/tags.js', 'utf-8');
+if (config.spalate.ssr) {
+  eval(tags);
+}
+
+
+// modules
+var modules = (() => {
+  var working = process.cwd();
+  var map = {};
+  var modules = config.spalate.bundle.target.map((module) => {
+    var m = {};
+    if (typeof module === 'string') {
+      m.key = module;
+      m.name = module;
+    }
+    else {
+      var key = Object.keys(module)[0];
+      m.key = key;
+      m.name = module[key];
+    }
+
+    // 相対パスの場合は working ディレクトリから探す
+    if (/\//.test(m.name)) {
+      m.name = path.join(working, m.name);
+    }
+
+    map[m.key] = require(m.name);
+  });
+
+  return map;
+})();
+
+// define class
+class Renderer {
+  constructor() {
+    this._content = '';
+    this._head = Object.assign({}, config.client.head);
+  }
+
+  head() {
+    var head = this._head;
     var meta = '';
     var link = '';
 
@@ -47,20 +93,23 @@ var config = ${JSON.stringify(config.client)};
 
     text = text.replace(/\n/g, '\n    ');
     return text + '\n  ';
-  },
+  }
 
-  app: () => {
+
+  app() {
     var text = `
 <div data-is='app'>
   <div class='app-body'>
-    <spat-nav></spat-nav>
+    <spat-nav>
+      ${this._content}
+    </spat-nav>
   </div>
 </div>`;
-    text = text.replace(/\n/g, '\n    ');
+    // text = text.replace(/\n/g, '\n    ');
     return text;
-  },
+  }
 
-  footer: () => {
+  footer() {
     var head = config.client.head;
     var script = '';
 
@@ -91,5 +140,62 @@ ${script_text}`;
 
     text = text.replace(/\n/g, '\n    ');
     return text + '\n  ';
-  },
+  }
+
+  async buildTag(tagName, req, res) {
+    // tag を mount
+    var root = document.createElement('div');
+    root.setAttribute('class', 'spat-page');
+    try {
+      root.setAttribute('data-is', tagName);
+      var tag = riot.mount(root)[0];
+    }
+    catch (err) {
+      console.log(`error: ${tagName} の mount に失敗しました`.red);
+      console.log(err);
+  
+      if (modules.router.pages && modules.router.pages['404']) {
+        root.setAttribute('data-is', modules.router.pages['404'].tag);
+        var tag = riot.mount(root)[0];
+      }
+    }
+
+    // fetch
+    if (tag.fetch) {
+      var fetchRes = await tag.fetch({
+        req: req,
+        res: res,
+        modules: modules,
+      }).catch(err => {
+        console.error(`error: ${tagName} の fetch でエラーが起きました`.red);
+        console.log(err);
+      });
+      Object.keys(fetchRes || {}).forEach(key => {
+        var value = fetchRes[key];
+        tag[key] = value;
+      });
+      try {
+        tag.update();
+      }
+      catch (err) {
+        console.error(`error: ${tagName} の update でエラーが起きました`.red);
+        console.log(err);
+      }
+    }
+
+    // head
+    if (tag.head) {
+      var head = tag.head();
+      Object.assign(this._head, head);
+    }
+
+    this._content = sdom.serialize(tag.root);
+    
+    // メモリリーク対策
+    tag.unmount();
+  }
+}
+
+module.exports = (params) => {
+  return new Renderer(params);
 };

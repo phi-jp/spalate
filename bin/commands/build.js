@@ -2,6 +2,7 @@ var config = require('config');
 var builder = require('./lib/builder');
 
 builder.riot.init(config.spalate.riot.target);
+builder.less.init(config.spalate.style.target)
 
 // // bundle
 // var modules = require('./lib/modules');

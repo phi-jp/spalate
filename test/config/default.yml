@@ -24,7 +24,7 @@ spalate:
     type: less
     entry: 'app/assets/styles/main.less'
     target: 'app/assets/styles/'
-    output: 'public/styles'
+    output: 'public/styles/main.css'
   iconfont:
     target: 'public/images/icons'
     output: 'public/fonts/icons'

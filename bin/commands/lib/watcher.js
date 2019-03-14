@@ -101,6 +101,9 @@ class Watcher extends EventEmitter {
     if (this.compiler) {
       file = await this.compiler(path);
     }
+    else {
+      file = fs.readFileSync(path, 'utf8').toString();
+    }
 
     this.files[path] = file;
   }

@@ -14,14 +14,6 @@ class Watcher extends EventEmitter {
     this.target = target;
     this.files = {};
     this.compiler = compiler;
-
-    // 対応するファイルを一通りキャッシュしておく
-    const watcher = this._createWatcher()
-      .on('add', this._cache.bind(this))
-      .once('ready', () => {
-        watcher.close();
-        this.emit('ready');
-      });
   }
 
   log(message) {
@@ -34,15 +26,36 @@ class Watcher extends EventEmitter {
     return this;
   }
 
-  watch() {
+  init(target) {
+    // 対応するファイルを一通りキャッシュしておく
+    var pathes = [];
+    const watcher = this._createWatcher(target);
+    watcher
+      .on('add', (path) => {
+        pathes.push(path);
+      })
+      .once('ready', async () => {
+        var tasks = pathes.map(async (path) => {
+          await this._cache(path);
+        });
+        await Promise.all(tasks);
+        
+        this.emit('ready');
+        watcher.close();
+      });
+  }
+
+  watch(target) {
     this.close();
 
+    this.init(target);
+ 
     // watch 開始
-    this.watcher = this._createWatcher();
+    this.watcher = this._createWatcher(target);
     this.watcher
       .once('ready', () => {
         this.log(colors.cyan('監視開始'));
-        watcher
+        this.watcher
           .on('add', async (path) => {
             await this._cache(path);
             this.emit('add', path);
@@ -76,8 +89,8 @@ class Watcher extends EventEmitter {
     return this;
   }
 
-  _createWatcher() {
-    return chokidar.watch(this.target, {
+  _createWatcher(target) {
+    return chokidar.watch(target, {
       ignored: /[\/\\]\./,
       persistent: true,
     });
@@ -93,16 +106,4 @@ class Watcher extends EventEmitter {
   }
 }
 
-const builder = module.exports = {
-  create(config) {
-    return new Watcher(config);
-  },
-
-  watch(config) {
-    return builder.create(config).watch();
-  },
-
-  build(config) {
-    return builder.create(config).build();
-  }
-};
+module.exports = Watcher;

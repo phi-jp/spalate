@@ -78,7 +78,7 @@ client:
       - { src: "/scripts/tags.js" }
       - { src: "/scripts/main.js" }
   firerest:
-    endpoint: http://jsonplaceholder.typicode.com
+    endpoint: https://jsonplaceholder.typicode.com
     cacheKey: noteput.auth.token
     tokenKey: X-Noteput-Token
     debug: true

@@ -17,7 +17,7 @@ spalate:
     output: 'public/scripts/bundle.js'
   riot:
     target: 'app/tags'
-    output: 'public/scripts'
+    output: 'public/scripts/tags.js'
     options:
       template: 'pug'
   style:

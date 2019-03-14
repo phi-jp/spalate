@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "node ../bin/spalate.js build",
-    "start": "npm run build; node ../bin/spalate.js start",
+    "start": "node ../bin/spalate.js start",
     "dev": "npm run build; node ../bin/spalate.js dev",
-    "deploy": "node ../bin/spalate.js deploy",
+    "deploy": "npm run build; node ../bin/spalate.js deploy",
     "iconfont": "node ../bin/spalate.js iconfont",
     "sync": "node ../bin/spalate.js create"
   },

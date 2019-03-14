@@ -1,7 +1,7 @@
 // bundle
 var config = require('config');
-var bundle = config.spalate.bundle;
-require('./lib/bundle.js').bundle(bundle.target, bundle.output);
+var modules = require('./lib/modules');
+require('./lib/bundler.js').bundle(modules, config.spalate.bundle.output);
 
 // build riot
 require('./lib/riot-builder').build();

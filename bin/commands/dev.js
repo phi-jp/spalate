@@ -4,6 +4,7 @@ var colors = require('colors');
 var path = require('path');
 var config = require('config');
 var modules = require('./lib/modules');
+var bundler = require('./lib/bundler');
 
 var server;
 var serverPromise = Promise.resolve();
@@ -35,14 +36,13 @@ var restartServer = () => {
 };
 
 startServer();
-var modulePaths = modules.map(m => m.path);
-chokidar.watch(modulePaths, {
-  ignored: /[\/\\]\./,
-  persistent: true,
-}).on('change', function(path) {;
+
+// bundler
+bundler.watchAndBundle(modules, config.spalate.bundle.output, () => {
   restartServer();
 });
 
+// riot
 const watchingBuilder = builder.watch();
 watchingBuilder.watcher
   .on('change', function(path) { watchingBuilder.log("修正されました-> " + path.cyan); })

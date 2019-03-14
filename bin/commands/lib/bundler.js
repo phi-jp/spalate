@@ -1,6 +1,6 @@
 var fs = require('fs');
 var path = require('path');
-var config = require('config');
+var chokidar = require('chokidar');
 
 var readModuleFile = (path) => {
   try {
@@ -18,29 +18,8 @@ var readModuleFile = (path) => {
 };
 
 module.exports = {
-  bundle: (modules) => {
+  bundle: (modules, output) => {
     var working = process.cwd();
-    // すべてオブジェクト型にする
-    modules = modules.map((module) => {
-      var m = {};
-      if (typeof module === 'string') {
-        m.key = module;
-        m.name = module;
-      }
-      else {
-        var key = Object.keys(module)[0];
-        m.key = key;
-        m.name = module[key];
-      }
-
-      // 相対パスの場合は working ディレクトリから探す
-      if (/\//.test(m.name)) {
-        m.name = path.join(working, m.name);
-      }
-
-      return m;
-    });
-
     var tasks = modules.map(async (module) => {
       var file = await readModuleFile(module.name);
       module.file = file;
@@ -49,9 +28,7 @@ module.exports = {
 
     Promise.all(tasks).then(() => {
       var files = modules.map(m => {
-        return `// ${m.key}: ${m.name}
-${m.file}
-`;
+        return `// ${m.key}: ${m.name}\n${m.file}`;
       }).join('\n\n');
 
       // export module
@@ -61,7 +38,18 @@ ${m.file}
       }).join('\n');
       files += modulesText;
 
-      fs.writeFileSync('public/scripts/bundle.js', files);
+      fs.writeFileSync(output, files);
+      console.log(`output ${output}`);
+    });
+  },
+  watchAndBundle: (modules, output, callback) => {
+    var modulePaths = modules.map(m => m.path);
+    chokidar.watch(modulePaths, {
+      ignored: /[\/\\]\./,
+      persistent: true,
+    }).on('change', (path) => {
+      this.bundle(modules, output);
+      callback && callback();
     });
   },
 };

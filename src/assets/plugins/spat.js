@@ -1,6 +1,6 @@
 
 /* 
- * spat 0.1.3
+ * spat 0.1.4
  * single page application framework for riot.js
  * MIT Licensed
  * 
@@ -145,6 +145,16 @@ riot.tag2('spat-modal', '', 'spat-modal,[data-is="spat-modal"]{position:fixed;tr
         var children = self.root.children;
         var child = children[children.length - 1];
         child && child._tag.close();
+      }
+    }, false);
+
+    window.addEventListener('popstate', (e) => {
+      var children = self.root.children;
+      var child = children[children.length - 1];
+      if (child) {
+
+        e.preventBack = true;
+        child._tag.close();
       }
     }, false);
 

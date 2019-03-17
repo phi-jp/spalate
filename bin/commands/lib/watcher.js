@@ -42,8 +42,6 @@ class Watcher extends EventEmitter {
             await this._cache(path);
           });
           await Promise.all(tasks);
-          
-          this.emit('ready');
           watcher.close();
 
           resolve();
@@ -60,23 +58,23 @@ class Watcher extends EventEmitter {
     this.watcher = this._createWatcher();
     this.watcher
       .once('ready', () => {
-        this.log(colors.cyan('監視開始'));
+        this.emit('ready');
         this.watcher
           .on('add', async (path) => {
             await this._cache(path);
 
-            this.build();
-
             this.emit('add', path);
             this.emit('update', path);
+
+            this.build();
           })
           .on('change', async (path) => {
             await this._cache(path);
 
-            this.build();
-
             this.emit('change', path);
             this.emit('update', path);
+
+            this.build();
           })
           .on('remove', async (path) => {
 
@@ -103,6 +101,7 @@ class Watcher extends EventEmitter {
       catch (e) {
         this.error(`${colors.red('build failed:')} ${colors.cyan(file)}\n${colors.red(e)}`);
       }
+      this.log(`Finish ${colors.cyan('Build')}`);
     }
   }
 

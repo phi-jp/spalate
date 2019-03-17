@@ -4,8 +4,8 @@ var _path = require('path');
 var config = require('config');
 var riot = require('riot');
 var less = require('less');
+var colors = require('colors/safe');
 var modules = require('./modules');
-
 var Watcher = require('./watcher');
 
 var options = {
@@ -81,3 +81,13 @@ module.exports = {
   style: new Watcher(options.style),
   bundle: new Watcher(options.bundle),
 };
+
+Object.values(module.exports).forEach((watcher) => {
+  watcher.on('ready', (path) => {
+    watcher.log(`Starting ${colors.cyan('watch')}`);
+  });
+
+  watcher.on('change', (path) => {
+    watcher.log(`change ${colors.green(path)}`);
+  });
+});

@@ -28,8 +28,8 @@ spalate:
   iconfont:
     target: 'public/images/icons'
     output: 'public/fonts/icons'
-  logger:
-    type: 'dev'
+  # logger:
+  #   type: 'dev'
   plugins:
     - 'rss.js'
     - 'sample.js'

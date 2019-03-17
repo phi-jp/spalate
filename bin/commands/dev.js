@@ -1,10 +1,4 @@
-var builder = require('./lib/riot-builder');
-var chokidar = require('chokidar');
-var colors = require('colors');
-var path = require('path');
-var config = require('config');
-var modules = require('./lib/modules');
-var bundler = require('./lib/bundler');
+var builder = require('./lib/builder');
 
 var server;
 var serverPromise = Promise.resolve();
@@ -37,22 +31,10 @@ var restartServer = () => {
 
 startServer();
 
-// bundler
-bundler.watchAndBundle(modules, config.spalate.bundle.output, () => {
+builder.riot.watch();
+builder.style.watch();
+builder.bundle.watch();
+
+builder.bundle.on('update', function() {
   restartServer();
 });
-
-// riot
-const watchingBuilder = builder.watch();
-watchingBuilder.watcher
-  .on('change', function(path) { watchingBuilder.log("修正されました-> " + path.cyan); })
-
-// less
-if (config.spalate.style && config.spalate.style.type === 'less') {
-  require('less-css-builder').watch({
-    less: require('less'),
-    entry: config.spalate.style.entry,
-    target: config.spalate.style.target,
-    output: config.spalate.style.output,
-  });
-}

@@ -45,6 +45,7 @@ Object.keys(clientRouter.map).forEach(function(key) {
       res.render(config.spalate.views.default, {
         pretty: true,
         config: config,
+        tagName: tagName,
         renderer: r,
       }, (err, content) => {
         if (err) {

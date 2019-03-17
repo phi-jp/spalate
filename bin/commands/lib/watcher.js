@@ -7,13 +7,14 @@ const moment = require('moment');
 const mkdirp = require('mkdirp');
 
 class Watcher extends EventEmitter {
-  constructor({id, target, compiler}) {
+  constructor({id, target, compiler, builder}) {
     super();
 
     this.id = id;
     this.target = target;
     this.files = {};
     this.compiler = compiler;
+    this.builder = builder;
   }
 
   log(message) {
@@ -26,45 +27,59 @@ class Watcher extends EventEmitter {
     return this;
   }
 
-  init(target) {
-    // 対応するファイルを一通りキャッシュしておく
-    var pathes = [];
-    const watcher = this._createWatcher(target);
-    watcher
-      .on('add', (path) => {
-        pathes.push(path);
-      })
-      .once('ready', async () => {
-        var tasks = pathes.map(async (path) => {
-          await this._cache(path);
+  init() {
+    return new Promise((resolve) => {
+      // 対応するファイルを一通りキャッシュしておく
+      var pathes = [];
+      var watcher = this._createWatcher();
+
+      watcher
+        .on('add', (path) => {
+          pathes.push(path);
+        })
+        .once('ready', async () => {
+          var tasks = pathes.map(async (path) => {
+            await this._cache(path);
+          });
+          await Promise.all(tasks);
+          
+          this.emit('ready');
+          watcher.close();
+
+          resolve();
         });
-        await Promise.all(tasks);
-        
-        this.emit('ready');
-        watcher.close();
-      });
+    });
   }
 
-  watch(target) {
+  async watch() {
     this.close();
 
-    this.init(target);
+    await this.init();
  
     // watch 開始
-    this.watcher = this._createWatcher(target);
+    this.watcher = this._createWatcher();
     this.watcher
       .once('ready', () => {
         this.log(colors.cyan('監視開始'));
         this.watcher
           .on('add', async (path) => {
             await this._cache(path);
+
+            this.build();
+
             this.emit('add', path);
             this.emit('update', path);
           })
           .on('change', async (path) => {
             await this._cache(path);
+
+            this.build();
+
             this.emit('change', path);
             this.emit('update', path);
+          })
+          .on('remove', async (path) => {
+
           })
           .on('all', (path) => {
             this.emit('all');
@@ -72,6 +87,23 @@ class Watcher extends EventEmitter {
       });
 
     return this;
+  }
+
+  async build() {
+    // watcher がいないときは初期化する
+    if (!this.watcher) {
+      await this.init();
+    }
+
+    if (this.builder) {
+      this.log(`Starting ${colors.cyan('Build')}`);
+      try {
+        await this.builder(this.files);
+      }
+      catch (e) {
+        this.error(`${colors.red('build failed:')} ${colors.cyan(file)}\n${colors.red(e)}`);
+      }
+    }
   }
 
   remove(path) {
@@ -89,8 +121,8 @@ class Watcher extends EventEmitter {
     return this;
   }
 
-  _createWatcher(target) {
-    return chokidar.watch(target, {
+  _createWatcher() {
+    return chokidar.watch(this.target, {
       ignored: /[\/\\]\./,
       persistent: true,
     });
@@ -99,7 +131,13 @@ class Watcher extends EventEmitter {
   async _cache(path) {
     var file = '';
     if (this.compiler) {
-      file = await this.compiler(path);
+      try {
+        file = await this.compiler(path);
+      }
+      catch (e) {
+        this.error(`${colors.red('compile failed:')} ${colors.cyan(path)}`);
+        console.error(e);
+      }
     }
     else {
       file = fs.readFileSync(path, 'utf8').toString();

@@ -1,14 +1,17 @@
 
 var fs = require('fs');
+var _path = require('path');
 var config = require('config');
 var riot = require('riot');
 var less = require('less');
+var modules = require('./modules');
 
 var Watcher = require('./watcher');
 
-
-var tasks = {
+var options = {
   riot: {
+    id: 'riot',
+    target: config.spalate.riot.target,
     compiler: (path) => {
       const code = fs.readFileSync(path, 'utf8').toString();
       const js = riot.compile(code, {
@@ -17,67 +20,64 @@ var tasks = {
   
       return js;
     },
-    build: () => {
-      watcher.log(`Starting Build`);
-
-      var text = Object.values(watcher.files).join('\n');
+    builder: (files) => {
+      var text = Object.values(files).join('\n');
       fs.writeFileSync(config.spalate.riot.output, text, 'utf-8');
     
-      watcher.log(`output ${config.spalate.riot.output}`);
-    },
+      // console.log(`output ${config.spalate.riot.output}`);  
+    }
   },
-  less: {
-    build: async () => {
-      const css = await less.render(fs.readFileSync(config.spalate.style.entry).toString());
-      console.log(css);
+  style: {
+    id: 'style',
+    target: config.spalate.style.target,
+    builder: async (files) => {
+      var entry = config.spalate.style.entry;
+      entry = _path.join(process.cwd(), entry);
+      var file = fs.readFileSync(entry).toString();
+
+      try {
+        var css = await less.render(file, {
+          filename: entry,
+        });
+      }
+      catch(e) {
+        console.log(e);
+      }
+
+      fs.writeFileSync(config.spalate.style.output, css.css);
+    }
+  },
+  bundle: {
+    id: 'bundle',
+    target: modules.map(m => m.path),
+    compiler: (path) => {
+      var file = fs.readFileSync(path, 'utf8');
+
+      // modules の方にも保存する
+      var hit = modules.find(m => m.path === path);
+      hit.file = file;
+
+      return file;
+    },
+    builder: (files) => {
+      var code = modules.map(m => {
+        return `// ${m.key}: ${m.name}\n${m.file}`;
+      }).join('\n\n');
+
+      var modulesText = `var modules = []\n`;
+      modulesText += modules.map(m => {
+        return `modules["${m.key}"] = ${m.key};`;
+      }).join('\n');
+
+      code += modulesText;
+
+      fs.writeFileSync(config.spalate.bundle.output, code);
     },
   }
 };
 
-
-var riotWatcher = (() => {
-  var watcher = new Watcher({
-    id: 'riot',
-    compiler: (path) => {
-      const code = fs.readFileSync(path, 'utf8').toString();
-      const js = riot.compile(code, {
-        template: 'pug',
-      });
-  
-      return js;
-    },
-  });
-  var build = () => {
-    watcher.log(`Starting Build`);
-
-    var text = Object.values(watcher.files).join('\n');
-    fs.writeFileSync(config.spalate.riot.output, text, 'utf-8');
-  
-    watcher.log(`output ${config.spalate.riot.output}`);
-  };
-  watcher.on('ready', build);
-  watcher.on('update', build);
-  
-  return watcher;
-})();
-
 module.exports = {
-  riot: riotWatcher,
-  less: (() => {
-    var watcher = new Watcher({
-      id: 'less',
-    });
-
-    var build = async () => {
-      const css = await less.render(fs.readFileSync(config.spalate.style.entry).toString(), {
-        
-      });
-      console.log(css);
-    };
-
-    watcher.on('ready', build);
-    watcher.on('update', build);
-    
-    return watcher;
-  })(),
+  riot: new Watcher(options.riot),
+  style: new Watcher(options.style),
+  bundle: new Watcher(options.bundle),
 };

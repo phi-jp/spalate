@@ -14,15 +14,21 @@ var options = {
     target: config.spalate.riot.target,
     compiler: (path) => {
       const code = fs.readFileSync(path, 'utf8').toString();
-      const js = riot.compile(code, {
-        template: 'pug',
-      });
+
+      try {
+        var js = riot.compile(code, {
+          template: 'pug',
+        });
+      }
+      catch(e) {
+        console.log(e);
+      }
   
       return js;
     },
     builder: (files) => {
       var text = Object.values(files).join('\n');
-      fs.writeFileSync(config.spalate.riot.output, text, 'utf-8');
+      fs.writeFileSync(config.spalate.riot.output, text, 'utf8');
     
       // console.log(`output ${config.spalate.riot.output}`);  
     }

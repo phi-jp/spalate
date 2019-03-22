@@ -5,6 +5,7 @@ spalate:
   static:
     - 'public'
     - 'app/assets'
+  # フロント/サーバー両方で使うコード
   bundle:
     target:
       - router: './app/assets/scripts/router.js'

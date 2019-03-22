@@ -18,13 +18,6 @@ var spalate = function(settings) {
   app.use(bodyParser.json());
   app.use(cookieParser());
 
-  var includes = (function() {
-    var defaultIncludes = require(path.join(__dirname, 'assets/includes.js'));
-    var userIncludes = config.spalate.includes;
-
-    return defaultIncludes.concat(userIncludes);
-  })();
-
   // setup
   var compress = require('compression');
   app.use(compress()); 
@@ -36,7 +29,7 @@ var spalate = function(settings) {
   app.use('/spalate', express.static( path.join(__dirname, 'assets') ) );
 
   // setup views
-  app.set('views', path.join(__dirname, 'views'));
+  app.set('views', process.cwd());
   app.set('view engine', 'pug');
 
   // setup plugins
@@ -54,7 +47,5 @@ var spalate = function(settings) {
 
   return app;
 };
-
-spalate.app = require('./assets/scripts/app.js');
 
 exports = module.exports = spalate;

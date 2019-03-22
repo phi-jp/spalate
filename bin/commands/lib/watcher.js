@@ -4,7 +4,6 @@ const EventEmitter = require('events').EventEmitter;
 const chokidar = require('chokidar');
 const colors = require('colors/safe');
 const moment = require('moment');
-const mkdirp = require('mkdirp');
 
 class Watcher extends EventEmitter {
   constructor({id, target, compiler, builder}) {
@@ -76,8 +75,9 @@ class Watcher extends EventEmitter {
 
             this.build();
           })
-          .on('remove', async (path) => {
-
+          .on('unlink', async (path) => {
+            this.remove(path);
+            this.emit('unlink', path);
           })
           .on('all', (path) => {
             this.emit('all');
@@ -97,11 +97,11 @@ class Watcher extends EventEmitter {
       this.log(`Starting ${colors.cyan('Build')}`);
       try {
         await this.builder(this.files);
+        this.log(`Finish ${colors.cyan('Build')}`);
       }
       catch (e) {
         this.error(`${colors.red('build failed:')} ${colors.cyan(file)}\n${colors.red(e)}`);
       }
-      this.log(`Finish ${colors.cyan('Build')}`);
     }
   }
 
@@ -129,20 +129,18 @@ class Watcher extends EventEmitter {
 
   async _cache(path) {
     var file = '';
-    if (this.compiler) {
-      try {
+    try {
+      if (this.compiler) {
         file = await this.compiler(path);
       }
-      catch (e) {
-        this.error(`${colors.red('compile failed:')} ${colors.cyan(path)}`);
-        console.error(e);
+      else {
+        file = fs.readFileSync(path, 'utf8').toString();
       }
+      this.files[path] = file;
+    } catch (e) {
+      this.error(`${colors.red('compile failed:')} ${colors.cyan(path)}`);
+      console.error(e);
     }
-    else {
-      file = fs.readFileSync(path, 'utf8').toString();
-    }
-
-    this.files[path] = file;
   }
 }
 

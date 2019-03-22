@@ -7,6 +7,7 @@ var less = require('less');
 var colors = require('colors/safe');
 var modules = require('./modules');
 var Watcher = require('./watcher');
+var mkdirp = require('mkdirp');
 
 var options = {
   riot: {
@@ -15,14 +16,9 @@ var options = {
     compiler: (path) => {
       const code = fs.readFileSync(path, 'utf8').toString();
 
-      try {
-        var js = riot.compile(code, {
-          template: 'pug',
-        });
-      }
-      catch(e) {
-        console.log(e);
-      }
+      var js = riot.compile(code, {
+        template: 'pug',
+      });
   
       return js;
     },

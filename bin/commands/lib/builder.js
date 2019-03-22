@@ -45,12 +45,11 @@ var options = {
         var css = await less.render(file, {
           filename: entry,
         });
+        fs.writeFileSync(config.spalate.style.output, css.css);
       }
       catch(e) {
         console.log(e);
       }
-
-      fs.writeFileSync(config.spalate.style.output, css.css);
     }
   },
   bundle: {

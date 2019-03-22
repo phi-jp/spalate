@@ -30,15 +30,15 @@ class Watcher extends EventEmitter {
   init() {
     return new Promise((resolve) => {
       // 対応するファイルを一通りキャッシュしておく
-      var pathes = [];
+      var paths = [];
       var watcher = this._createWatcher();
 
       watcher
         .on('add', (path) => {
-          pathes.push(path);
+          paths.push(path);
         })
         .once('ready', async () => {
-          var tasks = pathes.map(async (path) => {
+          var tasks = paths.map(async (path) => {
             await this._cache(path);
           });
           await Promise.all(tasks);

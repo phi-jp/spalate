@@ -7,7 +7,6 @@ var less = require('less');
 var colors = require('colors/safe');
 var modules = require('./modules');
 var Watcher = require('./watcher');
-var mkdirp = require('mkdirp');
 
 var options = {
   riot: {

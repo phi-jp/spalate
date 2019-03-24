@@ -121,7 +121,6 @@ var config = ${JSON.stringify(config.client)};
 
       // riot.js
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/riot/3.8.2/riot+compiler.min.js', },
-      { src: '/spalate/plugins/spat.js', },
 
       // spalate.js
       { src: '/spalate/scripts/main.js', },

@@ -8,8 +8,9 @@ spalate:
   # フロント/サーバー両方で使うコード
   bundle:
     target:
-      - router: './app/assets/scripts/router.js'
+      - spat
       - Routeful: routeful
+      - router: './app/assets/scripts/router.js'
       - helmeta
       - Firerest: firerest
       - QuerySearch: querysearch

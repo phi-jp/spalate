@@ -33,8 +33,8 @@ startServer();
 
 builder.riot.watch();
 builder.style.watch();
-builder.bundle.watch();
+builder.modules.watch();
 
-builder.bundle.on('update', function() {
+builder.modules.on('update', function() {
   restartServer();
 });

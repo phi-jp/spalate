@@ -1,5 +1,5 @@
 
-var fs = require('fs');
+var fse = require('fs-extra');
 var _path = require('path');
 var config = require('config');
 var riot = require('riot');
@@ -13,7 +13,7 @@ var options = {
     id: 'riot',
     target: config.spalate.riot.target,
     compiler: (path) => {
-      const code = fs.readFileSync(path, 'utf8').toString();
+      const code = fse.readFileSync(path, 'utf8').toString();
 
       var js = riot.compile(code, {
         template: 'pug',
@@ -23,7 +23,7 @@ var options = {
     },
     builder: (files) => {
       var text = Object.values(files).join('\n');
-      fs.writeFileSync(config.spalate.riot.output, text, 'utf8');
+      fse.outputFileSync(config.spalate.riot.output, text, 'utf8');
     
       // console.log(`output ${config.spalate.riot.output}`);  
     }
@@ -34,13 +34,13 @@ var options = {
     builder: async (files) => {
       var entry = config.spalate.style.entry;
       entry = _path.join(process.cwd(), entry);
-      var file = fs.readFileSync(entry).toString();
+      var file = fse.readFileSync(entry).toString();
 
       try {
         var css = await less.render(file, {
           filename: entry,
         });
-        fs.writeFileSync(config.spalate.style.output, css.css);
+        fse.outputFileSync(config.spalate.style.output, css.css);
       }
       catch(e) {
         console.log(e);
@@ -51,7 +51,7 @@ var options = {
     id: 'modules',
     target: modules.map(m => m.path),
     compiler: (path) => {
-      var file = fs.readFileSync(path, 'utf8');
+      var file = fse.readFileSync(path, 'utf8');
 
       // modules の方にも保存する
       var hit = modules.find(m => m.path === path);
@@ -71,7 +71,7 @@ var options = {
 
       code += modulesText;
 
-      fs.writeFileSync(config.spalate.modules.output, code);
+      fse.outputFileSync(config.spalate.modules.output, code);
     },
   }
 };

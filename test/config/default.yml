@@ -6,7 +6,7 @@ spalate:
     - 'public'
     - 'app/assets'
   # フロント/サーバー両方で使うコード
-  bundle:
+  modules:
     target:
       - router: './app/assets/scripts/router.js'
       - Routeful: routeful
@@ -15,7 +15,7 @@ spalate:
       - QuerySearch: querysearch
       - _: underscore
       - app: 'public/scripts/app.js'
-    output: 'public/scripts/bundle.js'
+    output: 'public/scripts/modules.js'
   riot:
     target: 'app/tags'
     output: 'public/scripts/tags.js'
@@ -74,7 +74,7 @@ client:
       - { src: '/spalate/plugins/vercom.js' }
       - { src: '/spalate/plugins/flickable.js' }
       # node modules
-      - { src: '/scripts/bundle.js' }
+      - { src: '/scripts/modules.js' }
       # user
       - { src: "/scripts/tags.js" }
       - { src: "/scripts/main.js" }

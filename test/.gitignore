@@ -1,5 +1,5 @@
 node_modules
 .fontcustom-manifest.json
 public/scripts/tags.js
-public/scripts/bundle.js
+public/scripts/modules.js
 public/styles/main.css

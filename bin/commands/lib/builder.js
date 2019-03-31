@@ -71,7 +71,7 @@ var options = {
 
       code += modulesText;
 
-      fs.writeFileSync(config.spalate.bundle.output, code);
+      fs.writeFileSync(config.spalate.modules.output, code);
     },
   }
 };

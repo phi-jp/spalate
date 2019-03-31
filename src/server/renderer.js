@@ -17,7 +17,7 @@ if (config.spalate.ssr) {
 var modules = (() => {
   var working = process.cwd();
   var map = {};
-  var modules = config.spalate.bundle.target.map((module) => {
+  var modules = config.spalate.modules.target.map((module) => {
     var m = {};
     if (typeof module === 'string') {
       m.key = module;

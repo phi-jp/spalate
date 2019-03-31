@@ -5,6 +5,7 @@ spalate:
   static:
     - 'public'
     - 'app/assets'
+  # フロント/サーバー両方で使うコード
   bundle:
     target:
       - router: './app/assets/scripts/router.js'
@@ -17,19 +18,19 @@ spalate:
     output: 'public/scripts/bundle.js'
   riot:
     target: 'app/tags'
-    output: 'public/scripts'
+    output: 'public/scripts/tags.js'
     options:
       template: 'pug'
   style:
     type: less
     entry: 'app/assets/styles/main.less'
     target: 'app/assets/styles/'
-    output: 'public/styles'
+    output: 'public/styles/main.css'
   iconfont:
     target: 'public/images/icons'
     output: 'public/fonts/icons'
-  logger:
-    type: 'dev'
+  # logger:
+  #   type: 'dev'
   plugins:
     - 'rss.js'
     - 'sample.js'

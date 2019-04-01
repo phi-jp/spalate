@@ -10,7 +10,7 @@ var cacheDuration = config.spalate.cache ? config.spalate.cache.duration || 3600
 var renderer = require('./renderer');
 
 var clientRouter = (() => {
-  var routerModule = config.spalate.bundle.target.find(m => m.router);
+  var routerModule = config.spalate.modules.target.find(m => m.router);
   return require(path.join(process.cwd(), routerModule.router));
 })();
 

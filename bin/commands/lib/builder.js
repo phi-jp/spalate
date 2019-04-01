@@ -47,8 +47,8 @@ var options = {
       }
     }
   },
-  bundle: {
-    id: 'bundle',
+  modules: {
+    id: 'modules',
     target: modules.map(m => m.path),
     compiler: (path) => {
       var file = fs.readFileSync(path, 'utf8');
@@ -71,7 +71,7 @@ var options = {
 
       code += modulesText;
 
-      fs.writeFileSync(config.spalate.bundle.output, code);
+      fs.writeFileSync(config.spalate.modules.output, code);
     },
   }
 };
@@ -79,7 +79,7 @@ var options = {
 module.exports = {
   riot: new Watcher(options.riot),
   style: new Watcher(options.style),
-  bundle: new Watcher(options.bundle),
+  modules: new Watcher(options.modules),
 };
 
 Object.values(module.exports).forEach((watcher) => {

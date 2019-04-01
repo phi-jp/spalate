@@ -3,7 +3,7 @@ var config = require('config');
 var working = process.cwd();
 
 // すべてオブジェクト型にする
-var modules = config.spalate.bundle.target.map((module) => {
+var modules = config.spalate.modules.target.map((module) => {
   var m = {};
   if (typeof module === 'string') {
     m.key = module;

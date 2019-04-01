@@ -34,7 +34,7 @@
     "express": "^4.16.2",
     "firerest": "0.1.4",
     "flickable": "0.0.4",
-    "fs-extra": "^5.0.0",
+    "fs-extra": "^7.0.1",
     "github-download": "^0.5.0",
     "helmeta": "0.0.5",
     "js-yaml": "^3.10.0",

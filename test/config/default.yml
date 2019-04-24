@@ -69,6 +69,7 @@ client:
       - { src: 'https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.17/marked.js' }
       # my plugins
       - { src: '/spalate/plugins/uuaa.js' }
+      - { src: '/spalate/scripts/cdv.js' }
       - { src: '/spalate/plugins/socialink.js' }
       - { src: '/spalate/plugins/sclazy.js' }
       - { src: '/spalate/plugins/vercom.js' }

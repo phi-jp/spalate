@@ -44,7 +44,7 @@ html
     script.
       // navigator.userAgent に CordovaApplication/1.1.1 みたいな感じでバージョンが入っている
       if (navigator.userAgent.indexOf('CordovaApplication') !== -1) {
-        var matcher = ua.match(/^.*CordovaApplication\/(.*)/);
+        var matcher = navigator.userAgent.match(/^.*CordovaApplication\/(.*)/);
         var version = (matcher) ? matcher[1] : null;
         
         // version があればそのバージョンに応じたフォルダを参照するようにする

@@ -984,9 +984,10 @@ flagged-respawn@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/flagged-respawn/-/flagged-respawn-1.0.1.tgz#e7de6f1279ddd9ca9aac8a5971d618606b3aab41"
 
-flickable@0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/flickable/-/flickable-0.0.4.tgz#f52e4ea90ed9beb9e078376ca3bc815890692ba4"
+flickable@0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/flickable/-/flickable-0.0.5.tgz#fc3f5a0c9ace6e3b5207c912de203471aa99cd2e"
+  integrity sha512-rWbXa3vLrYGYaKla1zrs/KM3O+C3QrMMXgswbqLw32NIp0jO7YHD7pMEbjbEcQqvGj37r99Y9ML8/FBHdOGoWQ==
 
 for-in@^1.0.1, for-in@^1.0.2:
   version "1.0.2"

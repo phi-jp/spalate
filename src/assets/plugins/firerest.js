@@ -149,22 +149,25 @@
 
       if (options.type === 'GET') {
         if (options.data) {
-          var temp = extend(this.data(), options.data);
+          // undefined は除外する
+          var temp = {};
+          for (var key in options.data) {
+            var v = options.data[key];
+            if (v !== undefined) temp[key] = v;
+          }
           query = qs.stringify(temp, null, null, true);
           api += '?';
         }
       }
       else {
         if (options.data && options.data.constructor !== global.FormData) {
-          var temp = extend(this.data(), options.data);
           headers['Content-Type'] = 'application/json; charset=utf-8';
-          data = JSON.stringify( temp );
+          data = JSON.stringify( extend(this.data(), options.data) );
         }
         else {
-          data = options.data;	
+          data = options.data;
         }
       }
-
 
       var p = fetch(api + query, {
         method: options.type,

@@ -23,8 +23,9 @@
       this.lock = false;
       this._page = 0;
       
+      this.direction      = options.direction || 'any'; // どっち方向にフリックするか('vertical', 'horizontal', 'any')
       this.speedThreshold = options.speedThreshold || 10;
-      this.moveThresholdRate = options.moveThresholdRate || 0.5;
+      this.moveThreshold  = options.moveThreshold || 5;
       this.distance       = options.distance || 5;
       this.axis           = options.axis || '';
       this.maxPage        = options.maxPage;
@@ -46,16 +47,14 @@
       this.element.addEventListener(EVENT_POINT_END, function(e) {
         this._onend(e);
       }.bind(this));
-
-      // OS で強制的にタッチが無効にされた場合
-      this.element.addEventListener('touchcancel', function(e) {
-        this._onend(e);
-      }.bind(this));
       
       // マウスが要素を出た時
       this.element.addEventListener('mouseleave', function(e) {
         if (!this.starting) return ;
-        this._onend(e);
+
+        // 発火
+        this.fire('end', this.toEvent(e));
+        this.starting = false;
       }.bind(this));
       
       // ドラッグ時の挙動は常にキャンセル
@@ -109,7 +108,6 @@
     _onstart: function(e) {
       if (this.starting) return ;
       this.starting = true;
-      this.firstMove = true;
 
       this.reset();
 
@@ -143,25 +141,23 @@
       if (!p) return ;
 
       this.update(p.clientX, p.clientY);
-      if (this.firstMove) {
-        if (this.axis === 'x') {
-          if (Math.abs(this.mx) < Math.abs(this.my)) {
-            this.lock = true;
-            return;
-          }
+
+      if (this.axis === 'x') {
+        if (Math.abs(this.mx) < Math.abs(this.my)) {
+          this.lock = true;
+          return ;
         }
-        else if (this.axis === 'y') {
-          if (Math.abs(this.my) < Math.abs(this.mx)) {
-            this.lock = true;
-            return;
-          }
+      }
+      else if (this.axis === 'y') {
+        if (Math.abs(this.my) < Math.abs(this.mx)) {
+          this.lock = true;
+          return ;
         }
       }
       
       // 発火
       if (this.getDistance() > this.distance) {
         this.fire('move', this.toEvent(e));
-        this.firstMove = false;
       }
     },
 
@@ -293,8 +289,9 @@
         return true;
       }
 
-      var moveThreshold = w * this.moveThresholdRate;
-      if (moveThreshold < Math.abs(m)) {
+      // width / moveThreshold 分動いてたらフリックとみなす
+      var widthThreshold = w/this.moveThreshold;
+      if (widthThreshold < Math.abs(m)) {
         return true;
       }
       return false;

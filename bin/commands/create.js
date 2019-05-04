@@ -42,13 +42,14 @@ var mkdirp = (dir) => new Promise((resolve, reject) => {
   })
 });
 
-var renderFile = (file, data) => new Promise((resolve, reject) => {
+var renderFile = (file, data, output) => new Promise((resolve, reject) => {
+  output = output || file;
   ejs.renderFile(path.join(templatePath, file), data, function(err, html) {
     if (err) {
       reject(err);
     }
     else {
-      fs.outputFileSync(path.join(distDir, file), html);
+      fs.outputFileSync(path.join(distDir, output), html);
       resolve(html);
     }
   });
@@ -107,22 +108,18 @@ new Promise(resolve => {
     .on('error', function(err) {
       console.error(err)
     })
-    .on('end', () => {          
+    .on('end', () => {
       var files = [
-        'gitignore',
+        '.gitignore',
       ];
       var dirs = [
         'app',
         'public',
         'config',
-        '.circleci',
       ];
 
       files.forEach(file => {
         var dist = file;
-        if (dist === 'gitignore') {
-          dist = '.gitignore';
-        }
         fs.copyFileSync(path.join(templatePath, file), path.join(distDir, dist));
       });
 
@@ -132,7 +129,8 @@ new Promise(resolve => {
       // package.json の spalate の npm install で install されるバージョンを指定
       res.spalateVersion = '^' + spalatePackage.version;
       Promise.all([
-        renderFile('package.json', res),
+        renderFile('README.md', res, 'README.md'),
+        renderFile('_package.json', res, 'package.json'),
         renderFile(path.join('config', 'default.yml'), res),
       ]).then(() => {
         console.log(`${res.name} を ${distDir} に作成しました。`);

@@ -104,7 +104,7 @@ new Promise(resolve => {
 }).then(function(res) {
   var repo = 'spalate-template';
   // github から ダウンロード
-  ghdownload({ user: 'phi-jp', repo: repo, ref: 'master' }, templatePath)
+  ghdownload({ user: 'phi-jp', repo: repo, ref: 'develop' }, templatePath)
     .on('error', function(err) {
       console.error(err)
     })

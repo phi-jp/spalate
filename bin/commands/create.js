@@ -5,12 +5,15 @@ var prompt = require('prompt');
 var ejs = require('ejs');
 prompt.message = null;
 prompt.colors = false;
+// オプションで指定した変数はグローバル変数的に保存されている
+var program = require('commander');
+var TEMPLATE_TARGET = program.template || 'default';
 
 var templatePath = __dirname + '/_template';
 var spalatePackage = require(path.join(__dirname, '..', '..', 'package.json'));
 
 // spalate create [distDir]
-var distDir = path.resolve(process.argv[3] || '.');
+var distDir = path.resolve(program.args[0] || '.');
 
 var confirm = (message) => new Promise((resolve, reject) => {
   message += '(default: y)[y/n]';
@@ -42,9 +45,13 @@ var mkdirp = (dir) => new Promise((resolve, reject) => {
   })
 });
 
+var getTemplateFilePath = (file) => {
+  return path.join(templatePath, 'template', TEMPLATE_TARGET, file);
+};
+
 var renderFile = (file, data, output) => new Promise((resolve, reject) => {
   output = output || file;
-  ejs.renderFile(path.join(templatePath, file), data, function(err, html) {
+  ejs.renderFile(getTemplateFilePath(file), data, function(err, html) {
     if (err) {
       reject(err);
     }
@@ -117,28 +124,32 @@ new Promise(resolve => {
         'public',
         'config',
       ];
-
-      files.forEach(file => {
-        var dist = file;
-        fs.copyFileSync(path.join(templatePath, file), path.join(distDir, dist));
-      });
-
-      dirs.forEach(dir => {
-        fs.copySync(path.join(templatePath, dir), path.join(distDir, dir));
-      });
-      // package.json の spalate の npm install で install されるバージョンを指定
-      res.spalateVersion = '^' + spalatePackage.version;
-      Promise.all([
-        renderFile('README.md', res, 'README.md'),
-        renderFile('_package.json', res, 'package.json'),
-        renderFile(path.join('config', 'default.yml'), res),
-      ]).then(() => {
-        console.log(`${res.name} を ${distDir} に作成しました。`);
-      }).then(() => {
+      try {
+        files.forEach(file => {
+          var dist = file;
+          fs.copyFileSync(getTemplateFilePath(file), path.join(distDir, dist));
+        });
+        dirs.forEach(dir => {
+          fs.copySync(getTemplateFilePath(dir), path.join(distDir, dir));
+        });
+        // package.json の spalate の npm install で install されるバージョンを指定
+        res.spalateVersion = '^' + spalatePackage.version;
+        Promise.all([
+          renderFile('README.md', res, 'README.md'),
+          renderFile('_package.json', res, 'package.json'),
+          renderFile(path.join('config', 'default.yml'), res),
+        ]).then(() => {
+          console.log(`${res.name} を ${distDir} に作成しました。`);
+        }).then(() => {
+          return fs.remove(templatePath);
+        }).catch(e => {
+          console.log(e);
+        });
+      }
+      catch (e) {
+        console.error(`template: ${TEMPLATE_TARGET} : ファイルのコピーに失敗しました。テンプレート名が正しいか確認してください。テンプレート名が正しい場合は、開発中のテンプレートの可能性があります`);
         return fs.remove(templatePath);
-      }).catch(e => {
-        console.log(e);
-      });
+      } 
 
     });
 });

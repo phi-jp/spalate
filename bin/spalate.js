@@ -29,6 +29,9 @@ var commands = {
   create: {
     description: 'spalate のテンプレート環境を作成します。\n\tdirname を省略すると現在のディレクトリを指定したことになります',
     args: '[dirname]',
+    options: [
+      ['-t, --template [templateName]', 'テンプレートディレクトリ名を指定']
+    ],
   },
   generate: {
     description: 'テンプレートからファイルを作成します',

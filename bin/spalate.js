@@ -47,6 +47,11 @@ for (let key in commands) {
     .command(`${key}${args}`)
     .description(command.description || '')  
     .action(action);
+  if (command.options) {
+    command.options.forEach(option => {
+      program.option(option[0], option[1]);
+    });
+  }
 }
 
 // help がうまく表示されないバグ対応

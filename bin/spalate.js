@@ -29,6 +29,9 @@ var commands = {
   create: {
     description: 'spalate のテンプレート環境を作成します。\n\tdirname を省略すると現在のディレクトリを指定したことになります',
     args: '[dirname]',
+    options: [
+      ['-t, --template [templateName]', 'テンプレートディレクトリ名を指定']
+    ],
   },
   generate: {
     description: 'テンプレートからファイルを作成します',
@@ -47,6 +50,11 @@ for (let key in commands) {
     .command(`${key}${args}`)
     .description(command.description || '')  
     .action(action);
+  if (command.options) {
+    command.options.forEach(option => {
+      program.option(option[0], option[1]);
+    });
+  }
 }
 
 // help がうまく表示されないバグ対応

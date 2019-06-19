@@ -2915,10 +2915,10 @@ sparkles@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/sparkles/-/sparkles-1.0.1.tgz#008db65edce6c50eec0c5e228e1945061dd0437c"
 
-spat@0.1.7:
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/spat/-/spat-0.1.7.tgz#d3004634592d27c9a7838702cd4fccdad33ff516"
-  integrity sha512-gB+Zq/WCW++MlEBOAc/yaTHSXgGiuQ/yAKNdKYq4JwQWe68PL8AOH7Cvq/x7xFCJynO2la2MtMWMaWD9/HQIeQ==
+spat@0.1.8:
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/spat/-/spat-0.1.8.tgz#758fe7f79895dc4c01dbe245cee6cae035b26e5e"
+  integrity sha512-uC4fm38W1BcSeeowOVfrzwsD592pZxZ2O1i6afpNAL0xtaMchL4Ycgvk1CmXW7f/ufZ5ue9UJ2cT6PEgneuV6Q==
 
 split-string@^3.0.1, split-string@^3.0.2:
   version "3.1.0"

@@ -1,6 +1,6 @@
 
 /* 
- * spat 0.1.7
+ * spat 0.1.8
  * single page application framework for riot.js
  * MIT Licensed
  * 
@@ -554,9 +554,13 @@ riot.tag2('spat-nav', '<div class="spat-pages {\'scrollable\': opts.scrollable !
       if (self.currentPage.dataset.swipeDirection === 'bottom') {
 
         if (ax < ay) {
+          self._swiping = true;
+
+          if (self.dy < 0 || self.currentPage._tag.checkSpatSwipe && !self.currentPage._tag.checkSpatSwipe()) {
+            return ;
+          }
           e.preventDefault();
           e.stopPropagation();
-          self._swiping = true;
         }
         else {
           self._holdSwipe = false;
@@ -565,9 +569,13 @@ riot.tag2('spat-nav', '<div class="spat-pages {\'scrollable\': opts.scrollable !
       else {
 
         if (ax > ay) {
+          self._swiping = true;
+
+          if (self.currentPage._tag.checkSpatSwipe && !self.currentPage._tag.checkSpatSwipe()) {
+            return ;
+          }
           e.preventDefault();
           e.stopPropagation();
-          self._swiping = true;
         }
         else {
           self._holdSwipe = false;

@@ -23,9 +23,11 @@ var spalate = function(settings) {
   app.use(compress()); 
   
   // setup static path
-  config.spalate.static.forEach(function(p) {
-    app.use( express.static( path.join(process.cwd(), p) ) );
+  Object.keys(config.spalate.static).forEach((key) => {
+    var value = config.spalate.static[key];
+    app.use(value, express.static( path.join(process.cwd(), key) ) );
   });
+
   app.use('/spalate', express.static( path.join(__dirname, 'assets') ) );
 
   // setup views

@@ -3,8 +3,7 @@ spalate:
   views:
     default: app/views/default.pug
   static:
-    - 'public'
-    - 'app/assets'
+    public: /static
   # フロント/サーバー両方で使うコード
   modules:
     target:
@@ -56,9 +55,9 @@ client:
       - { name: apple-mobile-web-app-status-bar-style, content: "black-translucent" }
     link:
       - { rel: "stylesheet", href: "https://fonts.googleapis.com/icon?family=Material+Icons" }
-      - { rel: "stylesheet", href: "/spalate/plugins/meltline.css" }
-      - { rel: "stylesheet", href: "/fonts/icons/icons.css" }
-      - { rel: "stylesheet", href: "/styles/main.css" }
+      - { rel: "stylesheet", href: "/static/plugins/meltline.css" }
+      - { rel: "stylesheet", href: "/static/fonts/icons/icons.css" }
+      - { rel: "stylesheet", href: "/static/styles/main.css" }
     script:
       # jquery
       - { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js' }
@@ -68,17 +67,22 @@ client:
       # marked js
       - { src: 'https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.17/marked.js' }
       # my plugins
-      - { src: '/spalate/plugins/uuaa.js' }
-      - { src: '/spalate/scripts/cdv.js' }
-      - { src: '/spalate/plugins/socialink.js' }
-      - { src: '/spalate/plugins/sclazy.js' }
-      - { src: '/spalate/plugins/vercom.js' }
-      - { src: '/spalate/plugins/flickable.js' }
+      - { src: '/static/plugins/cdv.js' }
+      - { src: '/static/plugins/spat.js' }
+      - { src: '/static/plugins/uuaa.js' }
+      - { src: '/static/plugins/socialink.js' }
+      - { src: '/static/plugins/sclazy.js' }
+      - { src: '/static/plugins/vercom.js' }
+      - { src: '/static/plugins/flickable.js' }
+
+      # for spalate
+      - { src: '/static/plugins/client.js' }
+
       # node modules
-      - { src: '/scripts/modules.js' }
+      - { src: '/static/scripts/modules.js' }
       # user
-      - { src: "/scripts/tags.js" }
-      - { src: "/scripts/main.js" }
+      - { src: "/static/scripts/tags.js" }
+      - { src: "/static/scripts/main.js" }
   firerest:
     endpoint: https://jsonplaceholder.typicode.com
     cacheKey: noteput.auth.token

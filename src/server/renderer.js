@@ -124,7 +124,7 @@ var config = ${JSON.stringify(config.client)};
       { src: '/spalate/plugins/spat.js', },
 
       // spalate.js
-      { src: '/spalate/scripts/main.js', },
+      { src: '/spalate/scripts/client.js', },
     ];
 
     scripts = scripts.concat(head.script);

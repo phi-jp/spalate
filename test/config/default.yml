@@ -67,16 +67,12 @@ client:
       # marked js
       - { src: 'https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.17/marked.js' }
       # my plugins
-      - { src: '/static/plugins/cdv.js' }
       - { src: '/static/plugins/spat.js' }
       - { src: '/static/plugins/uuaa.js' }
       - { src: '/static/plugins/socialink.js' }
       - { src: '/static/plugins/sclazy.js' }
       - { src: '/static/plugins/vercom.js' }
       - { src: '/static/plugins/flickable.js' }
-
-      # for spalate
-      - { src: '/static/plugins/client.js' }
 
       # node modules
       - { src: '/static/scripts/modules.js' }

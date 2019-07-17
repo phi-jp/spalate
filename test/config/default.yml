@@ -55,7 +55,7 @@ client:
       - { name: apple-mobile-web-app-status-bar-style, content: "black-translucent" }
     link:
       - { rel: "stylesheet", href: "https://fonts.googleapis.com/icon?family=Material+Icons" }
-      - { rel: "stylesheet", href: "/static/plugins/meltline.css" }
+      - { rel: "stylesheet", href: "https://cdn.jsdelivr.net/gh/phi-jp/meltline@v0.1.10/meltline.css" }
       - { rel: "stylesheet", href: "/static/fonts/icons/icons.css" }
       - { rel: "stylesheet", href: "/static/styles/main.css" }
     script:

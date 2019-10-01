@@ -14,8 +14,8 @@
 
       });
       app.ref.on('fail', function(req, res) {
-        if (res.errors) {
-          spat.modal.alert(res.errors[0], 'Error');
+        if (res) {
+          spat.modal.alert(res.message || res, 'Error');
         }
       });
 

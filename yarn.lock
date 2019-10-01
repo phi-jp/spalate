@@ -983,10 +983,6 @@ flagged-respawn@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/flagged-respawn/-/flagged-respawn-1.0.1.tgz#e7de6f1279ddd9ca9aac8a5971d618606b3aab41"
 
-flickable@0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/flickable/-/flickable-0.0.5.tgz#fc3f5a0c9ace6e3b5207c912de203471aa99cd2e"
-
 for-in@^1.0.1, for-in@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
@@ -1870,10 +1866,6 @@ map-visit@^1.0.0:
 media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
-
-meltline@0.1.10:
-  version "0.1.10"
-  resolved "https://registry.yarnpkg.com/meltline/-/meltline-0.1.10.tgz#4127f20cedd5f0dcc325c776ada80870b78bbed7"
 
 merge-descriptors@1.0.1:
   version "1.0.1"
@@ -2762,10 +2754,6 @@ sax@>=0.6.0, sax@^1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
 
-sclazy@0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/sclazy/-/sclazy-0.0.2.tgz#5f0f3eb7787a7a3f510c4e93d995c187f059e3bf"
-
 semver@^4.1.0:
   version "4.3.6"
   resolved "https://registry.yarnpkg.com/semver/-/semver-4.3.6.tgz#300bc6e0e86374f7ba61068b5b1ecd57fc6532da"
@@ -2878,10 +2866,6 @@ snapdragon@^0.8.1:
     source-map-resolve "^0.5.0"
     use "^3.1.0"
 
-socialink@0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/socialink/-/socialink-0.0.2.tgz#14ba4e7f3d8c43d80c373b5d1e349dff9b6306de"
-
 source-map-resolve@^0.5.0:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/source-map-resolve/-/source-map-resolve-0.5.2.tgz#72e2cc34095543e43b2c62b2c4c10d4a9054f259"
@@ -2915,11 +2899,6 @@ sourcemap-codec@^1.4.1, sourcemap-codec@^1.4.4:
 sparkles@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/sparkles/-/sparkles-1.0.1.tgz#008db65edce6c50eec0c5e228e1945061dd0437c"
-
-spat@0.1.8:
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/spat/-/spat-0.1.8.tgz#758fe7f79895dc4c01dbe245cee6cae035b26e5e"
-  integrity sha512-uC4fm38W1BcSeeowOVfrzwsD592pZxZ2O1i6afpNAL0xtaMchL4Ycgvk1CmXW7f/ufZ5ue9UJ2cT6PEgneuV6Q==
 
 split-string@^3.0.1, split-string@^3.0.2:
   version "3.1.0"
@@ -3249,10 +3228,6 @@ utils-merge@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
 
-uuaa@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/uuaa/-/uuaa-0.1.0.tgz#e0a2726f8c3014431d95f03051655cb9d4ddf97d"
-
 uuid@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
@@ -3270,10 +3245,6 @@ vary@~1.1.2:
 vcsurl@~0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/vcsurl/-/vcsurl-0.1.1.tgz#5e00a109e7381b55b5d45b892533c8ec35c9320c"
-
-vercom@0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/vercom/-/vercom-0.0.2.tgz#92c5e66ef772e4d26da8d9acd74431a81b14824e"
 
 verror@1.10.0:
   version "1.10.0"

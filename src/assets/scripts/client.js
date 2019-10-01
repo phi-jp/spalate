@@ -30,8 +30,7 @@
       app.routeful = Routeful();
 
       // mount tag
-      var appElement = document.createElement('div');
-      var appTag = riot.mount(appElement, 'app')[0];
+      riot.mount('app');
 
       Object.keys(router.map).forEach(function(key) {
         var route = router.map[key];
@@ -44,14 +43,6 @@
 
           // fetch があれば fetch する
           spat.nav.one('swap', async (e) => {
-            // 初回だけ判定して入れ替える
-            if (appElement) {
-              var tempElement = document.querySelector('[data-is=app]');
-              tempElement.parentNode.replaceChild(appElement, tempElement);
-
-              appElement = null;
-            }
-
             var tag = e.currentPage._tag;
             if (tag.fetch) {
               var data = await tag.fetch({req, res, modules});

@@ -15,7 +15,7 @@
       });
       app.ref.on('fail', function(req, res) {
         if (res) {
-          spat.modal.alert(res.message || res, 'Error');
+          spat.modal.alert(res.message || `エラーが発生しました。\n${JSON.stringify(res)}`, 'Error');
         }
       });
 

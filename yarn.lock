@@ -3340,10 +3340,10 @@ rollup@^0.57.1:
     signal-exit "^3.0.2"
     sourcemap-codec "^1.4.1"
 
-routeful@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/routeful/-/routeful-0.1.0.tgz#bcba325f55ab3ac793e45d4cffeb523868a9351e"
-  integrity sha512-JmT2uaQ7gy1gpOCJExYo6wWhpqfqcDQlKGi4TZixW7FOHoc/gFzJJeE8lwlpkZpwXH77B3FixgLWp55fIIfBLg==
+routeful@0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/routeful/-/routeful-0.1.1.tgz#ce7ee13673738c8acc2affabd0f8da8553de1e13"
+  integrity sha512-nP+V5yJFlnQjCcku5u/CfxXygC+bB3dCGkFe3SMuTl801P0t3YSDeCU/5e2TfoHVMIIQ4nQO2w1N1Zb8yC0ZqQ==
   dependencies:
     path-to-regexp "^1.7.0"
 

@@ -38,9 +38,7 @@ Object.keys(clientRouter.map).forEach(function(key) {
 
       var content = '';
       var meta = {};
-      if (config.spalate.ssr) {
-        await r.buildTag(tagName, req, res);
-      }
+      await r.buildTag(tagName, req, res);
 
       res.render(config.spalate.views.default, {
         pretty: true,
@@ -53,7 +51,8 @@ Object.keys(clientRouter.map).forEach(function(key) {
         if (err) {
           console.log(err);
         }
-        if (cacheDuration) {
+        // エラーはキャッシュしない
+        else if (cacheDuration) {
           // キャッシュする
           renderCaches[cacheKey] = {
             key: cacheKey,

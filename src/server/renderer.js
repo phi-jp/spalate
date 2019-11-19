@@ -8,9 +8,8 @@ var sdom = require( path.join( process.cwd() + '/node_modules/riot/lib/server/sd
 riot.util.tmpl.errorHandler = function() {};
 riot.mixin({ _ssr: true });
 var tags = fs.readFileSync(config.spalate.riot.output, 'utf-8');
-if (config.spalate.ssr) {
-  eval(tags);
-}
+
+eval(tags);
 
 
 // modules
@@ -149,10 +148,16 @@ ${script_text}`;
     catch (err) {
       console.log(`error: ${tagName} の mount に失敗しました`.red);
       console.log(err);
+      if (!config.spalate.ssr) {
+        return ;
+      }
   
       if (modules.router.pages && modules.router.pages['404']) {
         root.setAttribute('data-is', modules.router.pages['404'].tag);
         var tag = riot.mount(root)[0];
+      }
+      else {
+        return ;
       }
     }
 
@@ -181,11 +186,19 @@ ${script_text}`;
 
     // head
     if (tag.head) {
-      var head = tag.head();
-      Object.assign(this._head, head);
+      try {
+        var head = tag.head();
+        Object.assign(this._head, head);
+      }
+      catch (e) {
+        console.error(`error: ${tagName} の head でエラーが起きました`.red);
+        console.log(e);
+      }
     }
 
-    this._content = sdom.serialize(tag.root);
+    if (config.spalate.ssr) {
+      this._content = sdom.serialize(tag.root);
+    }
     
     // メモリリーク対策
     tag.unmount();

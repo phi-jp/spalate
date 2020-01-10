@@ -1,31 +1,43 @@
 
 ;(function(global) {
   spalate = {
-    start: function(exec) {
-      // ルーティングイベントを実行するかどうかのフラグ(デフォルトは true)
-      exec = (exec === undefined) ? true : exec;
+    config: {
+      ref: {
+        onalways: function(req, res) {
 
+        },
+        onfail: function(req, res) {
+          if (res) {
+            spat.modal.alert(res.message || `エラーが発生しました。\n${JSON.stringify(res)}`, 'Error');
+          }
+        },
+      },
+      onpopstate: function() {
+        spat.nav._back = app.routeful.isBack;
+      },
+    },
+    init: function() {
       // 全ての要素をクリックに反応するようにする
       if (uuaa.os.name === 'iOS') {
         document.body.classList.add('cursor-pointer');
       }
-      // request 共通
-      app.ref.on('always', function(req, res) {
-
-      });
-      app.ref.on('fail', function(req, res) {
-        if (res) {
-          spat.modal.alert(res.message || `エラーが発生しました。\n${JSON.stringify(res)}`, 'Error');
+      if (this.config.ref) {
+        if (this.config.ref.onalways) {
+          // request 共通
+          app.ref.on('always', this.config.ref.onalways);
         }
-      });
+        if (this.config.ref.onfail) {
+          app.ref.on('fail', this.config.ref.onfail);
+        }
+      }
 
       // setup riot
       riot.util.tmpl.errorHandler = function() {};
 
       // check back
-      window.addEventListener('popstate', function(e) {
-        spat.nav._back = true;
-      }, false);
+      if (this.config.onpopstate) {
+        window.addEventListener('popstate', this.config.onpopstate, false);
+      }
 
       app.routeful = Routeful();
 
@@ -83,10 +95,15 @@
         cordovaPromise = cdv.init();
       }
 
-      return Promise.all([cordovaPromise]).then(() => {
-        app.routeful.start(exec);
-      });
+      return Promise.all([cordovaPromise]);
     },
+
+    start: function(exec) {
+      // ルーティングイベントを実行するかどうかのフラグ(デフォルトは true)
+      exec = (exec === undefined) ? true : exec;
+      app.routeful.start(exec);
+    },
+
   };
 
   global.spalate = spalate;

@@ -95,13 +95,13 @@
         cordovaPromise = cdv.init();
       }
 
-      return Promise.all([cordovaPromise]);
+      return Promise.all([cordovaPromise]).then(() => {
+        app.routeful.start(false);
+      });
     },
 
-    start: function(exec) {
-      // ルーティングイベントを実行するかどうかのフラグ(デフォルトは true)
-      exec = (exec === undefined) ? true : exec;
-      app.routeful.start(exec);
+    start: function() {
+      app.routeful.exec();
     },
 
   };

@@ -97,7 +97,7 @@ var config = ${JSON.stringify(config.client)};
 
   app() {
     var text = `
-<div data-is='app'>
+<div data-is='app' class="opacity-0 pointer-none">
   <div class='app-body'>
     <spat-nav>
       ${this._content}

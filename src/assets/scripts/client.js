@@ -1,31 +1,35 @@
 
 ;(function(global) {
   spalate = {
-    start: function(exec) {
-      // ルーティングイベントを実行するかどうかのフラグ(デフォルトは true)
-      exec = (exec === undefined) ? true : exec;
+    config: {
+      ref: {
+        onalways: function(req, res) {
 
+        },
+        onfail: function(req, res) {
+          if (res) {
+            spat.modal.alert(res.message || `エラーが発生しました。\n${JSON.stringify(res)}`, 'Error');
+          }
+        },
+      },
+    },
+    init: function() {
       // 全ての要素をクリックに反応するようにする
       if (uuaa.os.name === 'iOS') {
         document.body.classList.add('cursor-pointer');
       }
-      // request 共通
-      app.ref.on('always', function(req, res) {
-
-      });
-      app.ref.on('fail', function(req, res) {
-        if (res) {
-          spat.modal.alert(res.message || `エラーが発生しました。\n${JSON.stringify(res)}`, 'Error');
+      if (this.config.ref) {
+        if (this.config.ref.onalways) {
+          // request 共通
+          app.ref.on('always', this.config.ref.onalways);
         }
-      });
+        if (this.config.ref.onfail) {
+          app.ref.on('fail', this.config.ref.onfail);
+        }
+      }
 
       // setup riot
       riot.util.tmpl.errorHandler = function() {};
-
-      // check back
-      window.addEventListener('popstate', function(e) {
-        spat.nav._back = true;
-      }, false);
 
       app.routeful = Routeful();
 
@@ -40,7 +44,7 @@
           helmeta.set( config.head );
     
           var tagName = typeof route.tag === 'function' ? route.tag(req, res) : route.tag;
-
+          spalate.checkBack();
           // fetch があれば fetch する
           spat.nav.one('swap', async (e) => {
             var tag = e.currentPage._tag;
@@ -84,9 +88,18 @@
       }
 
       return Promise.all([cordovaPromise]).then(() => {
-        app.routeful.start(exec);
+        app.routeful.start(false);
       });
     },
+
+    start: function() {
+      app.routeful.exec();
+    },
+
+    checkBack: function() {
+      spat.nav._back = app.routeful.isBack;
+    },
+
   };
 
   global.spalate = spalate;

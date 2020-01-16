@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
-  spalate.init();
+document.addEventListener('DOMContentLoaded', async function() {
+  await spalate.init();
   spalate.start();
 });

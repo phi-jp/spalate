@@ -12,9 +12,6 @@
           }
         },
       },
-      onpopstate: function() {
-        spat.nav._back = app.routeful.isBack;
-      },
     },
     init: function() {
       // 全ての要素をクリックに反応するようにする
@@ -34,11 +31,6 @@
       // setup riot
       riot.util.tmpl.errorHandler = function() {};
 
-      // check back
-      if (this.config.onpopstate) {
-        window.addEventListener('popstate', this.config.onpopstate, false);
-      }
-
       app.routeful = Routeful();
 
       // mount tag
@@ -52,7 +44,7 @@
           helmeta.set( config.head );
     
           var tagName = typeof route.tag === 'function' ? route.tag(req, res) : route.tag;
-
+          spalate.checkBack();
           // fetch があれば fetch する
           spat.nav.one('swap', async (e) => {
             var tag = e.currentPage._tag;
@@ -102,6 +94,10 @@
 
     start: function() {
       app.routeful.exec();
+    },
+
+    checkBack: function() {
+      spat.nav._back = app.routeful.isBack;
     },
 
   };

@@ -38,7 +38,11 @@ Object.keys(clientRouter.map).forEach(function(key) {
 
       var content = '';
       var meta = {};
-      await r.buildTag(tagName, req, res);
+
+      await r.renderHead(tagName, req, res);
+      if (config.spalate.ssr) {
+        await r.renderBody(tagName, req, res);
+      }
 
       res.render(config.spalate.views.default, {
         pretty: true,

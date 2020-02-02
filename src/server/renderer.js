@@ -161,10 +161,7 @@ ${script_text}`;
       this.fetch_data = fetch_data || {};
 
       // fetch で取得したデータをタグに設定
-      Object.keys(this.fetch_data).forEach(key => {
-        var value = this.fetch_data[key];
-        tag[key] = value;
-      });
+      Object.assign(tag, this.fetch_data);
     }
 
     // head
@@ -206,10 +203,7 @@ ${script_text}`;
     }
     
     // fetch で取得したデータをタグに設定
-    Object.keys(this.fetch_data).forEach(key => {
-      var value = this.fetch_data[key];
-      tag[key] = value;
-    });
+    Object.assign(tag, this.fetch_data);
 
     // update
     try {

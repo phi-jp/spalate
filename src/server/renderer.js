@@ -142,10 +142,21 @@ ${script_text}`;
     if (!riot.util.templates[tagName]) return ;
 
     // mount せずに tag を展開
+    var noop = function() { };
     var tag = {
-      on() {},
+      on: noop,
+      one: noop,
+      mixin: noop,
     };
-    riot.util.templates[tagName].fn.call(tag);
+
+    try {
+      riot.util.templates[tagName].fn.call(tag, {});
+    }
+    catch (e) {
+      console.error(`error: ${tagName} の生成でエラーが起きました`.red);
+      console.log(e);
+      // エラーが出る前に関数定義が読み込めていれば、 fetch 等は使えるので return はしない
+    }
 
     // fetch
     if (tag.fetch) {

@@ -45,7 +45,7 @@
     "prompt": "^1.0.0",
     "pug": "2.0.1",
     "querysearch": "0.0.3",
-    "riot": "^3.13.1",
+    "riot": "git://github.com/phi-jp/riot.git#89ad782f4d81dbeab017c2dbfa0f3694c6908b62",
     "routeful": "0.1.1",
     "sclazy": "0.0.2",
     "socialink": "0.0.2",

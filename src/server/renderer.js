@@ -137,33 +137,30 @@ ${script_text}`;
     return text + '\n  ';
   }
 
-  async buildTag(tagName, req, res) {
-    // tag を mount
-    var root = document.createElement('div');
-    root.setAttribute('class', 'spat-page');
+  async renderHead(tagName, req, res) {
+    // タグじゃない場合は何もしない
+    if (!riot.util.templates[tagName]) return ;
+
+    // mount せずに tag を展開
+    var noop = function() { };
+    var tag = {
+      on: noop,
+      one: noop,
+      mixin: noop,
+    };
+
     try {
-      root.setAttribute('data-is', tagName);
-      var tag = riot.mount(root)[0];
+      riot.util.templates[tagName].fn.call(tag, {});
     }
-    catch (err) {
-      console.log(`error: ${tagName} の mount に失敗しました`.red);
-      console.log(err);
-      if (!config.spalate.ssr) {
-        return ;
-      }
-  
-      if (modules.router.pages && modules.router.pages['404']) {
-        root.setAttribute('data-is', modules.router.pages['404'].tag);
-        var tag = riot.mount(root)[0];
-      }
-      else {
-        return ;
-      }
+    catch (e) {
+      console.error(`error: ${tagName} の生成でエラーが起きました`.red);
+      console.log(e);
+      // エラーが出る前に関数定義が読み込めていれば、 fetch 等は使えるので return はしない
     }
 
     // fetch
     if (tag.fetch) {
-      var fetchRes = await tag.fetch({
+      var fetch_data = await tag.fetch({
         req: req,
         res: res,
         modules: modules,
@@ -171,17 +168,11 @@ ${script_text}`;
         console.error(`error: ${tagName} の fetch でエラーが起きました`.red);
         console.log(err);
       });
-      Object.keys(fetchRes || {}).forEach(key => {
-        var value = fetchRes[key];
-        tag[key] = value;
-      });
-      try {
-        tag.update();
-      }
-      catch (err) {
-        console.error(`error: ${tagName} の update でエラーが起きました`.red);
-        console.log(err);
-      }
+
+      this.fetch_data = fetch_data || {};
+
+      // fetch で取得したデータをタグに設定
+      Object.assign(tag, this.fetch_data);
     }
 
     // head
@@ -196,9 +187,45 @@ ${script_text}`;
       }
     }
 
-    if (config.spalate.ssr) {
-      this._content = sdom.serialize(tag.root);
+  }
+
+  async renderBody(tagName, req, res) {
+    // タグじゃない場合は何もしない
+    if (!riot.util.templates[tagName]) return ;
+
+    // tag を mount
+    var root = document.createElement('div');
+    root.setAttribute('class', 'spat-page');
+    try {
+      root.setAttribute('data-is', tagName);
+      var tag = riot.mount(root)[0];
     }
+    catch (err) {
+      console.log(`error: ${tagName} の mount に失敗しました`.red);
+      console.log(err);
+  
+      if (modules.router.pages && modules.router.pages['404']) {
+        root.setAttribute('data-is', modules.router.pages['404'].tag);
+        var tag = riot.mount(root)[0];
+      }
+      else {
+        return ;
+      }
+    }
+    
+    // fetch で取得したデータをタグに設定
+    Object.assign(tag, this.fetch_data);
+
+    // update
+    try {
+      tag.update();
+    }
+    catch (err) {
+      console.error(`error: ${tagName} の update でエラーが起きました`.red);
+      console.log(err);
+    }
+
+    this._content = sdom.serialize(tag.root);
     
     // メモリリーク対策
     tag.unmount();

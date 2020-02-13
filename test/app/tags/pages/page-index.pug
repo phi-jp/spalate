@@ -17,11 +17,6 @@ page-index
         posts: posts.splice(0, 10),
       };
     };
-
-    this.on('mount', () => {
-      console.log('mount');
-      console.log(this._ssr);
-    });
     
     this.on('show', function() {
       console.log('show');

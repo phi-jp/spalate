@@ -2657,10 +2657,9 @@ riot-tmpl@^3.0.8:
   dependencies:
     eslint-config-riot "^1.0.0"
 
-riot@^3.13.1:
+"riot@git://github.com/phi-jp/riot.git#89ad782f4d81dbeab017c2dbfa0f3694c6908b62":
   version "3.13.2"
-  resolved "https://registry.yarnpkg.com/riot/-/riot-3.13.2.tgz#3f5fb86b0d2b864bdcc959b7f86e2f4c2f696726"
-  integrity sha512-L4WFJEhbTA0deDoZ1XxoVw7Tf96+xYc06aQ+4QM+IkYClD6mZ7E/9zN3Rd48uYMBvHQfHtbPvR0KEiu3pJyI2A==
+  resolved "git://github.com/phi-jp/riot.git#89ad782f4d81dbeab017c2dbfa0f3694c6908b62"
   dependencies:
     riot-cli "^4.0.2"
     riot-compiler "^3.5.2"
@@ -2693,10 +2692,10 @@ rollup@^0.57.1:
     signal-exit "^3.0.2"
     sourcemap-codec "^1.4.1"
 
-routeful@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/routeful/-/routeful-0.1.0.tgz#bcba325f55ab3ac793e45d4cffeb523868a9351e"
-  integrity sha512-JmT2uaQ7gy1gpOCJExYo6wWhpqfqcDQlKGi4TZixW7FOHoc/gFzJJeE8lwlpkZpwXH77B3FixgLWp55fIIfBLg==
+routeful@0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/routeful/-/routeful-0.1.1.tgz#ce7ee13673738c8acc2affabd0f8da8553de1e13"
+  integrity sha512-nP+V5yJFlnQjCcku5u/CfxXygC+bB3dCGkFe3SMuTl801P0t3YSDeCU/5e2TfoHVMIIQ4nQO2w1N1Zb8yC0ZqQ==
   dependencies:
     path-to-regexp "^1.7.0"
 
@@ -2887,7 +2886,7 @@ sourcemap-codec@^1.4.1, sourcemap-codec@^1.4.4:
   integrity sha512-1ZooVLYFxC448piVLBbtOxFcXwnymH9oUF8nRd3CuYDVvkRBxRl6pB4Mtas5a4drtL+E8LDgFkQNcgIw6tc8Hg==
 
 spalate@../:
-  version "0.2.1"
+  version "0.2.2"
   dependencies:
     body-parser "^1.18.3"
     buble "^0.19.3"
@@ -2913,18 +2912,18 @@ spalate@../:
     prompt "^1.0.0"
     pug "2.0.1"
     querysearch "0.0.3"
-    riot "^3.13.1"
-    routeful "0.1.0"
+    riot "git://github.com/phi-jp/riot.git#89ad782f4d81dbeab017c2dbfa0f3694c6908b62"
+    routeful "0.1.1"
     sclazy "0.0.2"
     socialink "0.0.2"
-    spat "0.1.8"
+    spat "0.1.11"
     underscore "^1.8.3"
     xml2js "^0.4.19"
 
-spat@0.1.8:
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/spat/-/spat-0.1.8.tgz#758fe7f79895dc4c01dbe245cee6cae035b26e5e"
-  integrity sha512-uC4fm38W1BcSeeowOVfrzwsD592pZxZ2O1i6afpNAL0xtaMchL4Ycgvk1CmXW7f/ufZ5ue9UJ2cT6PEgneuV6Q==
+spat@0.1.11:
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/spat/-/spat-0.1.11.tgz#4b89273e8f471981b272d318e86ece687bb5cb99"
+  integrity sha512-ofhMTM80ItCsqdHam7Lsejwyf59XvdhwmsRaYlRo5qsJnoJImYbPqPBNIG7u6YKTFHnxS2KCu1lTSGvGSVHFrQ==
 
 split-string@^3.0.1, split-string@^3.0.2:
   version "3.1.0"

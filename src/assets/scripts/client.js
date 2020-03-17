@@ -80,16 +80,7 @@
         app.routeful.on(key, swap);
       });
       
-      var cordovaPromise = Promise.resolve();
-
-      // cordova の場合は deviceready が終わってから routing を開始する
-      if (window.cordova) {
-        cordovaPromise = cdv.init();
-      }
-
-      return Promise.all([cordovaPromise]).then(() => {
-        app.routeful.start(false);
-      });
+      return app.routeful.start(false);;
     },
 
     start: function() {

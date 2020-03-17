@@ -13,9 +13,6 @@ var commands = {
   build: {
     description: 'ビルドします',
   },
-  cordova: {
-    description: 'cordova のセットアップをします',
-  },
   iconfont: {
     description: 'iconfont を作成します',
   },

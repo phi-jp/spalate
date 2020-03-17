@@ -34,10 +34,4 @@ modules.push({
   path: path.join(assets_dir, 'scripts/client.js'),
 });
 
-modules.push({
-  key: 'cdv',
-  name: path.join(assets_dir, 'scripts/cdv.js'),
-  path: path.join(assets_dir, 'scripts/cdv.js'),
-});
-
 module.exports = modules;

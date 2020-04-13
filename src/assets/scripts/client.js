@@ -18,7 +18,7 @@
       if (uuaa.os.name === 'iOS') {
         document.body.classList.add('cursor-pointer');
       }
-      if (this.config.ref) {
+      if (app.ref && this.config.ref) {
         if (this.config.ref.onalways) {
           // request 共通
           app.ref.on('always', this.config.ref.onalways);

@@ -119,7 +119,7 @@ var config = ${JSON.stringify(config.client)};
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/object-fit-images/3.2.3/ofi.js' },
 
       // riot.js
-      { src: 'https://cdnjs.cloudflare.com/ajax/libs/riot/3.8.2/riot+compiler.min.js', },
+      { src: 'https://cdnjs.cloudflare.com/ajax/libs/riot/3.13.2/riot+compiler.min.js', },
     ];
 
     scripts = scripts.concat(head.script);

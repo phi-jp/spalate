@@ -56,8 +56,8 @@ client:
     link:
       - { rel: "stylesheet", href: "https://fonts.googleapis.com/icon?family=Material+Icons" }
       - { rel: "stylesheet", href: "https://cdn.jsdelivr.net/gh/phi-jp/meltline@v0.1.10/meltline.css" }
-      - { rel: "stylesheet", href: "/static/fonts/icons/icons.css" }
-      - { rel: "stylesheet", href: "/static/styles/main.css" }
+      - { rel: "stylesheet", href: "/static/fonts/icons/icons.css?{timestamp}" }
+      - { rel: "stylesheet", href: "/static/styles/main.css?{timestamp}" }
     script:
       # jquery
       - { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js' }
@@ -75,10 +75,10 @@ client:
       - { src: 'https://cdn.jsdelivr.net/gh/phi-jp/flickable@v0.0.5/flickable.js' }
 
       # node modules
-      - { src: '/static/scripts/modules.js' }
+      - { src: '/static/scripts/modules.js?{timestamp}' }
       # user
-      - { src: "/static/scripts/tags.js" }
-      - { src: "/static/scripts/main.js" }
+      - { src: "/static/scripts/tags.js?{timestamp}" }
+      - { src: "/static/scripts/main.js?{timestamp}" }
   firerest:
     endpoint: https://jsonplaceholder.typicode.com
     cacheKey: noteput.auth.token

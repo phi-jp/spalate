@@ -11,6 +11,10 @@ var tags = fs.readFileSync(config.spalate.riot.output, 'utf-8');
 
 eval(tags);
 
+// head タグ内で {key名} で使える変数
+const VARIABLES = {
+  timestamp: Date.now(),
+};
 
 // modules
 var modules = (() => {
@@ -54,12 +58,14 @@ class Renderer {
     if (head.meta) {
       meta = head.meta.map((meta) => {
         var attrs = Object.keys(meta).map(key => `${key}="${meta[key]}"`).join(' ');
+        attrs = this._parseVariables(attrs);
         return `<meta ${attrs}>`;
       }).join('\n');
     }
     if (head.link) {
       link = head.link.map((meta) => {
         var attrs = Object.keys(meta).map(key => `${key}="${meta[key]}"`).join(' ');
+        attrs = this._parseVariables(attrs);
         return `<link ${attrs}>`;
       }).join('\n');
     }
@@ -108,9 +114,15 @@ var config = ${JSON.stringify(config.client)};
     return text;
   }
 
+  // {key名}をVARIABLES[key名]の変数に置換
+  _parseVariables(text) {
+    return text.replace(/\{.+\}/g, (value) => {
+      return VARIABLES[value.replace(/\{|\}/g, '').trim()];
+    });
+  }
+
   footer() {
     var head = config.client.head;
-    var script = '';
 
     var scripts = [
       // polyfill
@@ -126,6 +138,7 @@ var config = ${JSON.stringify(config.client)};
 
     var script_text = scripts.map((meta) => {
       var attrs = Object.keys(meta).map(key => `${key}="${meta[key]}"`).join(' ');
+      attrs = this._parseVariables(attrs);
       return `<script ${attrs}></script>`;
     }).join('\n');
 

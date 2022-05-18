@@ -43,7 +43,7 @@
     "morgan": "^1.9.1",
     "pretty-error": "^2.1.1",
     "prompt": "^1.0.0",
-    "pug": "2.0.1",
+    "pug": "3.0.1",
     "querysearch": "0.0.3",
     "riot": "https://github.com/phi-jp/riot.git#89ad782f4d81dbeab017c2dbfa0f3694c6908b62",
     "routeful": "0.1.1",
